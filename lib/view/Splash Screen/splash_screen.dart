@@ -1,8 +1,79 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-class SplashScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:health_care_system/constants/app_colors.dart';
+
+import '../../core/router/router.dart';
+import '../Intro/intro_one.dart';
+
+class SplashScreen extends StatefulWidget {
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  bool _visible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(milliseconds: 1), () {
+      setState(() {
+        _visible = !_visible;
+      });
+    });
+    Timer(const Duration(milliseconds: 3000), () {
+      MagicRouter.navigateAndPopAll(IntroOne());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.blueWhite,
+                AppColors.deepBlue,
+              ],
+              end: Alignment.bottomCenter,
+              begin: Alignment.topCenter,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              SizedBox(
+                height: 150,
+              ),
+              Image(image: AssetImage("assets/images/logoWhite.png")),
+              SizedBox(
+                height: 9,
+              ),
+              Text(
+                "Medical Care",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 42,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 5, right: 5),
+                child: Image(
+                  image: AssetImage("assets/images/splash - png.png"),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

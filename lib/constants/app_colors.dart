@@ -4,4 +4,8 @@ class AppColors {
   static const Color redColor = Color(0xFFEF4760);
   static const Color redGradientColor = Color(0xFFE17D72);
   static const Color blackColor = Colors.black;
+  static const Color blueWhite = Color(0xFF0DA5CC);
+  static const Color deepBlue = Color(0xFF075366);
+  static const Color introTextColor = Color(0xFF0C5D72);
+  static const Color introButtonBorder = Color(0xFFAACFD8);
 }
