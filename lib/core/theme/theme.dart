@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../constants/app_colors.dart';
 
 ThemeData theme(BuildContext context) {
   return ThemeData(
     scaffoldBackgroundColor: Colors.white,
     primaryColor: AppColors.redColor,
+    fontFamily: GoogleFonts.lato().fontFamily,
     colorScheme: const ColorScheme.light(
         primary: AppColors.redColor, secondary: AppColors.redColor),
     appBarTheme: AppBarTheme(

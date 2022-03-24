@@ -8,4 +8,6 @@ class AppColors {
   static const Color deepBlue = Color(0xFF075366);
   static const Color introTextColor = Color(0xFF0C5D72);
   static const Color introButtonBorder = Color(0xFFAACFD8);
+  static const Color loginBackGround = Color(0xFFF9F9F9);
+  static const Color loginTextColor = Color(0xFF181461);
 }
