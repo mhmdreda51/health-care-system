@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_system/constants/app_colors.dart';
 import 'package:health_care_system/core/router/router.dart';
+import 'package:health_care_system/widgets/app_text.dart';
 
 import 'Widgets/intro_button.dart';
 import 'intro_two.dart';
@@ -20,35 +21,32 @@ class IntroOne extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image(
+                const Image(
                   image: AssetImage("assets/images/intro 1-png.png"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 42,
                 ),
-                Text(
-                  "Search Doctors",
-                  style: TextStyle(
-                    color: AppColors.blueWhite,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                const AppText(
+                  text: "Search Doctors",
+                  size: 20,
+                  color: AppColors.blueWhite,
+                  fontWeight: FontWeight.bold,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 7,
                 ),
-                Text(
-                  "Get list of best doctor nearby you",
-                  style: TextStyle(
-                    color: AppColors.blueWhite,
-                    fontSize: 14,
-                  ),
+                const AppText(
+                  text: "Get list of best doctor nearby you",
+                  size: 14,
+                  color: AppColors.blueWhite,
+                  fontWeight: FontWeight.normal,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 164,
                 ),
                 IntroButton(
-                  onPressed: () => MagicRouter.navigateTo(IntroTwo()),
+                  onPressed: () => MagicRouter.navigateTo(const IntroTwo()),
                 )
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_system/view/Login/login_screen.dart';
+import 'package:health_care_system/widgets/app_text.dart';
 
 import '../../constants/app_colors.dart';
 import '../../core/router/router.dart';
@@ -20,43 +21,40 @@ class IntroThree extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image(
+                const Image(
                   image: AssetImage("assets/images/intro 3 - png.png"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 42,
                 ),
-                Text(
-                  "Health card",
-                  style: TextStyle(
-                    color: AppColors.blueWhite,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                const AppText(
+                  text: "Health card",
+                  size: 20,
+                  color: AppColors.blueWhite,
+                  fontWeight: FontWeight.bold,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 7,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Container(
+                const Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: SizedBox(
                     height: 37,
                     width: 205,
-                    child: Text(
-                      "Storage your medical records and share it with your doctors",
-                      maxLines: 2,
-                      style: TextStyle(
-                        color: AppColors.blueWhite,
-                        fontSize: 14,
-                      ),
+                    child: AppText(
+                      text:
+                          "Storage your medical records and share it with your doctors",
+                      size: 14,
+                      color: AppColors.blueWhite,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 164,
+                const SizedBox(
+                  height: 140,
                 ),
                 IntroButton(
-                  onPressed: () => MagicRouter.navigateTo(LoginScreen()),
+                  onPressed: () => MagicRouter.navigateTo(const LoginScreen()),
                 )
               ],
             ),

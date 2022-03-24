@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_system/view/Intro/intro_three.dart';
+import 'package:health_care_system/widgets/app_text.dart';
 
 import '../../constants/app_colors.dart';
 import '../../core/router/router.dart';
@@ -20,36 +21,32 @@ class IntroTwo extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image(
+                const Image(
                   image: AssetImage("assets/images/intro 2-png.png"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 42,
                 ),
-                Text(
-                  "Find Medical Solution",
-                  style: TextStyle(
-                    color: AppColors.blueWhite,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                const AppText(
+                  text: "Find Medical Solution",
+                  size: 20,
+                  color: AppColors.blueWhite,
+                  fontWeight: FontWeight.bold,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 7,
                 ),
-                Text(
-                  "Search about hospitals, labs, and pharmacies",
-                  maxLines: 2,
-                  style: TextStyle(
-                    color: AppColors.blueWhite,
-                    fontSize: 14,
-                  ),
+                const AppText(
+                  text: "Search about hospitals, labs, and pharmacies",
+                  size: 14,
+                  color: AppColors.blueWhite,
+                  fontWeight: FontWeight.normal,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 164,
                 ),
                 IntroButton(
-                  onPressed: () => MagicRouter.navigateTo(IntroThree()),
+                  onPressed: () => MagicRouter.navigateTo(const IntroThree()),
                 )
               ],
             ),

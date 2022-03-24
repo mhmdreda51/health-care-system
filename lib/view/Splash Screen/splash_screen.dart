@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:health_care_system/constants/app_colors.dart';
 
 import '../../core/router/router.dart';
+import '../../widgets/app_text.dart';
 import '../Intro/intro_one.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
     Timer(const Duration(milliseconds: 3000), () {
-      MagicRouter.navigateAndPopAll(IntroOne());
+      MagicRouter.navigateAndPopAll(const IntroOne());
     });
   }
 
@@ -50,16 +51,17 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(
                 height: 150,
               ),
-              Image(image: AssetImage("assets/images/logoWhite.png")),
+              Image(
+                image: AssetImage("assets/images/logoWhite.png"),
+              ),
               SizedBox(
                 height: 9,
               ),
-              Text(
-                "Medical Care",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),
+              AppText(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                size: 15,
+                text: "Medical Care",
               ),
               SizedBox(
                 height: 42,
