@@ -53,8 +53,12 @@ class IntroThree extends StatelessWidget {
                 const SizedBox(
                   height: 140,
                 ),
-                IntroButton(
+                AppButton(
                   onPressed: () => MagicRouter.navigateTo(const LoginScreen()),
+                  height: 50,
+                  color: Colors.transparent,
+                  width: 168,
+                  text: "Next",
                 )
               ],
             ),

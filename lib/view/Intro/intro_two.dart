@@ -45,8 +45,12 @@ class IntroTwo extends StatelessWidget {
                 const SizedBox(
                   height: 164,
                 ),
-                IntroButton(
+                AppButton(
                   onPressed: () => MagicRouter.navigateTo(const IntroThree()),
+                  height: 50,
+                  text: "Next",
+                  width: 168,
+                  color: Colors.transparent,
                 )
               ],
             ),

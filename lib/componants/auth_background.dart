@@ -18,7 +18,7 @@ class AuthBackground extends StatelessWidget {
         Container(
           height: double.infinity,
           width: double.infinity,
-          color: AppColors.loginBackGround.withOpacity(.7),
+          color: AppColors.loginBackGround.withOpacity(.8),
         ),
       ],
     );

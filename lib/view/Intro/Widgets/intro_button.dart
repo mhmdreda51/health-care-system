@@ -2,19 +2,31 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/app_colors.dart';
 
-class IntroButton extends StatelessWidget {
-  const IntroButton({Key? key, required this.onPressed}) : super(key: key);
+class AppButton extends StatelessWidget {
+  const AppButton(
+      {Key? key,
+      required this.onPressed,
+      required this.height,
+      required this.width,
+      required this.color,
+      required this.text})
+      : super(key: key);
   final VoidCallback onPressed;
+  final double height;
+  final double width;
+  final Color color;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 50,
-        width: 168,
+        height: height,
+        width: width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
+          color: color,
           border: Border(
             top: BorderSide(
               color: AppColors.introButtonBorder,
@@ -36,7 +48,7 @@ class IntroButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            "Next",
+            text,
             style: TextStyle(
                 fontSize: 14,
                 color: AppColors.blueWhite,

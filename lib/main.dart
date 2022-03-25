@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_system/view/Login/login%20cubit/login_controller_cubit.dart';
+import 'package:health_care_system/view/Sign%20Up/controller/sign_up_cubit.dart';
 import 'package:health_care_system/view/Splash%20Screen/splash_screen.dart';
 
 import 'core/blocObserver/bloc_observer.dart';
@@ -26,13 +28,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Health Care System',
-      debugShowCheckedModeBanner: false,
-      navigatorKey: navigatorKey,
-      onGenerateRoute: onGenerateRoute,
-      theme: theme(context),
-      home: SplashScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginControllerCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SignUpCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Health Care System',
+        debugShowCheckedModeBanner: false,
+        navigatorKey: navigatorKey,
+        onGenerateRoute: onGenerateRoute,
+        theme: theme(context),
+        home: SplashScreen(),
+      ),
     );
   }
 }
