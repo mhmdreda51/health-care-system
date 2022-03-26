@@ -10,6 +10,7 @@ import '../../componants/auth_logo.dart';
 import '../../core/router/router.dart';
 import '../../widgets/app_text_form_field.dart';
 import '../../widgets/main_button.dart';
+import '../Location Screen/select_location_screen.dart';
 import 'login cubit/login_controller_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -127,9 +128,11 @@ class LoginScreen extends StatelessWidget {
                               height: 13,
                             ),
                             MainButton(
-                              onPressed: () {},
+                              onPressed: () => MagicRouter.navigateTo(
+                                  const SelectLocationScreen()),
                               height: 55,
                               width: 266,
+                              borderRadius: 21,
                               text: "LOG IN",
                             ),
                             const SizedBox(

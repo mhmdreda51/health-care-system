@@ -9,11 +9,13 @@ class MainButton extends StatelessWidget {
     required this.height,
     required this.width,
     required this.text,
+    required this.borderRadius,
   }) : super(key: key);
   final VoidCallback onPressed;
   final double height;
   final double width;
   final String text;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class MainButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(21),
+          borderRadius: BorderRadius.circular(borderRadius),
           gradient: const LinearGradient(
             colors: [
               AppColors.blueWhite,

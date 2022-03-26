@@ -166,6 +166,7 @@ class SignUpScreen extends StatelessWidget {
                               onPressed: () {},
                               height: 55,
                               width: 266,
+                              borderRadius: 21,
                               text: "Create Account",
                             ),
                             const SizedBox(
