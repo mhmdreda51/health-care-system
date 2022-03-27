@@ -22,6 +22,7 @@ class LoginControllerCubit extends Cubit<LoginControllerState> {
     value.contains("@") || value.isEmpty
         ? emailSuffix = true
         : emailSuffix = false;
+
     emit(EmailSuffixOnChange());
   }
 

@@ -51,12 +51,6 @@ class LoginScreen extends StatelessWidget {
                             const SizedBox(
                               height: 100,
                             ),
-                            // const AppText(
-                            //   text: "Sign in",
-                            //   size: 23,
-                            //   color: AppColors.loginTextColor,
-                            //   fontWeight: FontWeight.bold,
-                            // ),
                             const SizedBox(
                               height: 25,
                             ),

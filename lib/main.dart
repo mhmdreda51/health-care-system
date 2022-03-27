@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_system/view/Login/login%20cubit/login_controller_cubit.dart';
+import 'package:health_care_system/view/Mab%20Screen/controller/map_cubit.dart';
 import 'package:health_care_system/view/Sign%20Up/controller/sign_up_cubit.dart';
 import 'package:health_care_system/view/Splash%20Screen/splash_screen.dart';
 
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SignUpCubit(),
+        ),
+        BlocProvider(
+          create: (context) => MapCubit(),
         ),
       ],
       child: MaterialApp(

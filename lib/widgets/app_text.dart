@@ -8,7 +8,7 @@ class AppText extends StatelessWidget {
     required this.fontWeight,
   });
 
-  final String text;
+  final String? text;
   final double size;
   final Color color;
   final FontWeight fontWeight;
@@ -16,7 +16,7 @@ class AppText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text!,
       style: TextStyle(
         color: color,
         fontSize: size,

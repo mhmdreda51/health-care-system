@@ -42,6 +42,7 @@ dependencies:
   font_awesome_flutter: ^9.1.0
   fluttertoast: ^8.0.8
   google_fonts: any
+
 #  carousel_slider: ^4.0.0
 #  shimmer: ^2.0.0
   pin_code_fields: ^7.3.0
@@ -56,6 +57,9 @@ dependencies:
 #  group_button: ^3.1.0
 #  buttons_tabbar: ^1.3.1
   geolocator: ^7.6.2
+  geocoding: ^2.0.4
+  permission_handler: ^8.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
