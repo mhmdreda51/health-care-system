@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:health_care_system/view/Home%20Screen/Controller/home_cubit.dart';
 import 'package:health_care_system/view/Login/login%20cubit/login_controller_cubit.dart';
 import 'package:health_care_system/view/Mab%20Screen/controller/map_cubit.dart';
 import 'package:health_care_system/view/Sign%20Up/controller/sign_up_cubit.dart';
@@ -40,14 +42,20 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => MapCubit(),
         ),
+        BlocProvider(
+          create: (context) => HomeCubit(),
+        ),
       ],
-      child: MaterialApp(
-        title: 'Health Care System',
-        debugShowCheckedModeBanner: false,
-        navigatorKey: navigatorKey,
-        onGenerateRoute: onGenerateRoute,
-        theme: theme(context),
-        home: SplashScreen(),
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        builder: () => MaterialApp(
+          title: 'Health Care System',
+          debugShowCheckedModeBanner: false,
+          navigatorKey: navigatorKey,
+          onGenerateRoute: onGenerateRoute,
+          theme: theme(context),
+          home: SplashScreen(),
+        ),
       ),
     );
   }

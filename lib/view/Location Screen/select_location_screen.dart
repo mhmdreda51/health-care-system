@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_system/core/router/router.dart';
+import 'package:health_care_system/view/Home%20Screen/home_screen.dart';
 import 'package:health_care_system/view/Mab%20Screen/controller/map_cubit.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 
@@ -8,21 +10,10 @@ import '../../componants/auth_logo.dart';
 import '../../constants/app_colors.dart';
 import '../../widgets/main_button.dart';
 
-class SelectLocationScreen extends StatefulWidget {
+class SelectLocationScreen extends StatelessWidget {
   const SelectLocationScreen({
     Key? key,
   }) : super(key: key);
-
-  @override
-  State<SelectLocationScreen> createState() => _SelectLocationScreenState();
-}
-
-class _SelectLocationScreenState extends State<SelectLocationScreen> {
-  @override
-  void initState() {
-    super.initState();
-    MapCubit.get(context).getCurrentLocation();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +68,10 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                         height: 43,
                         width: double.infinity,
                         padding: const EdgeInsets.only(
-                            top: 12, left: 16, bottom: 12),
+                          top: 12,
+                          left: 16,
+                          bottom: 12,
+                        ),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
@@ -116,7 +110,8 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                       height: 20,
                     ),
                     MainButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          MagicRouter.navigateTo(const HomeScreen()),
                       height: 43,
                       borderRadius: 10,
                       width: double.infinity,

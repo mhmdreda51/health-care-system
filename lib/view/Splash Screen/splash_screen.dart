@@ -6,6 +6,7 @@ import 'package:health_care_system/constants/app_colors.dart';
 import '../../core/router/router.dart';
 import '../../widgets/app_text.dart';
 import '../Intro/intro_one.dart';
+import '../Mab Screen/controller/map_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,6 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    MapCubit.get(context).getCurrentLocation();
+
     Timer(const Duration(milliseconds: 1), () {
       setState(() {
         _visible = !_visible;

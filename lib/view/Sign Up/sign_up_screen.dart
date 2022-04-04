@@ -8,7 +8,7 @@ import '../../componants/auth_logo.dart';
 import '../../constants/app_colors.dart';
 import '../../core/router/router.dart';
 import '../../widgets/app_text.dart';
-import '../../widgets/app_text_form_field.dart';
+import '../../widgets/auth_text_form_field.dart';
 import '../../widgets/main_button.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -49,7 +49,7 @@ class SignUpScreen extends StatelessWidget {
                             const SizedBox(
                               height: 80,
                             ),
-                            AppTextFromField(
+                            AuthTextFromField(
                               validator: (value) {
                                 if (value == null || value.trim().isEmpty) {
                                   return 'This field is required';
@@ -74,7 +74,7 @@ class SignUpScreen extends StatelessWidget {
                             const SizedBox(
                               height: 25,
                             ),
-                            AppTextFromField(
+                            AuthTextFromField(
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'email must not be empty';
@@ -98,7 +98,7 @@ class SignUpScreen extends StatelessWidget {
                             const SizedBox(
                               height: 25,
                             ),
-                            AppTextFromField(
+                            AuthTextFromField(
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'password must not be empty';
@@ -119,7 +119,7 @@ class SignUpScreen extends StatelessWidget {
                             const SizedBox(
                               height: 25,
                             ),
-                            AppTextFromField(
+                            AuthTextFromField(
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'password must not be empty';

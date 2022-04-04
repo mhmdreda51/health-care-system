@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/view/Intro/intro_three.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 
@@ -24,32 +25,32 @@ class IntroTwo extends StatelessWidget {
                 const Image(
                   image: AssetImage("assets/images/intro 2-png.png"),
                 ),
-                const SizedBox(
-                  height: 42,
+                SizedBox(
+                  height: 42.h,
                 ),
-                const AppText(
+                AppText(
                   text: "Find Medical Solution",
-                  size: 20,
+                  size: 20.sp,
                   color: AppColors.blueWhite,
                   fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(
-                  height: 7,
+                SizedBox(
+                  height: 7.h,
                 ),
-                const AppText(
+                AppText(
                   text: "Search about hospitals, labs, and pharmacies",
-                  size: 14,
+                  size: 14.sp,
                   color: AppColors.blueWhite,
                   fontWeight: FontWeight.normal,
                 ),
-                const SizedBox(
-                  height: 164,
+                SizedBox(
+                  height: 164.h,
                 ),
                 AppButton(
                   onPressed: () => MagicRouter.navigateTo(const IntroThree()),
-                  height: 50,
+                  height: 50.h,
                   text: "Next",
-                  width: 168,
+                  width: 168.w,
                   color: Colors.transparent,
                 )
               ],

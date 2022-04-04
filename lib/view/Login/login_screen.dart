@@ -8,7 +8,7 @@ import 'package:health_care_system/widgets/app_text.dart';
 import '../../componants/auth_background.dart';
 import '../../componants/auth_logo.dart';
 import '../../core/router/router.dart';
-import '../../widgets/app_text_form_field.dart';
+import '../../widgets/auth_text_form_field.dart';
 import '../../widgets/main_button.dart';
 import '../Location Screen/select_location_screen.dart';
 import 'login cubit/login_controller_cubit.dart';
@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                             const SizedBox(
                               height: 25,
                             ),
-                            AppTextFromField(
+                            AuthTextFromField(
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'email must not be empty';
@@ -78,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                             const SizedBox(
                               height: 25,
                             ),
-                            AppTextFromField(
+                            AuthTextFromField(
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'password must not be empty';
