@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:health_care_system/constants/app_colors.dart';
 import 'package:health_care_system/view/Home%20Screen/Controller/home_cubit.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 
 import '../../widgets/app_text_form_field.dart';
+import 'companants/home_app_bar.dart';
+import 'companants/home_carousel.dart';
+import 'companants/home_curve.dart';
+import 'companants/home_header.dart';
+import 'companants/services_grid_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -25,50 +29,8 @@ class HomeScreen extends StatelessWidget {
             backgroundColor: Colors.grey[200],
             body: Stack(
               children: [
-                Container(
-                  height: 250.h,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                      color: AppColors.blueWhite,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
-                      )),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  padding: const EdgeInsets.only(left: 37, right: 37),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: const [
-                          Icon(
-                            Icons.location_on,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                          SizedBox(
-                            width: 3,
-                          ),
-                          AppText(
-                            text: "Your Location",
-                            size: 13,
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                          )
-                        ],
-                      ),
-                      IconButton(
-                          onPressed: () {},
-                          icon: FaIcon(
-                            FontAwesomeIcons.solidBell,
-                            color: Colors.white,
-                          ))
-                    ],
-                  ),
-                ),
+                const HomeCurve(),
+                const HomeAppBar(),
                 Padding(
                   padding: const EdgeInsets.only(left: 36, right: 36, top: 60),
                   child: Align(
@@ -76,27 +38,7 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image(
-                          image: AssetImage("assets/images/logoWhite.png"),
-                        ),
-                        SizedBox(
-                          height: 14.h,
-                        ),
-                        AppText(
-                          text: "Find Your",
-                          size: 20.sp,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        SizedBox(
-                          height: 5.h,
-                        ),
-                        AppText(
-                          text: "Medical Solution",
-                          size: 20.sp,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        const HomeHeader(),
                         SizedBox(
                           height: 20.h,
                         ),
@@ -106,7 +48,36 @@ class HomeScreen extends StatelessWidget {
                           iconColor: Colors.grey[400]!,
                           icon: Icons.search,
                           hintText: "Search",
-                        )
+                        ),
+                        SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              HomeCarousel(cubit: cubit),
+                              SizedBox(
+                                height: 8.h,
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: AppText(
+                                  text: "Services",
+                                  size: 16.sp,
+                                  color: AppColors.blueWhite,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              ServicesGridView(
+                                cubit: cubit,
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),

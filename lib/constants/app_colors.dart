@@ -11,4 +11,5 @@ class AppColors {
   static const Color loginBackGround = Color(0xFFF9F9F9);
   static const Color loginTextColor = Color(0xFF181461);
   static const Color buttonGradient = Color(0xFF329D9C);
+  static const Color ubSelectedItem = Color(0xFFAACFD8);
 }

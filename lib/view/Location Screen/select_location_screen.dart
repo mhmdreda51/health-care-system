@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_system/core/router/router.dart';
-import 'package:health_care_system/view/Home%20Screen/home_screen.dart';
 import 'package:health_care_system/view/Mab%20Screen/controller/map_cubit.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 
 import '../../componants/auth_logo.dart';
 import '../../constants/app_colors.dart';
 import '../../widgets/main_button.dart';
+import '../Navigation Screen/navigation_screen.dart';
 
 class SelectLocationScreen extends StatelessWidget {
   const SelectLocationScreen({
@@ -111,7 +111,7 @@ class SelectLocationScreen extends StatelessWidget {
                     ),
                     MainButton(
                       onPressed: () =>
-                          MagicRouter.navigateTo(const HomeScreen()),
+                          MagicRouter.navigateTo(NavigationScreen()),
                       height: 43,
                       borderRadius: 10,
                       width: double.infinity,
