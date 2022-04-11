@@ -10,3 +10,5 @@ class ChangeCarouselIndex extends HomeState {}
 class ChangeServicesById extends HomeState {}
 
 class AppChangeBottomNavState extends HomeState {}
+
+class CallAmpulanceSuccess extends HomeState {}

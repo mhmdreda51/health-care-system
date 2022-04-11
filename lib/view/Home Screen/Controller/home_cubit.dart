@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:health_care_system/core/router/router.dart';
 import 'package:health_care_system/view/Find%20Doctor/find_doctor.dart';
 import 'package:health_care_system/view/Home%20Screen/home_screen.dart';
@@ -54,8 +55,9 @@ class HomeCubit extends Cubit<HomeState> {
       MagicRouter.navigateTo(const Scaffold());
       emit(ChangeServicesById());
     } else if (id == 5) {
-      MagicRouter.navigateTo(const Scaffold());
-      emit(ChangeServicesById());
+      _callNumber();
+      emit(CallAmpulanceSuccess());
+      // emit(ChangeServicesById());
     } else if (id == 6) {
       MagicRouter.navigateTo(const Scaffold());
       emit(ChangeServicesById());
@@ -75,6 +77,12 @@ class HomeCubit extends Cubit<HomeState> {
     emit(AppChangeBottomNavState());
   }
 
+//===============================================================
+  _callNumber() async {
+    const number = '911';
+    await FlutterPhoneDirectCaller.callNumber(number);
+    emit(CallAmpulanceSuccess());
+  }
 //===============================================================
 
 }
