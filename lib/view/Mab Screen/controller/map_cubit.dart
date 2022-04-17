@@ -38,15 +38,21 @@ class MapCubit extends Cubit<MapState> {
 
   void getMyAddressName() async {
     emit(GetMyAddressNameLoading());
-    List<Placemark> placemarks = await placemarkFromCoordinates(
-      position!.latitude,
-      position!.longitude,
-    );
-    Placemark place1 = placemarks[0];
-    myLocation = "${place1.name} ${place1.subAdministrativeArea} ";
-    emit(GetMyAddressNameSuccess());
 
-    print(myLocation);
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        position!.latitude,
+        position!.longitude,
+      );
+      Placemark place1 = placemarks[0];
+      myLocation = "${place1.name} ${place1.subAdministrativeArea} ";
+      print(myLocation);
+
+      emit(GetMyAddressNameSuccess());
+    } catch (e) {
+      print(e.toString());
+      emit(GetMyAddressNameError());
+    }
   }
 
   //===============================================================

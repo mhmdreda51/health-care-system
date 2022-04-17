@@ -57,7 +57,7 @@ class HomeCubit extends Cubit<HomeState> {
     } else if (id == 5) {
       _callNumber();
       emit(CallAmpulanceSuccess());
-      // emit(ChangeServicesById());
+      emit(ChangeServicesById());
     } else if (id == 6) {
       MagicRouter.navigateTo(const Scaffold());
       emit(ChangeServicesById());
@@ -83,6 +83,16 @@ class HomeCubit extends Cubit<HomeState> {
     await FlutterPhoneDirectCaller.callNumber(number);
     emit(CallAmpulanceSuccess());
   }
+
+//===============================================================
+
+//===============================================================
+
+//===============================================================
+//===============================================================
+//===============================================================
+//===============================================================
+//===============================================================
 //===============================================================
 
 }

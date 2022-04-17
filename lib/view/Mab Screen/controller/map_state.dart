@@ -14,6 +14,8 @@ class GetMyAddressNameLoading extends MapState {}
 
 class GetMyAddressNameSuccess extends MapState {}
 
+class GetMyAddressNameError extends MapState {}
+
 //===============================================================
 class UpdatedMarker extends MapState {
   final LatLng? updatedMarkerPosition;

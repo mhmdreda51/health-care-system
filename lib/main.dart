@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:health_care_system/view/Find%20Doctor/controller/find_doctor_cubit.dart';
 import 'package:health_care_system/view/Home%20Screen/Controller/home_cubit.dart';
 import 'package:health_care_system/view/Login/login%20cubit/login_controller_cubit.dart';
 import 'package:health_care_system/view/Mab%20Screen/controller/map_cubit.dart';
@@ -44,6 +45,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => HomeCubit(),
+        ),
+        BlocProvider(
+          create: (context) => FindDoctorCubit(),
         ),
       ],
       child: ScreenUtilInit(
