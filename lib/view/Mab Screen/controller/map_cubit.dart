@@ -15,7 +15,9 @@ import '../../../core/locationHelper/location_helper.dart';
 part 'map_state.dart';
 
 class MapCubit extends Cubit<MapState> {
-  MapCubit() : super(MapInitial());
+  MapCubit() : super(MapInitial()) {
+    getCurrentLocation();
+  }
 
   static MapCubit get(context) => BlocProvider.of(context);
 
@@ -23,7 +25,7 @@ class MapCubit extends Cubit<MapState> {
   Position? position;
   Map<String, dynamic>? errorMap;
   late bool isConnected;
-  String myLocation = "";
+  String? myLocation = "";
   StreamController<ConnectivityStatus> connectivityStream =
       ConnectivityHelper().connectionStatusController;
 

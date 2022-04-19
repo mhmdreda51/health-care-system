@@ -47,11 +47,12 @@ class HomeAppBar extends StatelessWidget {
                   SizedBox(
                     width: 3.w,
                   ),
-                  state is LocationLoading || locationCubit.myLocation == ""
+                  state is LocationLoading ||
+                          locationCubit.myLocation == "" ||
+                          state is LocationError
                       ? const LocationTextShimmer()
                       : AppText(
-                          text: state is LocationLoading ||
-                                  state is LocationSuccess
+                          text: state is LocationLoading
                               ? "Your Location"
                               : locationCubit.myLocation,
                           size: 11.h,

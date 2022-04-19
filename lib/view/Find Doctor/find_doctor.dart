@@ -5,9 +5,9 @@ import 'package:health_care_system/view/Mab%20Screen/controller/map_cubit.dart';
 import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../widgets/drop_down_Button.dart';
-import '../../widgets/no_thing_widget.dart';
 import '../../widgets/services_header.dart';
 import 'conponants/category_tap_bar.dart';
+import 'conponants/doctorListShimmer.dart';
 import 'conponants/doctor_list_view.dart';
 import 'conponants/location_button.dart';
 
@@ -55,9 +55,9 @@ class FindDoctor extends StatelessWidget {
                         borderRadius: 10,
                       )),
                   CategoryTapBar(cubit: cubit),
-                  cubit.newList.length == 0
-                      ? const NothingWidget(
-                          color: Colors.white,
+                  cubit.newList.isEmpty
+                      ? DoctorListShimmer(
+                          cubit: cubit,
                         )
                       : DoctorListView(cubit: cubit),
                 ],

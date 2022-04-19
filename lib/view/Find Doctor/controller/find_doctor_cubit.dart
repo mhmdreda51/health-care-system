@@ -9,10 +9,10 @@ part 'find_doctor_state.dart';
 
 class FindDoctorCubit extends Cubit<FindDoctorState> {
   FindDoctorCubit() : super(FindDoctorInitial()) {
-    // print('test');
     itemSelection(isSelected);
     findByCategory("All");
   }
+
   //===============================================================
 
   static FindDoctorCubit get(context) => BlocProvider.of(context);

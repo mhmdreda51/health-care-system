@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/view/Find%20Doctor/controller/find_doctor_cubit.dart';
+import 'package:health_care_system/view/Find%20Doctor/widgets/doctor_item_card.dart';
 
 class DoctorListView extends StatelessWidget {
   DoctorListView({Key? key, required this.cubit}) : super(key: key);
@@ -17,11 +18,16 @@ class DoctorListView extends StatelessWidget {
           itemCount: cubit.newList.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
-            return Container(
-              height: 100,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(25)),
+            final item = cubit.newList[index];
+            return InkWell(
+              onTap: () {},
+              child: DoctorItemCard(
+                image: item.image,
+                location: item.location,
+                category: item.category,
+                name: item.name,
+                rateStars: item.rateStars,
+              ),
             );
           },
           separatorBuilder: (context, index) {

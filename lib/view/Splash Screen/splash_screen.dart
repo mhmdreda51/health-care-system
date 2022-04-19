@@ -18,8 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    super.initState();
     MapCubit.get(context).getCurrentLocation();
+    MapCubit.get(context).getMyAddressName();
+    super.initState();
 
     Timer(const Duration(milliseconds: 1), () {
       setState(() {
