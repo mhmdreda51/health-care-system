@@ -8,8 +8,11 @@ import '../model/doctor_model.dart';
 part 'find_doctor_state.dart';
 
 class FindDoctorCubit extends Cubit<FindDoctorState> {
-  FindDoctorCubit() : super(FindDoctorInitial());
-
+  FindDoctorCubit() : super(FindDoctorInitial()) {
+    // print('test');
+    itemSelection(isSelected);
+    findByCategory("All");
+  }
   //===============================================================
 
   static FindDoctorCubit get(context) => BlocProvider.of(context);
@@ -29,7 +32,7 @@ class FindDoctorCubit extends Cubit<FindDoctorState> {
   String? dropdownInputValue;
 
   dropdownInputOnChanged({required String? value}) {
-    value = dropdownInputValue;
+    dropdownInputValue = value;
     emit(AppDropdownInputOnChanged());
   }
 
@@ -40,6 +43,7 @@ class FindDoctorCubit extends Cubit<FindDoctorState> {
 
   void itemSelection(int value) {
     isSelected = value;
+
     emit(SpecificationSelectedItem());
   }
 
@@ -48,13 +52,22 @@ class FindDoctorCubit extends Cubit<FindDoctorState> {
     return [...doctorList];
   }
 
+  late List<DoctorModel> newList = [];
+
   List findByCategory(String categoryName) {
-    List categoryList = products
-        .where((element) =>
-            element.category.toLowerCase().contains(categoryName.toLowerCase()))
-        .toList();
-    return categoryList;
+    emit(FilterDoctorListLoading());
+    newList = products.where((element) {
+      bool item = element.recommendation.contains(categoryName);
+      if (isSelected == 1) {
+        item = true;
+      }
+      return item;
+    }).toList();
+    print(newList.length);
+    emit(FilterDoctorListSuccess());
+    return newList;
   }
+
 //===============================================================
 //===============================================================
 //===============================================================

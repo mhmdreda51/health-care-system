@@ -8,3 +8,7 @@ class FindDoctorInitial extends FindDoctorState {}
 class AppDropdownInputOnChanged extends FindDoctorState {}
 
 class SpecificationSelectedItem extends FindDoctorState {}
+
+class FilterDoctorListLoading extends FindDoctorState {}
+
+class FilterDoctorListSuccess extends FindDoctorState {}

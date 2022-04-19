@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/view/Find%20Doctor/controller/find_doctor_cubit.dart';
 import 'package:health_care_system/view/Mab%20Screen/controller/map_cubit.dart';
 import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../widgets/drop_down_Button.dart';
+import '../../widgets/no_thing_widget.dart';
 import '../../widgets/services_header.dart';
 import 'conponants/category_tap_bar.dart';
+import 'conponants/doctor_list_view.dart';
 import 'conponants/location_button.dart';
 
 class FindDoctor extends StatelessWidget {
@@ -38,6 +39,7 @@ class FindDoctor extends StatelessWidget {
                       itemsList: cubit.specialitie,
                       onChanged: (value) {
                         cubit.dropdownInputOnChanged(value: value);
+                        // print(cubit.dropdownInputValue);
                       },
                     ),
                   ),
@@ -53,32 +55,11 @@ class FindDoctor extends StatelessWidget {
                         borderRadius: 10,
                       )),
                   CategoryTapBar(cubit: cubit),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 20, left: 20, right: 20, bottom: 10),
-                    child: SizedBox(
-                      height: 290,
-                      width: double.infinity,
-                      child: ListView.separated(
-                        itemCount: cubit.products.length,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            height: 100,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(25)),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return SizedBox(
-                            height: 10.h,
-                          );
-                        },
-                      ),
-                    ),
-                  )
+                  cubit.newList.length == 0
+                      ? const NothingWidget(
+                          color: Colors.white,
+                        )
+                      : DoctorListView(cubit: cubit),
                 ],
               )),
         );

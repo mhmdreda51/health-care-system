@@ -51,9 +51,9 @@ class AppDropDownButton extends StatelessWidget {
                   width: 5.w,
                 ),
                 Text(
-                  "Specialitie",
+                  value ?? "Specialitie",
                   textAlign: TextAlign.start,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: AppColors.introTextColor,
                   ),
                 ),
