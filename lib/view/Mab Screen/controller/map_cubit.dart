@@ -9,14 +9,14 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
 
-import '../../../core/connectivity helper/connectivity_helper.dart';
 import '../../../core/locationHelper/location_helper.dart';
 
 part 'map_state.dart';
 
 class MapCubit extends Cubit<MapState> {
   MapCubit() : super(MapInitial()) {
-    getCurrentLocation();
+    // getCurrentLocation();
+    print(myLocation);
   }
 
   static MapCubit get(context) => BlocProvider.of(context);
@@ -24,17 +24,7 @@ class MapCubit extends Cubit<MapState> {
 //===============================================================
   Position? position;
   Map<String, dynamic>? errorMap;
-  late bool isConnected;
-  String? myLocation = "";
-  StreamController<ConnectivityStatus> connectivityStream =
-      ConnectivityHelper().connectionStatusController;
-
-//===============================================================
-  @override
-  Future<void> close() {
-    connectivityStream.close();
-    return super.close();
-  }
+  String myLocation = "";
 
   //===============================================================
 
@@ -55,19 +45,6 @@ class MapCubit extends Cubit<MapState> {
       print(e.toString());
       emit(GetMyAddressNameError());
     }
-  }
-
-  //===============================================================
-  Future<void> checkConnectivity() async {
-    connectivityStream.stream.asBroadcastStream().listen((status) {
-      if (status == ConnectivityStatus.offline) {
-        isConnected = false;
-        emit(ConnectivityOfflineState());
-      } else {
-        isConnected = true;
-        emit(ConnectivityOnlineState());
-      }
-    });
   }
 
   //===============================================================

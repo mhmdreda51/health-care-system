@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:health_care_system/view/Home%20Screen/home_screen.dart';
 import 'package:health_care_system/view/find%20hospitals/find_hospitals.dart';
 import 'package:meta/meta.dart';
 
+import '../../../core/connectivity helper/connectivity_helper.dart';
 import '../../Account Screen/account_screen.dart';
 import '../../Health Card Screen/health_card_screen.dart';
 
@@ -20,6 +23,33 @@ class HomeCubit extends Cubit<HomeState> {
   //===============================================================
 
   static HomeCubit get(context) => BlocProvider.of(context);
+
+  //===============================================================
+  StreamController<ConnectivityStatus> connectivityStream =
+      ConnectivityHelper().connectionStatusController;
+  late bool isConnected;
+
+//===============================================================
+  @override
+  Future<void> close() {
+    connectivityStream.close();
+    return super.close();
+  }
+
+  //===============================================================
+  Future<void> checkConnectivity() async {
+    connectivityStream.stream.asBroadcastStream().listen((status) {
+      if (status == ConnectivityStatus.offline) {
+        isConnected = false;
+        emit(ConnectivityOfflineState());
+      } else {
+        isConnected = true;
+        emit(ConnectivityOnlineState());
+      }
+    });
+  }
+
+  //===============================================================
 
 //===============================================================
   int carouselIndex = 0;

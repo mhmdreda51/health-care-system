@@ -12,3 +12,7 @@ class ChangeServicesById extends HomeState {}
 class AppChangeBottomNavState extends HomeState {}
 
 class CallAmpulanceSuccess extends HomeState {}
+
+class ConnectivityOnlineState extends HomeState {}
+
+class ConnectivityOfflineState extends HomeState {}

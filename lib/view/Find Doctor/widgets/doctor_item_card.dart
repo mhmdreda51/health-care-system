@@ -25,60 +25,60 @@ class DoctorItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 100,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        padding:
-            const EdgeInsets.only(top: 17, left: 15, right: 15, bottom: 10),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image(
-              image: AssetImage(image),
-              height: 70.h,
-              width: 70.w,
-            ),
-            SizedBox(width: 13.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppText(
-                  text: name,
-                  size: 14.sp,
-                  color: AppColors.introTextColor,
-                  fontWeight: FontWeight.bold,
-                ),
-                SizedBox(height: 5.h),
-                AppText(
-                  text: category,
-                  size: 12.sp,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.normal,
-                ),
-                SizedBox(height: 5.h),
-                AppText(
-                  text: location,
-                  size: 12.sp,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.normal,
-                ),
-                SizedBox(height: 3.h),
-                StarsBar(stars: rateStars.toDouble()),
-              ],
-            ),
-            SizedBox(width: 100.w),
-            Padding(
-              padding: const EdgeInsets.only(top: 25),
-              child: FaIcon(
-                FontAwesomeIcons.ellipsisV,
+      height: 100,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      padding: const EdgeInsets.only(top: 17, left: 15, right: 15, bottom: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image(
+            image: AssetImage(image),
+            height: 70.h,
+            width: 70.w,
+          ),
+          SizedBox(width: 13.w),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppText(
+                text: name,
+                size: 14.sp,
                 color: AppColors.introTextColor,
-                size: 15.w,
+                fontWeight: FontWeight.bold,
               ),
-            )
-          ],
-        ));
+              SizedBox(height: 5.h),
+              AppText(
+                text: category,
+                size: 12.sp,
+                color: Colors.grey,
+                fontWeight: FontWeight.normal,
+              ),
+              SizedBox(height: 5.h),
+              AppText(
+                text: location,
+                size: 12.sp,
+                color: Colors.grey,
+                fontWeight: FontWeight.normal,
+              ),
+              SizedBox(height: 3.h),
+              StarsBar(stars: rateStars.toDouble()),
+            ],
+          ),
+          SizedBox(width: 100.w),
+          Padding(
+            padding: const EdgeInsets.only(top: 25),
+            child: FaIcon(
+              FontAwesomeIcons.ellipsisV,
+              color: AppColors.introTextColor,
+              size: 15.w,
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

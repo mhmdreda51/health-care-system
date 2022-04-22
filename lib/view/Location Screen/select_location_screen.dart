@@ -17,107 +17,109 @@ class SelectLocationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MapCubit, MapState>(
-      listener: (context, state) {},
+    return BlocBuilder<MapCubit, MapState>(
       builder: (context, state) {
         final cubit = MapCubit.get(context);
-        return SafeArea(
-          child: Scaffold(
-            backgroundColor: AppColors.loginBackGround,
-            body: SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
-                child: Column(
-                  children: [
-                    const AuthLogo(),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const AppText(
-                      text: "Health care",
-                      size: 20,
-                      color: AppColors.blueWhite,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    const SizedBox(
-                      height: 42,
-                    ),
-                    const AppText(
-                      text: "Location",
-                      size: 24,
-                      color: AppColors.blueWhite,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const AppText(
-                      text: "Please enter your location",
-                      size: 14,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    const SizedBox(
-                      height: 38,
-                    ),
-                    GestureDetector(
-                      onTap: cubit.getMyAddressName,
-                      child: Container(
-                        height: 43,
-                        width: double.infinity,
-                        padding: const EdgeInsets.only(
-                          top: 12,
-                          left: 16,
-                          bottom: 12,
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: AppColors.loginBackGround,
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: Offset(0, 3),
+        return BlocProvider(
+          create: (context) => MapCubit(),
+          child: SafeArea(
+            child: Scaffold(
+              backgroundColor: AppColors.loginBackGround,
+              body: SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
+                  child: Column(
+                    children: [
+                      const AuthLogo(),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const AppText(
+                        text: "Health care",
+                        size: 20,
+                        color: AppColors.blueWhite,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      const SizedBox(
+                        height: 42,
+                      ),
+                      const AppText(
+                        text: "Location",
+                        size: 24,
+                        color: AppColors.blueWhite,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const AppText(
+                        text: "Please enter your location",
+                        size: 14,
+                        color: Colors.black87,
+                        fontWeight: FontWeight.normal,
+                      ),
+                      const SizedBox(
+                        height: 38,
+                      ),
+                      GestureDetector(
+                        onTap: cubit.getMyAddressName,
+                        child: Container(
+                          height: 43,
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(
+                            top: 12,
+                            left: 16,
+                            bottom: 12,
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: AppColors.loginBackGround,
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3),
+                                ),
+                              ]),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.location_on_outlined,
+                                color: AppColors.blueWhite,
+                                size: 17,
                               ),
-                            ]),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.location_on_outlined,
-                              color: AppColors.blueWhite,
-                              size: 17,
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            AppText(
-                              text: state is LocationLoading ||
-                                      state is LocationSuccess
-                                  ? "Your Location"
-                                  : cubit.myLocation,
-                              size: 13,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.normal,
-                            )
-                          ],
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              AppText(
+                                text: state is LocationLoading ||
+                                        state is LocationSuccess
+                                    ? "Your Location"
+                                    : cubit.myLocation,
+                                size: 13,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    MainButton(
-                      onPressed: () =>
-                          MagicRouter.navigateTo(NavigationScreen()),
-                      height: 43,
-                      borderRadius: 10,
-                      width: double.infinity,
-                      text: "Continue",
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      MainButton(
+                        onPressed: () =>
+                            MagicRouter.navigateTo(NavigationScreen()),
+                        height: 43,
+                        borderRadius: 10,
+                        width: double.infinity,
+                        text: "Continue",
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
