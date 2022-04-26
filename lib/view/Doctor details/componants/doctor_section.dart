@@ -13,21 +13,24 @@ class DoctorSection extends StatelessWidget {
     required this.languages,
     required this.flags,
   }) : super(key: key);
-  final String education;
-  final String publications;
-  final String description;
+  final List education;
+  final List publications;
+  final List description;
   final List<String> languages;
   final List<String> flags;
 
   @override
   Widget build(BuildContext context) {
+    final educationList =
+        education.map((x) => "- $x\n").reduce((x, y) => "$x$y");
+    final publicationsList =
+        publications.map((x) => "- $x\n").reduce((x, y) => "$x$y");
+    final descriptionList =
+        description.map((x) => "- $x\n").reduce((x, y) => "$x$y");
     return BlocConsumer<DoctorDetailsCubit, DoctorDetailsState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
-        // final cubit = DoctorDetailsCubit.get(context);
-
+        final cubit = DoctorDetailsCubit.get(context);
         return Container(
           width: double.infinity,
           padding: const EdgeInsets.only(top: 10),
@@ -44,29 +47,100 @@ class DoctorSection extends StatelessWidget {
                 height: 10,
               ),
               Row(
-                children: languages
-                    .map(
-                      (e) => Row(
-                        children: [
-                          AppText(
-                            text: e,
-                            size: 13,
-                            color: AppColors.introTextColor,
-                            fontWeight: FontWeight.normal,
+                children: [
+                  Column(
+                    children: flags
+                        .map((e) =>
+                            Text(cubit.generateCountryFlag(countryCode: e)))
+                        .toList(),
+                  ),
+                  const SizedBox(width: 10),
+                  Column(
+                    children: languages
+                        .map(
+                          (e) => Row(
+                            children: [
+                              AppText(
+                                text: e,
+                                size: 13,
+                                color: AppColors.introTextColor,
+                                fontWeight: FontWeight.normal,
+                              ),
+                              const SizedBox(
+                                width: 30,
+                              ),
+                            ],
                           ),
-                          const SizedBox(
-                            width: 30,
-                          ),
-                        ],
-                      ),
-                    )
-                    .toList(),
+                        )
+                        .toList(),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 10,
               ),
               const Divider(
                 color: Colors.black38,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const AppText(
+                text: "Languages",
+                size: 14,
+                color: AppColors.introTextColor,
+                fontWeight: FontWeight.bold,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AppText(
+                text: educationList,
+                size: 13,
+                color: AppColors.introTextColor,
+                fontWeight: FontWeight.normal,
+              ),
+              const Divider(
+                color: Colors.black38,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const AppText(
+                text: "Publications",
+                size: 14,
+                color: AppColors.introTextColor,
+                fontWeight: FontWeight.bold,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AppText(
+                text: publicationsList,
+                size: 13,
+                color: AppColors.introTextColor,
+                fontWeight: FontWeight.normal,
+              ),
+              const Divider(
+                color: Colors.black38,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const AppText(
+                text: "Description",
+                size: 14,
+                color: AppColors.introTextColor,
+                fontWeight: FontWeight.bold,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AppText(
+                text: descriptionList,
+                size: 13,
+                color: AppColors.introTextColor,
+                fontWeight: FontWeight.normal,
               ),
             ],
           ),

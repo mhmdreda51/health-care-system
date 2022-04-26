@@ -22,9 +22,9 @@ class DoctorDetailsTapBarBody extends StatelessWidget {
     required this.flags,
   }) : super(key: key);
   final TabController tabController;
-  final String education;
-  final String publications;
-  final String description;
+  final List education;
+  final List publications;
+  final List description;
   final List<String> languages;
   final String address;
   final String workingTime;
@@ -49,7 +49,15 @@ class DoctorDetailsTapBarBody extends StatelessWidget {
             languages: languages,
             flags: flags,
           ),
-          ClinicInfoSection(),
+          ClinicInfoSection(
+            address: address,
+            gmail: gmail,
+            numberPhone: numberPhone,
+            priceFirsTime: priceFirsTime,
+            priceReturn: priceReturn,
+            socialName: socialName,
+            workingTime: workingTime,
+          ),
           FeedbacksSection()
         ],
       ),

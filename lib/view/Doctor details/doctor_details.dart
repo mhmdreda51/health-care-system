@@ -31,9 +31,9 @@ class DoctorDetails extends StatefulWidget {
   final String name;
   final String location;
   final String image;
-  final String education;
-  final String publications;
-  final String description;
+  final List education;
+  final List publications;
+  final List description;
   final List<String> languages;
   final String address;
   final String workingTime;
@@ -55,8 +55,8 @@ class _DoctorDetailsState extends State<DoctorDetails>
 
   @override
   void initState() {
-    currentTab = 1;
-    tabController = TabController(length: 3, vsync: this, initialIndex: 1);
+    currentTab = 0;
+    tabController = TabController(length: 3, vsync: this, initialIndex: 0);
     tabController.animation!.addListener(() {
       final value = tabController.animation!.value.round();
       if (value != currentTab && mounted) {
