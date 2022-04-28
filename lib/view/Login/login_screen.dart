@@ -51,9 +51,6 @@ class LoginScreen extends StatelessWidget {
                             const SizedBox(
                               height: 100,
                             ),
-                            const SizedBox(
-                              height: 25,
-                            ),
                             AuthTextFromField(
                               validator: (value) {
                                 if (value!.isEmpty) {

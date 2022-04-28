@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:health_care_system/view/Intro/intro_three.dart';
+import 'package:health_care_system/view/Login/login_screen.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 
 import '../../constants/app_colors.dart';
@@ -18,7 +18,7 @@ class IntroTwo extends StatelessWidget {
           height: double.infinity,
           width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 100),
+            padding: EdgeInsets.only(left: 10, right: 10, top: 100.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -47,7 +47,7 @@ class IntroTwo extends StatelessWidget {
                   height: 164.h,
                 ),
                 AppButton(
-                  onPressed: () => MagicRouter.navigateTo(const IntroThree()),
+                  onPressed: () => MagicRouter.navigateTo(const LoginScreen()),
                   height: 50.h,
                   text: "Next",
                   width: 168.w,

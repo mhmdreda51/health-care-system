@@ -26,25 +26,26 @@ class FindDoctor extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
               backgroundColor: Colors.grey[200],
-              body: Column(
-                children: [
-                  const ServicesHeader(
-                    text: 'Find your doctor',
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 25, left: 20, right: 20, bottom: 25),
-                    child: AppDropDownButton(
-                      value: cubit.dropdownInputValue,
-                      itemsList: cubit.specialitie,
-                      onChanged: (value) {
-                        cubit.dropdownInputOnChanged(value: value);
-                        // print(cubit.dropdownInputValue);
-                      },
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const ServicesHeader(
+                      text: 'Find your doctor',
                     ),
-                  ),
-                  SelectLocationButton(locationCubit: locationCubit),
-                  Padding(
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 25, left: 20, right: 20, bottom: 25),
+                      child: AppDropDownButton(
+                        value: cubit.dropdownInputValue,
+                        itemsList: cubit.specialitie,
+                        onChanged: (value) {
+                          cubit.dropdownInputOnChanged(value: value);
+                          // print(cubit.dropdownInputValue);
+                        },
+                      ),
+                    ),
+                    SelectLocationButton(locationCubit: locationCubit),
+                    Padding(
                       padding:
                           const EdgeInsets.only(top: 25, left: 20, right: 20),
                       child: MainButton(
@@ -53,14 +54,16 @@ class FindDoctor extends StatelessWidget {
                         width: double.infinity,
                         text: "Search",
                         borderRadius: 10,
-                      )),
-                  CategoryTapBar(cubit: cubit),
-                  cubit.newList.isEmpty
-                      ? DoctorListShimmer(
-                          cubit: cubit,
-                        )
-                      : DoctorListView(cubit: cubit),
-                ],
+                      ),
+                    ),
+                    CategoryTapBar(cubit: cubit),
+                    cubit.newList.isEmpty
+                        ? DoctorListShimmer(
+                            cubit: cubit,
+                          )
+                        : DoctorListView(cubit: cubit),
+                  ],
+                ),
               )),
         );
       },

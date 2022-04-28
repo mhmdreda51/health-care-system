@@ -184,7 +184,7 @@ class SignUpScreen extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                   GestureDetector(
-                                    onTap: () => MagicRouter.navigateTo(
+                                    onTap: () => MagicRouter.navigateAndPopAll(
                                         const LoginScreen()),
                                     child: const AppText(
                                       text: "Sign in",

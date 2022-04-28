@@ -19,6 +19,8 @@ class ServicesGridView extends StatelessWidget {
           crossAxisSpacing: 12.0,
           mainAxisSpacing: 12.0,
         ),
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         children: servicesList.map((item) {
           return GestureDetector(
             onTap: () => cubit.navigateServicesById(item.id),
@@ -30,7 +32,7 @@ class ServicesGridView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(13),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(top: 12, left: 10, right: 10),
+                padding: EdgeInsets.only(top: 12, left: 10, right: 10.r),
                 child: Column(
                   children: [
                     Image.asset(

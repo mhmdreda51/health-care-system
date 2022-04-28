@@ -54,10 +54,6 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(
                             height: 15.h,
                           ),
-                          // HomeCarousel(cubit: cubit),
-                          // SizedBox(
-                          //   height: 8.h,
-                          // ),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: AppText(
@@ -72,6 +68,9 @@ class HomeScreen extends StatelessWidget {
                           ),
                           ServicesGridView(
                             cubit: cubit,
+                          ),
+                          SizedBox(
+                            height: 10.h,
                           ),
                           Align(
                             alignment: Alignment.centerLeft,

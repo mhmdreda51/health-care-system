@@ -18,7 +18,7 @@ class IntroOne extends StatelessWidget {
           height: double.infinity,
           width: double.infinity,
           child: Padding(
-            padding: EdgeInsets.only(left: 10, right: 10, top: 100),
+            padding: EdgeInsets.only(left: 10, right: 10, top: 100.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

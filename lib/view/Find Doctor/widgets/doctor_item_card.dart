@@ -37,8 +37,8 @@ class DoctorItemCard extends StatelessWidget {
         children: [
           Image(
             image: AssetImage(image),
-            height: 70.h,
-            width: 70.w,
+            height: 70,
+            width: 70,
           ),
           SizedBox(width: 13.w),
           Column(

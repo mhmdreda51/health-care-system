@@ -12,9 +12,9 @@ class DoctorListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
+      padding: EdgeInsets.only(top: 20.r, left: 20.r, right: 20.r, bottom: 10),
       child: SizedBox(
-        height: 290,
+        height: 300.h,
         width: double.infinity,
         child: ListView.separated(
           itemCount: cubit.newList.length,
