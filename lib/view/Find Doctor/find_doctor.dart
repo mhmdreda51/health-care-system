@@ -6,10 +6,10 @@ import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../widgets/drop_down_Button.dart';
 import '../../widgets/services_header.dart';
-import 'conponants/category_tap_bar.dart';
-import 'conponants/doctorListShimmer.dart';
-import 'conponants/doctor_list_view.dart';
-import 'conponants/location_button.dart';
+import 'companants/category_tap_bar.dart';
+import 'companants/doctorListShimmer.dart';
+import 'companants/doctor_list_view.dart';
+import 'companants/location_button.dart';
 
 class FindDoctor extends StatelessWidget {
   const FindDoctor({Key? key}) : super(key: key);
