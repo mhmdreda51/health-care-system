@@ -28,9 +28,9 @@ class DoctorDetailsCubit extends Cubit<DoctorDetailsState> {
     );
   }
 
-  double? rating;
+  double rating = 3.0;
 
-  void ratingOnChange({required double? rate}) {
+  void ratingOnChange({required double rate}) {
     rating = rate;
     emit(RatingUpdate());
   }

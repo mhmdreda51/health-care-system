@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:health_care_system/constants/app_colors.dart';
 import 'package:health_care_system/view/Doctor%20details/controller/doctor_details_cubit.dart';
 import 'package:health_care_system/widgets/app_devider.dart';
@@ -8,6 +7,7 @@ import 'package:health_care_system/widgets/app_text.dart';
 
 import '../../../widgets/app_text_form_field.dart';
 import '../../../widgets/main_button.dart';
+import '../../../widgets/stars_bar.dart';
 import 'feed_back_i_doctor_card.dart';
 
 class AddFeedBack extends StatelessWidget {
@@ -30,7 +30,7 @@ class AddFeedBack extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height / 1.3,
       width: double.infinity,
-      color: Colors.grey[200]!,
+      color: Colors.grey[200],
       padding: const EdgeInsets.only(top: 10, left: 5),
       child: SingleChildScrollView(
         child: Column(
@@ -58,22 +58,8 @@ class AddFeedBack extends StatelessWidget {
               padding: EdgeInsets.only(left: 15, right: 15),
               child: AppDivider(),
             ),
-            Center(
-              child: RatingBar.builder(
-                minRating: 1,
-                maxRating: 5.0,
-                initialRating: cubit.rating!,
-                itemSize: 38.0,
-                allowHalfRating: true,
-                ignoreGestures: true,
-                direction: Axis.horizontal,
-                itemCount: 5,
-                itemBuilder: (context, _) =>
-                    const Icon(Icons.star, color: AppColors.starColor),
-                onRatingUpdate: (value) {
-                  cubit.ratingOnChange(rate: value);
-                },
-              ),
+            const Center(
+              child: StarsBar(stars: 3),
             ),
             const Padding(
               padding: EdgeInsets.only(left: 15, right: 15),

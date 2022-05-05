@@ -8,9 +8,9 @@ import 'package:health_care_system/constants/app_colors.dart';
 import '../../componants/gps_off_view.dart';
 import '../../core/Permission helper/permission_helper.dart';
 import '../../core/router/router.dart';
-import '../../widgets/app_text.dart';
 import '../Home Screen/Controller/home_cubit.dart';
 import '../Intro/intro_one.dart';
+import 'Componants/splash_contant.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -78,35 +78,7 @@ class _SplashScreenState extends State<SplashScreen> {
               begin: Alignment.topCenter,
             ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              SizedBox(
-                height: 150,
-              ),
-              Image(
-                image: AssetImage("assets/images/logoWhite.png"),
-              ),
-              SizedBox(
-                height: 9,
-              ),
-              AppText(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                size: 15,
-                text: "Medical Care",
-              ),
-              SizedBox(
-                height: 42,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 5, right: 5),
-                child: Image(
-                  image: AssetImage("assets/images/splash - png.png"),
-                ),
-              ),
-            ],
-          ),
+          child: const SplashContant(),
         ),
       ),
     );

@@ -11,6 +11,7 @@ import 'companants/home_curve.dart';
 import 'companants/home_header.dart';
 import 'companants/services_grid_view.dart';
 import 'companants/top_doctor_list_view.dart';
+import 'companants/top_doctor_row.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,7 +24,6 @@ class HomeScreen extends StatelessWidget {
       },
       builder: (context, state) {
         final cubit = HomeCubit.get(context);
-
         return SafeArea(
           child: Scaffold(
             backgroundColor: Colors.grey[200],
@@ -41,9 +41,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const HomeHeader(),
-                          SizedBox(
-                            height: 15.h,
-                          ),
+                          SizedBox(height: 15.h),
                           AppTextFormField(
                             maxLines: 1,
                             validator: () {},
@@ -52,9 +50,7 @@ class HomeScreen extends StatelessWidget {
                             icon: Icons.search,
                             hintText: "Search",
                           ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
+                          SizedBox(height: 15.h),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: AppText(
@@ -64,38 +60,11 @@ class HomeScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          ServicesGridView(
-                            cubit: cubit,
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                AppText(
-                                  text: "Top Doctor",
-                                  size: 14.sp,
-                                  color: AppColors.blueWhite,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                AppText(
-                                  text: "See All",
-                                  size: 12.sp,
-                                  color: AppColors.blueWhite,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
+                          SizedBox(height: 10.h),
+                          ServicesGridView(cubit: cubit),
+                          SizedBox(height: 10.h),
+                          const TopDoctorRow(),
+                          SizedBox(height: 15.h),
                           const TopDoctorListView(),
                         ],
                       ),

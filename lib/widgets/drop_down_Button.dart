@@ -28,7 +28,7 @@ class AppDropDownButton extends StatelessWidget {
               .map(
                 (e) => DropdownMenuItem<String>(
                   child: Text(e.toString(),
-                      style: TextStyle(color: AppColors.introTextColor)),
+                      style: const TextStyle(color: AppColors.introTextColor)),
                   value: e,
                 ),
               )
