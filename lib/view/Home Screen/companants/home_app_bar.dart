@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:health_care_system/constants/app_colors.dart';
-import 'package:health_care_system/view/Mab%20Screen/controller/map_cubit.dart';
 
 import '../../../widgets/app_text.dart';
+import '../Controller/home_cubit.dart';
 import 'LocationTextShimmer.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -13,9 +13,9 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MapCubit, MapState>(
+    return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
-        final locationCubit = MapCubit.get(context);
+        final locationCubit = HomeCubit.get(context);
 
         if (state is GetMyAddressNameError) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -26,9 +26,9 @@ class HomeAppBar extends StatelessWidget {
           );
         }
       },
-      bloc: MapCubit()..getMyAddressName(),
+      bloc: HomeCubit()..getMyAddressName(),
       builder: (context, state) {
-        final locationCubit = MapCubit.get(context);
+        final locationCubit = HomeCubit.get(context);
 
         return Container(
           width: double.infinity,

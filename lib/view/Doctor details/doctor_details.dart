@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/view/Doctor%20details/widgets/DoctorDetailsAppBar.dart';
 
 import 'componants/doctor_details_header.dart';
@@ -89,7 +90,7 @@ class _DoctorDetailsState extends State<DoctorDetails>
           return [
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(20.0.r),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -124,6 +125,10 @@ class _DoctorDetailsState extends State<DoctorDetails>
           languages: widget.languages,
           publications: widget.publications,
           flags: widget.flags,
+          image: widget.image,
+          location: widget.location,
+          category: widget.category,
+          name: widget.name,
         ),
       ),
     ));

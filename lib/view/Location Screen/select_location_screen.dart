@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_system/core/router/router.dart';
-import 'package:health_care_system/view/Mab%20Screen/controller/map_cubit.dart';
+import 'package:health_care_system/view/Home%20Screen/Controller/home_cubit.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 
 import '../../componants/auth_logo.dart';
@@ -17,11 +17,12 @@ class SelectLocationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MapCubit, MapState>(
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {},
       builder: (context, state) {
-        final cubit = MapCubit.get(context);
+        final cubit = HomeCubit.get(context);
         return BlocProvider(
-          create: (context) => MapCubit(),
+          create: (context) => HomeCubit(),
           child: SafeArea(
             child: Scaffold(
               backgroundColor: AppColors.loginBackGround,
@@ -63,48 +64,45 @@ class SelectLocationScreen extends StatelessWidget {
                       const SizedBox(
                         height: 38,
                       ),
-                      GestureDetector(
-                        onTap: cubit.getMyAddressName,
-                        child: Container(
-                          height: 43,
-                          width: double.infinity,
-                          padding: const EdgeInsets.only(
-                            top: 12,
-                            left: 16,
-                            bottom: 12,
-                          ),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: AppColors.loginBackGround,
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3),
-                                ),
-                              ]),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on_outlined,
-                                color: AppColors.blueWhite,
-                                size: 17,
+                      Container(
+                        height: 43,
+                        width: double.infinity,
+                        padding: const EdgeInsets.only(
+                          top: 12,
+                          left: 16,
+                          bottom: 12,
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: AppColors.loginBackGround,
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3),
                               ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              AppText(
-                                text: state is LocationLoading ||
-                                        state is LocationSuccess
-                                    ? "Your Location"
-                                    : cubit.myLocation,
-                                size: 13,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
-                              )
-                            ],
-                          ),
+                            ]),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.location_on_outlined,
+                              color: AppColors.blueWhite,
+                              size: 17,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            AppText(
+                              text: state is LocationLoading ||
+                                      state is LocationSuccess
+                                  ? "Your Location"
+                                  : cubit.myLocation,
+                              size: 13,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.normal,
+                            )
+                          ],
                         ),
                       ),
                       const SizedBox(

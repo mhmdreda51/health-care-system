@@ -11,7 +11,6 @@ import '../../core/router/router.dart';
 import '../../widgets/app_text.dart';
 import '../Home Screen/Controller/home_cubit.dart';
 import '../Intro/intro_one.dart';
-import '../Mab Screen/controller/map_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -37,8 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    MapCubit.get(context).getCurrentLocation();
-    MapCubit.get(context).getMyAddressName();
+    HomeCubit.get(context)
+        .getCurrentLocation()
+        .whenComplete(() => HomeCubit.get(context).getMyAddressName());
     Connectivity().checkConnectivity().then((value) {
       if (value == ConnectivityResult.none) {
         HomeCubit.get(context).isConnected = false;

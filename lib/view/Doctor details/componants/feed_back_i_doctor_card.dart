@@ -1,36 +1,28 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:health_care_system/constants/app_colors.dart';
-import 'package:health_care_system/widgets/app_text.dart';
 
+import '../../../constants/app_colors.dart';
+import '../../../widgets/app_text.dart';
 import '../../../widgets/stars_bar.dart';
 
-class DoctorItemCard extends StatelessWidget {
-  const DoctorItemCard({
-    Key? key,
-    required this.category,
-    required this.rateStars,
-    required this.name,
-    required this.location,
-    required this.image,
-  }) : super(key: key);
+class FeedBackIDoctorCard extends StatelessWidget {
+  const FeedBackIDoctorCard(
+      {Key? key,
+      required this.category,
+      required this.name,
+      required this.location,
+      required this.image})
+      : super(key: key);
   final String category;
-  final double rateStars;
   final String name;
   final String location;
   final String image;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 100,
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: const EdgeInsets.only(top: 17, left: 15, right: 15, bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -64,18 +56,9 @@ class DoctorItemCard extends StatelessWidget {
                 fontWeight: FontWeight.normal,
               ),
               SizedBox(height: 3.h),
-              StarsBar(stars: rateStars.toDouble()),
+              const StarsBar(stars: 3),
             ],
           ),
-          // SizedBox(width: 100.w),
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 25),
-          //   child: FaIcon(
-          //     FontAwesomeIcons.ellipsisV,
-          //     color: AppColors.introTextColor,
-          //     size: 15.w,
-          //   ),
-          // )
         ],
       ),
     );

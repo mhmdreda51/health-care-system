@@ -45,6 +45,7 @@ class HomeScreen extends StatelessWidget {
                             height: 15.h,
                           ),
                           AppTextFormField(
+                            maxLines: 1,
                             validator: () {},
                             controller: cubit.searchController,
                             iconColor: Colors.grey[400]!,

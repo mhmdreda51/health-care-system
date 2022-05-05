@@ -6,8 +6,8 @@ import 'package:health_care_system/widgets/app_text.dart';
 
 import '../../../widgets/stars_bar.dart';
 
-class DoctorItemCard extends StatelessWidget {
-  const DoctorItemCard({
+class HospitalItemCard extends StatelessWidget {
+  const HospitalItemCard({
     Key? key,
     required this.category,
     required this.rateStars,
@@ -67,15 +67,6 @@ class DoctorItemCard extends StatelessWidget {
               StarsBar(stars: rateStars.toDouble()),
             ],
           ),
-          // SizedBox(width: 100.w),
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 25),
-          //   child: FaIcon(
-          //     FontAwesomeIcons.ellipsisV,
-          //     color: AppColors.introTextColor,
-          //     size: 15.w,
-          //   ),
-          // )
         ],
       ),
     );

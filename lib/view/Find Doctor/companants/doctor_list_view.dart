@@ -11,11 +11,14 @@ class DoctorListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final listViewHeight = MediaQuery.of(context).size.height / 1.7;
+    final listViewWidth = MediaQuery.of(context).size.width;
+
     return Padding(
       padding: EdgeInsets.only(top: 20.r, left: 20.r, right: 20.r, bottom: 10),
       child: SizedBox(
-        height: 300.h,
-        width: double.infinity,
+        height: listViewHeight,
+        width: listViewWidth,
         child: ListView.separated(
           itemCount: cubit.newList.length,
           scrollDirection: Axis.vertical,
@@ -51,9 +54,7 @@ class DoctorListView extends StatelessWidget {
             );
           },
           separatorBuilder: (context, index) {
-            return SizedBox(
-              height: 10.h,
-            );
+            return SizedBox(height: 10.h);
           },
         ),
       ),

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:health_care_system/view/Doctor%20details/controller/doctor_details_cubit.dart';
-import 'package:health_care_system/view/Find%20Doctor/controller/find_doctor_cubit.dart';
 import 'package:health_care_system/view/Home%20Screen/Controller/home_cubit.dart';
-import 'package:health_care_system/view/Login/login%20cubit/login_controller_cubit.dart';
-import 'package:health_care_system/view/Mab%20Screen/controller/map_cubit.dart';
-import 'package:health_care_system/view/Sign%20Up/controller/sign_up_cubit.dart';
 import 'package:health_care_system/view/Splash%20Screen/splash_screen.dart';
 
 import 'core/blocObserver/bloc_observer.dart';
@@ -38,22 +33,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => LoginControllerCubit(),
-        ),
-        BlocProvider(
-          create: (context) => SignUpCubit(),
-        ),
-        BlocProvider(
-          create: (context) => MapCubit(),
-        ),
-        BlocProvider(
           create: (context) => HomeCubit(),
-        ),
-        BlocProvider(
-          create: (context) => FindDoctorCubit(),
-        ),
-        BlocProvider(
-          create: (context) => DoctorDetailsCubit(),
         ),
       ],
       child: ScreenUtilInit(

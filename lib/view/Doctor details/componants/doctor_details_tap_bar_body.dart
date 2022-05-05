@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'clinic_info_section.dart';
 import 'doctor_section.dart';
@@ -20,6 +21,10 @@ class DoctorDetailsTapBarBody extends StatelessWidget {
     required this.socialName,
     required this.gmail,
     required this.flags,
+    required this.category,
+    required this.name,
+    required this.location,
+    required this.image,
   }) : super(key: key);
   final TabController tabController;
   final List education;
@@ -34,11 +39,15 @@ class DoctorDetailsTapBarBody extends StatelessWidget {
   final String socialName;
   final String gmail;
   final List<String> flags;
+  final String category;
+  final String name;
+  final String location;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 0, left: 30, right: 20),
+      padding: EdgeInsets.only(top: 10.r, left: 20.r, right: 20.r),
       child: TabBarView(
         controller: tabController,
         children: [
@@ -58,7 +67,12 @@ class DoctorDetailsTapBarBody extends StatelessWidget {
             socialName: socialName,
             workingTime: workingTime,
           ),
-          FeedbacksSection()
+          FeedbacksSection(
+            name: name,
+            category: category,
+            location: location,
+            image: image,
+          )
         ],
       ),
     );

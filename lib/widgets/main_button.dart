@@ -38,7 +38,7 @@ class MainButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),

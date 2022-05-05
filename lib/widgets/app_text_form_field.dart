@@ -7,18 +7,21 @@ class AppTextFormField extends StatelessWidget {
       required this.validator,
       required this.hintText,
       required this.icon,
-      required this.iconColor})
+      required this.iconColor,
+      required this.maxLines})
       : super(key: key);
   final TextEditingController controller;
   final Function validator;
   final String hintText;
   final IconData icon;
   final Color iconColor;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      maxLines: maxLines,
       validator: (value) => validator(value),
       keyboardType: TextInputType.text,
       cursorColor: Colors.grey,
