@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:health_care_system/view/Home%20Screen/home_screen.dart';
 
 import '../../componants/auth_background.dart';
 import '../../core/router/router.dart';
 import '../../widgets/main_button.dart';
-import '../Location Screen/select_location_screen.dart';
 import 'Componants/check_box_row.dart';
 import 'Componants/forget_password_row.dart';
 import 'Componants/login_form.dart';
@@ -22,7 +23,15 @@ class LoginScreen extends StatelessWidget {
       create: (context) => LoginControllerCubit(),
       child: BlocConsumer<LoginControllerCubit, LoginControllerState>(
         listener: (context, state) {
-          // TODO: implement listener
+          if (state is LoginSuccessState) {
+            if (state.userModel.status == 1) {
+              Fluttertoast.showToast(msg: "login success");
+              MagicRouter.navigateAndPopAll(const HomeScreen());
+            } else if (state.userModel.status == 0 ||
+                state.userModel.status != null) {
+              Fluttertoast.showToast(msg: "login failed");
+            }
+          }
         },
         builder: (context, state) {
           final cubit = LoginControllerCubit.get(context);
@@ -45,14 +54,30 @@ class LoginScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 13,
                               ),
-                              MainButton(
-                                onPressed: () => MagicRouter.navigateTo(
-                                    const SelectLocationScreen()),
-                                height: 55,
-                                width: 266,
-                                borderRadius: 21,
-                                text: "LOG IN",
-                              ),
+                              state is LoginLoadingState
+                                  ? const CupertinoActivityIndicator(
+                                      radius: 16.0,
+                                      animating: true,
+                                    )
+                                  : MainButton(
+                                      onPressed: () async {
+                                        if (cubit.loginFormKey.currentState!
+                                            .validate()) {
+                                          cubit.userLogin(
+                                              email: cubit.emailController.text
+                                                  .toLowerCase()
+                                                  .trim(),
+                                              password: cubit
+                                                  .passwordController.text
+                                                  .toLowerCase()
+                                                  .trim());
+                                        }
+                                      },
+                                      height: 55,
+                                      width: 266,
+                                      borderRadius: 21,
+                                      text: "LOG IN",
+                                    ),
                               const SizedBox(
                                 height: 10,
                               ),

@@ -1,7 +1,16 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../../constants/end_point.dart';
+import '../../../core/Firebase/firebase_messaging_helper.dart';
+import '../../../core/cacheHelper/cache_helper.dart';
+import '../../../core/dioHelper/dio_helper.dart';
+import '../model/user_model.dart';
 
 part 'login_controller_state.dart';
 
@@ -46,6 +55,40 @@ class LoginControllerCubit extends Cubit<LoginControllerState> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-//===============================================================
+  UserModel? userModel;
 
+//===============================================================
+  Future<void> userLogin({
+    required String email,
+    required String password,
+  }) async {
+    emit(LoginLoadingState());
+    final token = await FirebaseMessagingHelper.getToken();
+    String os = Platform.operatingSystem;
+    print(os);
+    final response = await DioHelper.postData(
+      url: login,
+      data: {
+        'email': email,
+        'password': password,
+        'token': token,
+        'serial_number': token,
+        'os': os,
+      },
+    );
+    try {
+      userModel = UserModel.fromJson(response.data);
+      if (userModel!.data!.token != null) {
+        CacheHelper.cacheUserInfo(
+            token: userModel!.data!.token.toString(), userModel: userModel!);
+      }
+      emit(LoginSuccessState(userModel: userModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(LoginLErrorState(error: e.toString()));
+    }
+  }
 }
