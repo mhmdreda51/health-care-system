@@ -87,10 +87,12 @@ class SignUpCubit extends Cubit<SignUpState> {
       },
     );
     try {
-      userModel = UserModel.fromJson(response.data as Map<String, dynamic>);
-      if (userModel!.data!.token != null) {
+      final data = response.data as Map;
+
+      userModel = UserModel.fromJson(data);
+      if (userModel!.data.token != null) {
         CacheHelper.cacheUserInfo(
-            token: userModel!.data!.token.toString(), userModel: userModel!);
+            token: userModel!.data.token.toString(), userModel: userModel!);
       }
       emit(RegisterSuccessState(userModel: userModel!));
     } on DioError catch (e) {

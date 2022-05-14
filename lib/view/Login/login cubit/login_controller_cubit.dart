@@ -1,10 +1,8 @@
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 
 import '../../../constants/end_point.dart';
 import '../../../core/Firebase/firebase_messaging_helper.dart';
@@ -77,10 +75,12 @@ class LoginControllerCubit extends Cubit<LoginControllerState> {
       },
     );
     try {
-      userModel = UserModel.fromJson(response.data);
-      if (userModel!.data!.token != null) {
+      final data = response.data as Map;
+
+      userModel = UserModel.fromJson(data);
+      if (userModel!.data.token != null) {
         CacheHelper.cacheUserInfo(
-            token: userModel!.data!.token.toString(), userModel: userModel!);
+            token: userModel!.data.token.toString(), userModel: userModel!);
       }
       emit(LoginSuccessState(userModel: userModel!));
     } on DioError catch (e) {

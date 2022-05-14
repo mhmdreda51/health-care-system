@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -11,7 +9,6 @@ import 'package:health_care_system/core/router/router.dart';
 import 'package:health_care_system/view/Find%20Doctor/find_doctor.dart';
 import 'package:health_care_system/view/Home%20Screen/home_screen.dart';
 import 'package:health_care_system/view/find%20hospitals/find_hospitals.dart';
-import 'package:meta/meta.dart';
 
 import '../../../core/connectivity helper/connectivity_helper.dart';
 import '../../../core/locationHelper/location_helper.dart';
@@ -158,6 +155,7 @@ class HomeCubit extends Cubit<HomeState> {
       debugPrint(s.toString());
       emit(LocationError());
     }
+    return null;
   }
 
 //===============================================================

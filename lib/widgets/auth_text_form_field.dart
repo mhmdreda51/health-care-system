@@ -12,7 +12,7 @@ class AuthTextFromField extends StatelessWidget {
   final Color iconColor;
   final Function onChanged;
 
-  AuthTextFromField({
+  const AuthTextFromField({
     required this.controller,
     required this.validator,
     required this.hintText,
@@ -29,7 +29,7 @@ class AuthTextFromField extends StatelessWidget {
       padding: const EdgeInsets.only(left: 31, right: 31),
       child: TextFormField(
         controller: controller,
-        onChanged: (value) => onChanged(value),
+        // onChanged: (value) => onChanged(value),
 
         // obscureText: obscureText,
         cursorColor: AppColors.blueWhite,
@@ -44,7 +44,12 @@ class AuthTextFromField extends StatelessWidget {
             onPressed: onPressed,
             icon: Icon(icon, color: iconColor, size: 27),
           ),
-          border: InputBorder.none,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(25.0),
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+          ),
           hintText: hintText,
           hintStyle: const TextStyle(color: AppColors.blueWhite),
           filled: true,
@@ -57,12 +62,20 @@ class AuthTextFromField extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(25.0),
           ),
-          enabledBorder: UnderlineInputBorder(
+          errorBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: Colors.white,
             ),
             borderRadius: BorderRadius.circular(25.0),
           ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(25.0),
+          ),
+          // enabled: true,
+          isDense: true,
         ),
       ),
     );

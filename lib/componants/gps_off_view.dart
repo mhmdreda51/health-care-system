@@ -1,4 +1,3 @@
-import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:health_care_system/view/Splash%20Screen/splash_screen.dart';
@@ -40,7 +39,7 @@ class GPSOff extends StatelessWidget {
                       await Geolocator.openLocationSettings();
                     },
                     child: Text(
-                      'turn_gps_button'.tr(),
+                      'turn gps button',
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),

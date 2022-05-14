@@ -1,85 +1,89 @@
 class UserModel {
-  int? status;
-  String? message;
-  Data? data;
+  UserModel({
+    required this.status,
+    required this.message,
+    required this.data,
+  });
 
-  UserModel({this.status, this.message, this.data});
+  late final int status;
+  late final String message;
+  late final Data data;
 
-  UserModel.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<dynamic, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = Data.fromJson(json['data']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    return data;
+    final _data = <String, dynamic>{};
+    _data['status'] = status;
+    _data['message'] = message;
+    _data['data'] = data.toJson();
+    return _data;
   }
 }
 
 class Data {
-  String? token;
-  User? user;
+  Data({
+    required this.token,
+    required this.user,
+  });
 
-  Data({this.token, this.user});
+  late final String token;
+  late final User user;
 
   Data.fromJson(Map<String, dynamic> json) {
     token = json['token'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = User.fromJson(json['user']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['token'] = this.token;
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
-    }
-    return data;
+    final _data = <String, dynamic>{};
+    _data['token'] = token;
+    _data['user'] = user.toJson();
+    return _data;
   }
 }
 
 class User {
-  int? id;
-  String? userName;
-  String? email;
-  Null? long;
-  Null? lat;
-  String? createdAt;
-  String? updatedAt;
+  User({
+    required this.id,
+    required this.userName,
+    required this.email,
+    this.long,
+    this.lat,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
-  User(
-      {this.id,
-      this.userName,
-      this.email,
-      this.long,
-      this.lat,
-      this.createdAt,
-      this.updatedAt});
+  late final int id;
+  late final String userName;
+  late final String email;
+  late final Null long;
+  late final Null lat;
+  late final String createdAt;
+  late final String updatedAt;
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userName = json['user_name'];
     email = json['email'];
-    long = json['long'];
-    lat = json['lat'];
+    long = null;
+    lat = null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_name'] = this.userName;
-    data['email'] = this.email;
-    data['long'] = this.long;
-    data['lat'] = this.lat;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['user_name'] = userName;
+    _data['email'] = email;
+    _data['long'] = long;
+    _data['lat'] = lat;
+    _data['created_at'] = createdAt;
+    _data['updated_at'] = updatedAt;
+    return _data;
   }
 }

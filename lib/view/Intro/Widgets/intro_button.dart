@@ -27,7 +27,7 @@ class AppButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           color: color,
-          border: Border(
+          border: const Border(
             top: BorderSide(
               color: AppColors.introButtonBorder,
               width: 2,
@@ -49,7 +49,7 @@ class AppButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 14,
                 color: AppColors.blueWhite,
                 fontWeight: FontWeight.bold),

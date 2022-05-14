@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:health_care_system/constants/app_colors.dart';
 import 'package:health_care_system/view/Doctor%20details/controller/doctor_details_cubit.dart';
