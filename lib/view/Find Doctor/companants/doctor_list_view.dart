@@ -5,6 +5,7 @@ import 'package:health_care_system/view/Doctor%20details/doctor_details.dart';
 import 'package:health_care_system/view/Find%20Doctor/controller/find_doctor_cubit.dart';
 import 'package:health_care_system/view/Find%20Doctor/widgets/doctor_item_card.dart';
 
+// ignore: must_be_immutable
 class DoctorListView extends StatelessWidget {
   DoctorListView({Key? key, required this.cubit}) : super(key: key);
   FindDoctorCubit cubit;

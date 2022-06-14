@@ -41,10 +41,10 @@ class CacheHelper {
   }
 
   static String get userName =>
-      toBeginningOfSentenceCase(getUserInfo!.data!.user!.userName).toString();
+      toBeginningOfSentenceCase(getUserInfo!.data.user.userName).toString();
 
   static String get userEmail =>
-      toBeginningOfSentenceCase(getUserInfo!.data!.user!.email).toString();
+      toBeginningOfSentenceCase(getUserInfo!.data.user.email).toString();
 
   // static String get userLastName =>
   //     toBeginningOfSentenceCase(getUserInfo!.data!.lastName!).toString();

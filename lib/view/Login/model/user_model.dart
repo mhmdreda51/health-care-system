@@ -51,8 +51,8 @@ class User {
     required this.id,
     required this.userName,
     required this.email,
-    this.long,
-    this.lat,
+    required this.long,
+    required this.lat,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -60,8 +60,8 @@ class User {
   late final int id;
   late final String userName;
   late final String email;
-  late final Null long;
-  late final Null lat;
+  late final double? long;
+  late final double? lat;
   late final String createdAt;
   late final String updatedAt;
 
@@ -69,8 +69,8 @@ class User {
     id = json['id'];
     userName = json['user_name'];
     email = json['email'];
-    long = null;
-    lat = null;
+    long = json['long'];
+    lat = json['lat'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }

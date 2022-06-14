@@ -8,6 +8,7 @@ import 'package:health_care_system/view/Sign%20Up/controller/sign_up_cubit.dart'
 import '../../componants/auth_background.dart';
 import '../../core/router/router.dart';
 import '../../widgets/main_button.dart';
+import '../Location Screen/select_location_screen.dart';
 import '../Navigation Screen/navigation_screen.dart';
 import 'componants/LoginRow.dart';
 import 'componants/sign_up_check_box_row.dart';
@@ -25,10 +26,13 @@ class SignUpScreen extends StatelessWidget {
           if (state is RegisterSuccessState) {
             if (state.userModel.status == 1) {
               Fluttertoast.showToast(msg: "register success");
-              MagicRouter.navigateAndPopAll(NavigationScreen());
+              MagicRouter.navigateAndPopAll(
+                  state.userModel.data.user.lat == null
+                      ? SelectLocationScreen()
+                      : NavigationScreen());
             } else if (state.userModel.status == 0 ||
                 state.userModel.status != null) {
-              Fluttertoast.showToast(msg: state.userModel.message!);
+              Fluttertoast.showToast(msg: state.userModel.message);
             }
           }
         },

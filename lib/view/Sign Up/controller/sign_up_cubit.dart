@@ -23,14 +23,14 @@ class SignUpCubit extends Cubit<SignUpState> {
   bool userNameSuffix = true;
   UserModel? userModel;
 
-  void emailSuffixOnChange(String value) {
+  void emailSuffixOnChange({required String value}) {
     value.contains("@") || value.isEmpty
         ? emailSuffix = true
         : emailSuffix = false;
     emit(SignUpEmailSuffixOnChange());
   }
 
-  void userNameSuffixOnChange(String value) {
+  void userNameSuffixOnChange({required String value}) {
     value.length >= 6 || value.isEmpty
         ? userNameSuffix = true
         : userNameSuffix = false;
@@ -76,7 +76,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     required String passwordConfirm,
   }) async {
     emit(RegisterLoadingState());
-    final token = await FirebaseMessagingHelper.getToken();
+    // final token = await FirebaseMessagingHelper.getToken();
     final response = await DioHelper.postData(
       url: register,
       data: {

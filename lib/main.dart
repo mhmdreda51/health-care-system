@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/view/Home%20Screen/Controller/home_cubit.dart';
 import 'package:health_care_system/view/Splash%20Screen/splash_screen.dart';
-art';
+
 import 'core/blocObserver/bloc_observer.dart';
 import 'core/cacheHelper/cache_helper.dart';
 import 'core/dioHelper/dio_helper.dart';

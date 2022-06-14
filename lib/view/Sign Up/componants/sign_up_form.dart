@@ -34,7 +34,7 @@ class SignUpForm extends StatelessWidget {
             }
             return null;
           },
-          onChanged: cubit.userNameSuffixOnChange,
+          onChanged: (value) => cubit.userNameSuffixOnChange(value: value),
           controller: cubit.userNameController,
           obscureText: false,
           hintText: "user name",
@@ -53,7 +53,7 @@ class SignUpForm extends StatelessWidget {
               return null;
             }
           },
-          onChanged: cubit.emailSuffixOnChange,
+          onChanged: (value) => cubit.emailSuffixOnChange(value: value),
           controller: cubit.emailController,
           obscureText: false,
           hintText: "email",
@@ -72,7 +72,7 @@ class SignUpForm extends StatelessWidget {
               return null;
             }
           },
-          onChanged: () {},
+          onChanged: (value) {},
           controller: cubit.passwordController,
           obscureText: cubit.isPassword,
           hintText: "Password",
@@ -91,7 +91,7 @@ class SignUpForm extends StatelessWidget {
               return null;
             }
           },
-          onChanged: () {},
+          onChanged: (value) {},
           controller: cubit.passwordConfirmController,
           obscureText: cubit.isPasswordConfirm,
           hintText: "confirm password",

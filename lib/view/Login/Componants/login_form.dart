@@ -34,7 +34,7 @@ class LoginForm extends StatelessWidget {
               return null;
             }
           },
-          onChanged: cubit.emailSuffixOnChange,
+          onChanged: (value) => cubit.emailSuffixOnChange(value: value),
           controller: cubit.emailController,
           obscureText: false,
           hintText: "Email Address",
@@ -53,7 +53,7 @@ class LoginForm extends StatelessWidget {
               return null;
             }
           },
-          onChanged: () {},
+          onChanged: (value) {},
           controller: cubit.passwordController,
           obscureText: cubit.isPassword,
           hintText: "Password",

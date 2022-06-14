@@ -26,9 +26,7 @@ class FeedbacksSection extends StatelessWidget {
     return BlocProvider(
       create: (context) => DoctorDetailsCubit(),
       child: BlocConsumer<DoctorDetailsCubit, DoctorDetailsState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           final cubit = DoctorDetailsCubit.get(context);
           return SizedBox(

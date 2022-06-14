@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:health_care_system/view/Location%20Screen/select_location_screen.dart';
 
 import '../../componants/auth_background.dart';
 import '../../core/router/router.dart';
@@ -26,7 +28,10 @@ class LoginScreen extends StatelessWidget {
           if (state is LoginSuccessState) {
             if (state.userModel.status == 1) {
               Fluttertoast.showToast(msg: "login success");
-              MagicRouter.navigateAndPopAll(NavigationScreen());
+              MagicRouter.navigateAndPopAll(
+                  state.userModel.data.user.lat == null
+                      ? SelectLocationScreen()
+                      : NavigationScreen());
             } else if (state.userModel.status == 0 ||
                 state.userModel.status != null) {
               Fluttertoast.showToast(msg: "login failed");
@@ -67,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                                       onPressed: () async {
                                         if (cubit.loginFormKey.currentState!
                                             .validate()) {
-                                          cubit.userLogin(
+                                          await cubit.userLogin(
                                               email: cubit.emailController.text
                                                   .toLowerCase()
                                                   .trim(),
@@ -79,12 +84,10 @@ class LoginScreen extends StatelessWidget {
                                         }
                                       },
                                     ),
-                              const SizedBox(
-                                height: 10,
-                              ),
+                              SizedBox(height: 10.h),
                               const ForgetPasswordRow(),
                               const SocialMediaRow(),
-                              const SizedBox(height: 40),
+                              SizedBox(height: 40.h),
                               const SignUpRow(),
                             ],
                           ),

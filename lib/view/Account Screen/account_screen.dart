@@ -14,11 +14,9 @@ class AccountScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => AccountCubit(),
       child: BlocConsumer<AccountCubit, AccountState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
+        listener: (context, state) {},
         builder: (context, state) {
-          final cubit = AccountCubit.get(context);
+          // final cubit = AccountCubit.get(context);
 
           return SafeArea(
             child: Scaffold(

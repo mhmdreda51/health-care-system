@@ -25,7 +25,7 @@ class LoginControllerCubit extends Cubit<LoginControllerState> {
   IconData suffix = Icons.visibility_outlined;
   bool emailSuffix = true;
 
-  void emailSuffixOnChange(String value) {
+  void emailSuffixOnChange({required String value}) {
     value.contains("@") || value.isEmpty
         ? emailSuffix = true
         : emailSuffix = false;
@@ -41,7 +41,7 @@ class LoginControllerCubit extends Cubit<LoginControllerState> {
   }
 
   //===============================================================
-  bool checkBoxValue = true;
+  bool checkBoxValue = false;
 
   void checkBoxOnChange(bool? value) {
     checkBoxValue = value!;

@@ -10,7 +10,7 @@ class AuthTextFromField extends StatelessWidget {
   final Function() onPressed;
   final IconData icon;
   final Color iconColor;
-  final Function onChanged;
+  final Function(String)? onChanged;
 
   const AuthTextFromField({
     required this.controller,
@@ -29,7 +29,7 @@ class AuthTextFromField extends StatelessWidget {
       padding: const EdgeInsets.only(left: 31, right: 31),
       child: TextFormField(
         controller: controller,
-        // onChanged: (value) => onChanged(value),
+        onChanged: (value) => onChanged!(value),
 
         // obscureText: obscureText,
         cursorColor: AppColors.blueWhite,
