@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:health_care_system/core/router/router.dart';
 import 'package:health_care_system/view/Personal%20info/controller/personal_info_cubit.dart';
+import 'package:health_care_system/widgets/main_button.dart';
 
+import '../../componants/loading_widget.dart';
 import '../../constants/app_colors.dart';
 import '../../core/cacheHelper/cache_helper.dart';
 import 'Componants/user_Info_form.dart';
@@ -17,36 +18,15 @@ class PersonalInfo extends StatelessWidget {
     return BlocProvider(
       create: (context) => PersonalInfoCubit(),
       child: BlocConsumer<PersonalInfoCubit, PersonalInfoState>(
-        bloc: PersonalInfoCubit(),
         listener: (context, state) {
           if (state is UserDetailsUpdateSuccessState) {
             if (state.userModel.status == 1) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text("user_details.info_updated"),
+                  content: Text("Info updated Successfully."),
                   backgroundColor: Colors.green,
                 ),
               );
-            }
-          }
-          if (state is UserPasswordUpdateSuccessState) {
-            if (state.updatePasswordModel.status == 1) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("change_password.password_update_success"),
-                  backgroundColor: Colors.green,
-                ),
-              );
-              MagicRouter.pop();
-            } else if (state.updatePasswordModel.status! == 0) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.updatePasswordModel.message.toString()),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            } else {
-              Fluttertoast.showToast(msg: "change_password.some_error");
             }
           }
         },
@@ -58,8 +38,6 @@ class PersonalInfo extends StatelessWidget {
               CacheHelper.getUserInfo!.data.user.email.toString();
           // cubit.phoneController.text =
           //     CacheHelper.getUserInfo!.data.user.phone.toString();
-          cubit.addressController.text = cubit.myLocation;
-
           return Scaffold(
             appBar: appBar(),
             backgroundColor: Colors.grey[200],
@@ -70,12 +48,33 @@ class PersonalInfo extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(30),
                 child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      UserProfileImage(cubit: cubit),
-                      UserDetailsForm(cubit: cubit),
-                    ],
+                  child: Form(
+                    key: cubit.formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        UserProfileImage(cubit: cubit),
+                        UserDetailsForm(cubit: cubit),
+                        state is UserPasswordUpdateLoadingState
+                            ? const LoadingWidget()
+                            : MainButton(
+                                onPressed: () {
+                                  if (cubit.formKey.currentState!.validate()) {
+                                    cubit.updateUser(
+                                      username: cubit.userNameController.text,
+                                      phone: cubit.phoneController.text,
+                                      email: cubit.emailController.text,
+                                    );
+                                  }
+                                },
+                                height: 43,
+                                width: 164,
+                                text: "Save",
+                                borderRadius: 13,
+                              ),
+                        SizedBox(height: 20),
+                      ],
+                    ),
                   ),
                 ),
               ),

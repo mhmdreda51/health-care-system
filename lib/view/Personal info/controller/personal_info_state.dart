@@ -62,7 +62,11 @@ class UpdateUserAreaSuccess extends PersonalInfoState {
 class UpdateUserAreaError extends PersonalInfoState {}
 
 //===============================================================
+class ChangeOldPasswordVisibilityState extends PersonalInfoState {}
+
 class ChangePasswordVisibilityState extends PersonalInfoState {}
+
+class ChangePasswordConfirmVisibilityState extends PersonalInfoState {}
 
 //===============================================================
 class ChangeCountryState extends PersonalInfoState {}

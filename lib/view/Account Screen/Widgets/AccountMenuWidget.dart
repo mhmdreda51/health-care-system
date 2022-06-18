@@ -6,22 +6,26 @@ class AccountMenuWidget extends StatelessWidget {
   const AccountMenuWidget({
     required this.text,
     required this.onTap,
+    required this.color,
+    required this.icon,
   });
 
   final String text;
   final VoidCallback onTap;
+  final Color color;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: color,
         borderRadius: BorderRadius.circular(5),
       ),
       child: ListTile(
         leading: Padding(
           padding: EdgeInsets.only(left: 5),
-          child: Icon(Icons.settings, color: AppColors.blueWhite),
+          child: Icon(icon, color: AppColors.blueWhite),
         ),
         trailing: Icon(
           Icons.arrow_forward_ios,

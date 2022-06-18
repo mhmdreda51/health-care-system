@@ -28,12 +28,7 @@ class PersonalInfoCubit extends Cubit<PersonalInfoState> {
   UpdatePasswordModel? updatePasswordModel;
 
 //===============================================================
-  bool isOldPassword = true;
-  bool isNewPassword = true;
-  bool isConfirmPassword = true;
-  IconData oldPasswordSuffix = Icons.visibility_outlined;
-  IconData newPasswordSuffix = Icons.visibility_outlined;
-  IconData confirmPasswordSuffix = Icons.visibility_outlined;
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   GlobalKey<FormState> passwordFormKey = GlobalKey<FormState>();
   TextEditingController userNameController = TextEditingController();
@@ -96,27 +91,40 @@ class PersonalInfoCubit extends Cubit<PersonalInfoState> {
   }
 
 //===============================================================
+  bool isPassword = true;
+  bool isOldPassword = true;
+
+  bool isPasswordConfirm = true;
+  IconData passwordSuffix = Icons.visibility_outlined;
+  IconData oldPasswordSuffix = Icons.visibility_outlined;
+
+  IconData passwordConfirmSuffix = Icons.visibility_outlined;
+
+//===============================================================
+  void changePasswordConfirmVisibility() {
+    isPasswordConfirm = !isPasswordConfirm;
+    passwordConfirmSuffix = isPasswordConfirm
+        ? Icons.visibility_outlined
+        : Icons.visibility_off_outlined;
+    emit(ChangePasswordConfirmVisibilityState());
+  }
+
+  //===============================================================
+
   void changeOldPasswordVisibility() {
     isOldPassword = !isOldPassword;
     oldPasswordSuffix = isOldPassword
         ? Icons.visibility_outlined
         : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilityState());
+    emit(ChangeOldPasswordVisibilityState());
   }
 
-  void changeNewPasswordVisibility() {
-    isNewPassword = !isNewPassword;
-    newPasswordSuffix = isNewPassword
-        ? Icons.visibility_outlined
-        : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilityState());
-  }
+//===============================================================
 
-  void changeConfirmPasswordVisibility() {
-    isConfirmPassword = !isConfirmPassword;
-    confirmPasswordSuffix = isConfirmPassword
-        ? Icons.visibility_outlined
-        : Icons.visibility_off_outlined;
+  void changePasswordVisibility() {
+    isPassword = !isPassword;
+    passwordSuffix =
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(ChangePasswordVisibilityState());
   }
 

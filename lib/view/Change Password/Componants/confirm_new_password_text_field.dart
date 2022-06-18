@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class OldPasswordTextField extends StatelessWidget {
-  const OldPasswordTextField({
+class ConfirmNewPasswordTextField extends StatelessWidget {
+  const ConfirmNewPasswordTextField({
     Key? key,
     required this.hintText,
     required this.controller,
-    required this.onFieldSubmitted,
+    required this.onChanged,
     required this.obscureText,
     required this.onPressed,
     required this.icon,
   }) : super(key: key);
   final String hintText;
   final TextEditingController? controller;
-  final Function(String) onFieldSubmitted;
+  final Function(String)? onChanged;
   final bool obscureText;
   final Function() onPressed;
   final IconData icon;
@@ -29,29 +29,34 @@ class OldPasswordTextField extends StatelessWidget {
       ),
       child: TextFormField(
         controller: controller,
-        keyboardType: TextInputType.visiblePassword,
         obscureText: obscureText,
+        onChanged: (value) => onChanged!(value),
         validator: (value) {
           if (value!.isEmpty) {
-            return "validation.password_empty";
+            return "phone must not be empty";
           } else if (value.length < 6) {
-            return "validation.password_valid";
+            return "password must be at least 6 digits";
           } else if (value.contains(' ')) {
-            return "validation.white_space";
+            return "The password cannot have space.";
           } else {
             return null;
           }
         },
-        onFieldSubmitted: onFieldSubmitted,
         decoration: InputDecoration(
           isDense: true,
-          hintText: "Enter your old password",
+          hintText: hintText,
           fillColor: Colors.white,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: const BorderSide(
               color: Colors.white,
             ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(25.0),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),

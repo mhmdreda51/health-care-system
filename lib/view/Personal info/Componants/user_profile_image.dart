@@ -21,7 +21,7 @@ class UserProfileImage extends StatelessWidget {
           if (state.imageUpdatedModel.status == 1) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text("user_details.image_updated"),
+                content: Text("Image updated Successfully."),
                 backgroundColor: Colors.green,
               ),
             );

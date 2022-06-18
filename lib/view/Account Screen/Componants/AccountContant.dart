@@ -3,6 +3,7 @@ import 'package:health_care_system/view/Account%20Screen/Controller/account_cubi
 
 import '../../../core/router/router.dart';
 import '../../Personal info/personal_info.dart';
+import '../../Settings/settings_screen.dart';
 import '../Widgets/AccountMenuWidget.dart';
 
 class AccountContant extends StatelessWidget {
@@ -18,12 +19,16 @@ class AccountContant extends StatelessWidget {
           children: [
             AccountMenuWidget(
               text: 'Personal info',
+              icon: Icons.settings,
+              color: Colors.white,
               onTap: () => MagicRouter.navigateTo(PersonalInfo()),
             ),
             SizedBox(height: 2),
             AccountMenuWidget(
               text: 'Settings',
-              onTap: () {},
+              icon: Icons.settings,
+              color: Colors.white,
+              onTap: () => MagicRouter.navigateTo(SettingsScreen()),
             ),
           ],
         ),
@@ -34,11 +39,15 @@ class AccountContant extends StatelessWidget {
           children: [
             AccountMenuWidget(
               text: 'Support',
+              icon: Icons.settings,
+              color: Colors.white,
               onTap: () {},
             ),
             SizedBox(height: 2),
             AccountMenuWidget(
               text: 'privacy policy',
+              icon: Icons.settings,
+              color: Colors.white,
               onTap: () {},
             ),
           ],
@@ -48,6 +57,8 @@ class AccountContant extends StatelessWidget {
         ),
         AccountMenuWidget(
           text: 'log out',
+          icon: Icons.settings,
+          color: Colors.white,
           onTap: () => cubit.signOut(),
         ),
         SizedBox(

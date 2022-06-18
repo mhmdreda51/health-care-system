@@ -5,17 +5,18 @@ class NewPasswordTextField extends StatelessWidget {
     Key? key,
     required this.hintText,
     required this.controller,
-    required this.onFieldSubmitted,
+    required this.onChanged,
     required this.obscureText,
     required this.onPressed,
     required this.icon,
   }) : super(key: key);
   final String hintText;
   final TextEditingController? controller;
-  final Function(String) onFieldSubmitted;
   final bool obscureText;
   final Function() onPressed;
   final IconData icon;
+  final Function(String)? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,30 +28,35 @@ class NewPasswordTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
+        onChanged: (value) => onChanged!(value),
         controller: controller,
-        keyboardType: TextInputType.visiblePassword,
         obscureText: obscureText,
         validator: (value) {
           if (value!.isEmpty) {
-            return "validation.password_empty";
+            return "password must not be empty";
           } else if (value.length < 6) {
-            return "validation.password_valid";
+            return "password must be at least 6 digits";
           } else if (value.contains(' ')) {
-            return "validation.white_space";
+            return "The password cannot have space.";
           } else {
             return null;
           }
         },
-        onFieldSubmitted: onFieldSubmitted,
         decoration: InputDecoration(
           isDense: true,
-          hintText: "login.password",
+          hintText: hintText,
           fillColor: Colors.white,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: const BorderSide(
               color: Colors.white,
             ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(25.0),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
