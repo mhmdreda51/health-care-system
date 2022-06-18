@@ -30,6 +30,7 @@ class FindHospitals extends StatelessWidget {
                     children: [
                       const ServicesHeader(
                         text: 'Find your hospital',
+                        height: 135,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(

@@ -46,8 +46,5 @@ class CacheHelper {
   static String get userEmail =>
       toBeginningOfSentenceCase(getUserInfo!.data.user.email).toString();
 
-  // static String get userLastName =>
-  //     toBeginningOfSentenceCase(getUserInfo!.data!.lastName!).toString();
-
   static Future<void> signOut() async => await _appBox.erase();
 }

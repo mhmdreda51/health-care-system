@@ -27,6 +27,7 @@ class FindDoctor extends StatelessWidget {
                     children: [
                       const ServicesHeader(
                         text: 'Find your doctor',
+                        height: 135,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(

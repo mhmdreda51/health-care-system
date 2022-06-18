@@ -6,14 +6,16 @@ import '../constants/app_colors.dart';
 import 'app_text.dart';
 
 class ServicesHeader extends StatelessWidget {
-  const ServicesHeader({Key? key, required this.text}) : super(key: key);
+  const ServicesHeader({Key? key, required this.text, required this.height})
+      : super(key: key);
   final String text;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 135.w,
+      height: height.h,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [

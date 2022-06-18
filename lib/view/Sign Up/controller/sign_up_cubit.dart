@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/end_point.dart';
-import '../../../core/Firebase/firebase_messaging_helper.dart';
 import '../../../core/cacheHelper/cache_helper.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 import '../../Login/model/user_model.dart';
@@ -11,7 +10,7 @@ import '../../Login/model/user_model.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  SignUpCubit() : super(SignUpInitial());
+  SignUpCubit() : super(SignUpInitial()) {}
 
   static SignUpCubit get(context) => BlocProvider.of(context);
   bool isPassword = true;
@@ -53,7 +52,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   //===============================================================
-  bool checkBoxValue = true;
+  bool checkBoxValue = false;
 
   void checkBoxOnChange(bool? value) {
     checkBoxValue = value!;

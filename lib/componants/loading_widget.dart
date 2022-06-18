@@ -1,19 +1,23 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({
     Key? key,
+    this.radius = 16.0,
   }) : super(key: key);
-
+  final double radius;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-          child: CupertinoActivityIndicator(
-        animating: true,
-        radius: 22.0,
-      )),
+    return Center(
+      child: SizedBox(
+        height: 54,
+        width: MediaQuery.of(context).size.width,
+        child: Center(
+            child: CupertinoActivityIndicator(
+          radius: radius,
+          animating: true,
+        )),
+      ),
     );
   }
 }
