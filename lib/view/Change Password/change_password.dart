@@ -4,8 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../componants/loading_widget.dart';
-import '../../constants/app_colors.dart';
 import '../../core/router/router.dart';
+import '../../widgets/AccountItemAppBar.dart';
 import '../Personal info/controller/personal_info_cubit.dart';
 import 'Componants/confirm_new_password_text_field.dart';
 import 'Componants/new_password_text_field.dart';
@@ -45,7 +45,7 @@ class ChangePasswordScreen extends StatelessWidget {
           final cubit = PersonalInfoCubit.get(context);
 
           return Scaffold(
-            appBar: appBar(),
+            appBar: AccountItemAppBar(title: "Change Password"),
             backgroundColor: Colors.grey[200],
             body: Form(
               key: cubit.passwordFormKey,
@@ -114,29 +114,4 @@ class ChangePasswordScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-AppBar appBar() {
-  return AppBar(
-    backgroundColor: Colors.white,
-    leading: SizedBox(),
-    actions: [
-      IconButton(
-        icon: Icon(
-          Icons.arrow_forward_ios,
-        ),
-        color: AppColors.introTextColor,
-        onPressed: () => MagicRouter.pop(),
-      )
-    ],
-    title: Text(
-      'Change Password',
-      style: TextStyle(
-        color: AppColors.introTextColor,
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    centerTitle: true,
-  );
 }

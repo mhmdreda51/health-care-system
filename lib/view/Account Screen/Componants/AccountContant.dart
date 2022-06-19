@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:health_care_system/view/Account%20Screen/Controller/account_cubit.dart';
 
 import '../../../core/router/router.dart';
+import '../../Help/help_screen.dart';
 import '../../Personal info/personal_info.dart';
+import '../../Privacy/privacy_and_security.dart';
 import '../../Settings/settings_screen.dart';
 import '../Widgets/AccountMenuWidget.dart';
 
@@ -38,17 +40,17 @@ class AccountContant extends StatelessWidget {
         Column(
           children: [
             AccountMenuWidget(
-              text: 'Support',
+              text: 'Help & Support',
               icon: Icons.settings,
               color: Colors.white,
-              onTap: () {},
+              onTap: () => MagicRouter.navigateTo(HelpScreen()),
             ),
             SizedBox(height: 2),
             AccountMenuWidget(
-              text: 'privacy policy',
+              text: 'Privacy & Security',
               icon: Icons.settings,
               color: Colors.white,
-              onTap: () {},
+              onTap: () => MagicRouter.navigateTo(PrivacyAndSecurity()),
             ),
           ],
         ),

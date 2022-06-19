@@ -7,6 +7,7 @@ import 'package:health_care_system/widgets/main_button.dart';
 import '../../componants/loading_widget.dart';
 import '../../constants/app_colors.dart';
 import '../../core/cacheHelper/cache_helper.dart';
+import '../../widgets/AccountItemAppBar.dart';
 import 'Componants/user_Info_form.dart';
 import 'Componants/user_profile_image.dart';
 
@@ -39,7 +40,7 @@ class PersonalInfo extends StatelessWidget {
           // cubit.phoneController.text =
           //     CacheHelper.getUserInfo!.data.user.phone.toString();
           return Scaffold(
-            appBar: appBar(),
+            appBar: AccountItemAppBar(title: "Personal info"),
             backgroundColor: Colors.grey[200],
             body: RefreshIndicator(
               onRefresh: () async {
@@ -84,29 +85,4 @@ class PersonalInfo extends StatelessWidget {
       ),
     );
   }
-}
-
-AppBar appBar() {
-  return AppBar(
-    backgroundColor: Colors.white,
-    leading: SizedBox(),
-    actions: [
-      IconButton(
-        icon: Icon(
-          Icons.arrow_forward_ios,
-        ),
-        color: AppColors.introTextColor,
-        onPressed: () => MagicRouter.pop(),
-      )
-    ],
-    title: Text(
-      'Personal info',
-      style: TextStyle(
-        color: AppColors.introTextColor,
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    centerTitle: true,
-  );
 }
