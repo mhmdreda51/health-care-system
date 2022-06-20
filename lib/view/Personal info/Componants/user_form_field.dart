@@ -8,15 +8,17 @@ class UserFormField extends StatelessWidget {
     required this.controller,
     required this.hint,
     required this.validator,
+    required this.height,
   }) : super(key: key);
   final TextEditingController controller;
   final String hint;
   final Function validator;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: height,
       width: double.infinity,
       padding: EdgeInsets.only(top: 5, left: 5, right: 5),
       decoration: BoxDecoration(

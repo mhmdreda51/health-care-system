@@ -13,6 +13,7 @@ class UserDetailsForm extends StatelessWidget {
       children: [
         SizedBox(height: 35),
         UserFormField(
+          height: 60,
           controller: cubit.userNameController,
           validator: (value) {
             if (value!.isEmpty) {
@@ -25,6 +26,7 @@ class UserDetailsForm extends StatelessWidget {
         ),
         SizedBox(height: 20),
         UserFormField(
+          height: 60,
           controller: cubit.emailController,
           validator: (value) {
             if (value!.isEmpty) {
@@ -39,6 +41,7 @@ class UserDetailsForm extends StatelessWidget {
         ),
         SizedBox(height: 20),
         UserFormField(
+          height: 60,
           controller: cubit.phoneController,
           validator: (value) {
             if (value!.isEmpty) {

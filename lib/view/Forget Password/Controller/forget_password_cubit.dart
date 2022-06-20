@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 part 'forget_password_state.dart';
 
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
-  ForgetPasswordCubit() : super(ForgetPasswordInitial());
+  ForgetPasswordCubit() : super(ForgetPasswordInitial()) {}
 
   //===============================================================
   static ForgetPasswordCubit get(context) => BlocProvider.of(context);
@@ -54,4 +54,8 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         : Icons.visibility_off_outlined;
     emit(ChangePasswordConfirmVisibilityState());
   }
+
+  // void dispose() {
+  //   ConfirmationCodeController.dispose();
+  // }
 }

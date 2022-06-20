@@ -30,6 +30,7 @@ class ForgetPassword extends StatelessWidget {
                   children: [
                     SizedBox(height: 20),
                     UserFormField(
+                      height: 60,
                       controller: cubit.emailController,
                       validator: (value) {
                         if (value!.isEmpty) {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_system/constants/app_colors.dart';
 import 'package:health_care_system/widgets/app_text.dart';
-import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../../core/router/router.dart';
+import '../../../core/validator/validator.dart';
+import '../../../widgets/main_button.dart';
 import '../../Personal info/Componants/user_form_field.dart';
 import '../../Reset Password/reset_password.dart';
 import '../Controller/forget_password_cubit.dart';
@@ -33,16 +34,9 @@ class ConfirmationCodePage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               UserFormField(
+                height: 60,
                 controller: cubit.ConfirmationCodeController,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Confirmation Code must not be empty";
-                  } else if (value.length != 6) {
-                    return "ConfirmationCode must be 6 digits";
-                  } else {
-                    return null;
-                  }
-                },
+                validator: (value) => Validator.validateNumber(value),
                 hint: "Confirmation Code",
               ),
               SizedBox(height: 20),
@@ -72,7 +66,7 @@ class ConfirmationCodePage extends StatelessWidget {
                 width: double.infinity,
                 text: "Confirm",
                 borderRadius: 10,
-                onPressed: () async {
+                onPressed: () {
                   if (cubit.confirmationCodeFormKey.currentState!.validate()) {
                     MagicRouter.navigateTo(const ResetPassword());
                   }
