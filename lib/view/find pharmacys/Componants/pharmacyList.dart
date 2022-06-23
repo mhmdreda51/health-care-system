@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/core/router/router.dart';
-import 'package:health_care_system/view/find%20hospitals/controller/find_hospital_cubit.dart';
+import 'package:health_care_system/view/Doctor%20details/doctor_details.dart';
+import 'package:health_care_system/view/Find%20Doctor/widgets/doctor_item_card.dart';
 
-import '../../Hospital Details/hospital_detials.dart';
-import 'HospitalItemCard.dart';
+import '../Controller/find_pharmacys_cubit.dart';
 
-class HospitalListView extends StatelessWidget {
-  HospitalListView({Key? key, required this.cubit}) : super(key: key);
-  FindHospitalCubit cubit;
+// ignore: must_be_immutable
+class PharmacyListView extends StatelessWidget {
+  PharmacyListView({Key? key, required this.cubit}) : super(key: key);
+  FindPharmacysCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,7 @@ class HospitalListView extends StatelessWidget {
     final listViewWidth = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding:
-          EdgeInsets.only(top: 20.r, left: 20.r, right: 20.r, bottom: 10.r),
+      padding: EdgeInsets.only(top: 20.r, left: 20.r, right: 20.r, bottom: 10),
       child: SizedBox(
         height: listViewHeight,
         width: listViewWidth,
@@ -26,22 +26,27 @@ class HospitalListView extends StatelessWidget {
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             final item = cubit.newList[index];
-            return GestureDetector(
-              onTap: () => MagicRouter.navigateTo(HospitalDetails(
-                name: item.name,
-                address: item.address,
+            return InkWell(
+              onTap: () => MagicRouter.navigateTo(DoctorDetails(
                 category: item.category,
-                description: item.description,
-                gmail: item.gmail,
-                image: item.image,
-                location: item.location,
-                numberPhone: item.numberPhone,
+                flags: item.flags,
                 rateStars: item.rateStars,
-                recommendation: item.recommendation,
-                socialName: item.socialName,
+                name: item.name,
+                location: item.location,
+                image: item.image,
+                education: item.education,
+                publications: item.publications,
+                description: item.description,
+                languages: item.languages,
+                address: item.address,
                 workingTime: item.workingTime,
+                priceFirsTime: item.priceFirsTime,
+                priceReturn: item.priceReturn,
+                numberPhone: item.numberPhone,
+                socialName: item.socialName,
+                gmail: item.gmail,
               )),
-              child: HospitalItemCard(
+              child: DoctorItemCard(
                 image: item.image,
                 location: item.location,
                 category: item.category,

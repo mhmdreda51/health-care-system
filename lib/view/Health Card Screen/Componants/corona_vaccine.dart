@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:health_care_system/constants/app_colors.dart';
-import 'package:health_care_system/widgets/app_text.dart';
+import 'package:health_care_system/view/Health%20Card%20Screen/Componants/second_dose_column.dart';
+import 'package:health_care_system/view/Health%20Card%20Screen/Componants/vaccination_name_row.dart';
+import 'package:health_care_system/widgets/main_button.dart';
 
-import '../../Personal info/Componants/user_form_field.dart';
 import '../Controller/health_card_cubit.dart';
 import '../Widgets/dialog_header.dart';
-import '../Widgets/health_card_dropDown.dart';
+import 'first_dose_column.dart';
+import 'num_dose_row.dart';
 
 class CoronaVaccine extends StatelessWidget {
   const CoronaVaccine({Key? key, required this.cubit}) : super(key: key);
@@ -21,52 +22,25 @@ class CoronaVaccine extends StatelessWidget {
           title: "Corona vaccine",
         ),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: AppText(
-                    text: "Name of Vaccination",
-                    size: 15,
-                    color: AppColors.introTextColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Expanded(
-                  child: UserFormField(
-                    height: 26,
-                    controller: cubit.corona_name,
-                    hint: "",
-                    validator: (value) {},
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 15),
-            Row(
-              children: [
-                AppText(
-                  text: "Num of dose",
-                  size: 15,
-                  color: AppColors.introTextColor,
-                  fontWeight: FontWeight.bold,
-                ),
-                SizedBox(
-                  width: 75,
-                ),
-                Expanded(
-                  child: HealthCardDropDown(
-                    value: cubit.dropdownInputValue,
-                    itemsList: cubit.numOfDose,
-                    onChanged: (value) {
-                      cubit.dropdownInputOnChanged(value: value);
-                      // print(cubit.dropdownInputValue);
-                    },
-                  ),
-                ),
-              ],
-            ),
+            VaccinationNameRow(cubit: cubit),
+            NumDoseRow(),
+            Divider(height: .2, color: Colors.black54),
+            FirstDoseColumn(cubit: cubit),
+            Divider(height: .2, color: Colors.black54),
+            SecondDoseColumn(cubit: cubit),
+            Divider(height: .2, color: Colors.black54),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: MainButton(
+                height: 33,
+                width: 80,
+                text: "Done",
+                borderRadius: 12,
+                onPressed: () {},
+              ),
+            )
           ],
         ),
       ],

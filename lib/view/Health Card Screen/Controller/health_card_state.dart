@@ -6,3 +6,5 @@ abstract class HealthCardState {}
 class HealthCardInitial extends HealthCardState {}
 
 class NumOfDoseAppDropdownInputOnChanged extends HealthCardState {}
+
+class BloodSelectedItem extends HealthCardState {}

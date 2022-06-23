@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/app_colors.dart';
-import '../../../core/router/router.dart';
+import '../constants/app_colors.dart';
+import '../core/router/router.dart';
 
-AppBar doctorDetailsAppBar(BuildContext context) {
+AppBar DetailsAppBar(BuildContext context) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0.0,

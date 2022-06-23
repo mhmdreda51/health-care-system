@@ -14,6 +14,9 @@ import '../../../core/connectivity helper/connectivity_helper.dart';
 import '../../../core/locationHelper/location_helper.dart';
 import '../../Account Screen/account_screen.dart';
 import '../../Health Card Screen/health_card_screen.dart';
+import '../../find labs/find_laps.dart';
+import '../../find pharmacys/find_pharmacys.dart';
+import '../../pill reminder/pill_reminder.dart';
 
 part 'home_state.dart';
 
@@ -79,17 +82,17 @@ class HomeCubit extends Cubit<HomeState> {
       MagicRouter.navigateTo(const FindHospitals());
       emit(ChangeServicesById());
     } else if (id == 3) {
-      MagicRouter.navigateTo(const Scaffold());
+      MagicRouter.navigateTo(const FindPharmacys());
       emit(ChangeServicesById());
     } else if (id == 4) {
-      MagicRouter.navigateTo(const Scaffold());
+      MagicRouter.navigateTo(const FindLaps());
       emit(ChangeServicesById());
     } else if (id == 5) {
       _callNumber();
       emit(CallAmpulanceSuccess());
       emit(ChangeServicesById());
     } else if (id == 6) {
-      MagicRouter.navigateTo(const Scaffold());
+      MagicRouter.navigateTo(const PillReminder());
       emit(ChangeServicesById());
     }
   }

@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:health_care_system/view/Find%20Doctor/controller/find_doctor_cubit.dart';
+import 'package:health_care_system/view/find%20pharmacys/Controller/find_pharmacys_cubit.dart';
 
 import '../../../constants/app_colors.dart';
 
-class ItemCard extends StatelessWidget {
-  const ItemCard(
-      {Key? key,
-      required this.text,
-      required this.selected,
-      required this.onTap})
-      : super(key: key);
+class PhItemCard extends StatelessWidget {
+  const PhItemCard({
+    Key? key,
+    required this.text,
+    required this.selected,
+    required this.onTap,
+  }) : super(key: key);
   final String text;
   final int selected;
   final GestureTapCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FindDoctorCubit, FindDoctorState>(
+    return BlocBuilder<FindPharmacysCubit, FindPharmacysState>(
         builder: (context, state) {
-      FindDoctorCubit cubit = FindDoctorCubit.get(context);
+      FindPharmacysCubit cubit = FindPharmacysCubit.get(context);
       return GestureDetector(
         onTap: onTap,
         child: Container(

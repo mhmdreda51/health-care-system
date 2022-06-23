@@ -35,7 +35,7 @@ class HealthCardCubit extends Cubit<HealthCardState> {
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         child: page,
-        height: 400,
+        height: 410,
         decoration: BoxDecoration(
           color: Colors.grey[200],
           borderRadius: BorderRadius.only(
@@ -55,6 +55,17 @@ class HealthCardCubit extends Cubit<HealthCardState> {
   dropdownInputOnChanged({required String? value}) {
     dropdownInputValue = value;
     emit(NumOfDoseAppDropdownInputOnChanged());
+  }
+
+//===============================================================
+  int isSelected = 1;
+
+  int get getCurrentItem => isSelected;
+
+  void itemSelection(int value) {
+    isSelected = value;
+
+    emit(BloodSelectedItem());
   }
 //===============================================================
 

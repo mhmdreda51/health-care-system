@@ -6,12 +6,12 @@ import '../../../constants/app_colors.dart';
 import '../../../widgets/app_text.dart';
 
 class CommunicationPart extends StatelessWidget {
-  const CommunicationPart(
-      {Key? key,
-      required this.numberPhone,
-      required this.socialName,
-      required this.gmail})
-      : super(key: key);
+  const CommunicationPart({
+    Key? key,
+    required this.numberPhone,
+    required this.socialName,
+    required this.gmail,
+  }) : super(key: key);
   final int numberPhone;
   final String socialName;
   final String gmail;

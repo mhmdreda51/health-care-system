@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:health_care_system/view/Doctor%20details/widgets/DoctorDetailsAppBar.dart';
+import 'package:health_care_system/widgets/DetailsAppBar.dart';
 
 import 'componants/doctor_details_header.dart';
 import 'componants/doctor_details_tap_bar.dart';
@@ -84,7 +84,7 @@ class _DoctorDetailsState extends State<DoctorDetails>
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.grey[200]!,
-      appBar: doctorDetailsAppBar(context),
+      appBar: DetailsAppBar(context),
       body: NestedScrollView(
         headerSliverBuilder: (context, value) {
           return [
