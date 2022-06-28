@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:health_care_system/core/router/router.dart';
 import 'package:health_care_system/view/Personal%20info/controller/personal_info_cubit.dart';
 import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../componants/loading_widget.dart';
-import '../../constants/app_colors.dart';
 import '../../core/cacheHelper/cache_helper.dart';
 import '../../widgets/AccountItemAppBar.dart';
 import 'Componants/user_Info_form.dart';

@@ -74,9 +74,10 @@ class LoginControllerCubit extends Cubit<LoginControllerState> {
         'os': os,
       },
     );
-    try {
-      final data = response.data as Map;
+    final data = response.data as Map<String, dynamic>;
 
+    try {
+      print(data);
       userModel = UserModel.fromJson(data);
       if (userModel!.data.token != null) {
         CacheHelper.cacheUserInfo(

@@ -23,7 +23,7 @@ class UserFormField extends StatelessWidget {
       padding: EdgeInsets.only(top: 5, left: 5, right: 5),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(5),
       ),
       child: TextFormField(
         controller: controller,
@@ -38,6 +38,12 @@ class UserFormField extends StatelessWidget {
             borderSide: const BorderSide(
               color: Colors.white,
             ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(25.0),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),

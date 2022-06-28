@@ -3,6 +3,7 @@ import 'package:health_care_system/view/Account%20Screen/Controller/account_cubi
 
 import '../../../core/router/router.dart';
 import '../../Help/help_screen.dart';
+import '../../Medical Info/medical_info.dart';
 import '../../Personal info/personal_info.dart';
 import '../../Privacy/privacy_and_security.dart';
 import '../../Settings/settings_screen.dart';
@@ -21,16 +22,16 @@ class AccountContant extends StatelessWidget {
           children: [
             AccountMenuWidget(
               text: 'Personal info',
-              icon: Icons.settings,
+              icon: Icons.person,
               color: Colors.white,
               onTap: () => MagicRouter.navigateTo(PersonalInfo()),
             ),
             SizedBox(height: 2),
             AccountMenuWidget(
-              text: 'Settings',
-              icon: Icons.settings,
+              text: 'Medical info',
+              icon: Icons.medication,
               color: Colors.white,
-              onTap: () => MagicRouter.navigateTo(SettingsScreen()),
+              onTap: () => MagicRouter.navigateTo(MedicalInfo()),
             ),
           ],
         ),
@@ -40,15 +41,22 @@ class AccountContant extends StatelessWidget {
         Column(
           children: [
             AccountMenuWidget(
-              text: 'Help & Support',
+              text: 'Settings',
               icon: Icons.settings,
+              color: Colors.white,
+              onTap: () => MagicRouter.navigateTo(SettingsScreen()),
+            ),
+            SizedBox(height: 2),
+            AccountMenuWidget(
+              text: 'Help & Support',
+              icon: Icons.help_outline_outlined,
               color: Colors.white,
               onTap: () => MagicRouter.navigateTo(HelpScreen()),
             ),
             SizedBox(height: 2),
             AccountMenuWidget(
               text: 'Privacy & Security',
-              icon: Icons.settings,
+              icon: Icons.privacy_tip_outlined,
               color: Colors.white,
               onTap: () => MagicRouter.navigateTo(PrivacyAndSecurity()),
             ),
@@ -59,7 +67,7 @@ class AccountContant extends StatelessWidget {
         ),
         AccountMenuWidget(
           text: 'log out',
-          icon: Icons.settings,
+          icon: Icons.logout,
           color: Colors.white,
           onTap: () => cubit.signOut(),
         ),

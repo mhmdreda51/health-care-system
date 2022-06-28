@@ -9,9 +9,9 @@ class HealthCardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var userImage = CacheHelper.getUserInfo!.data.user.userName;
+    var userImage = CacheHelper.getUserInfo!.data!.user.userName;
     var assertImage = "assets/images/topdoctor.png";
-    var userName = CacheHelper.getUserInfo!.data.user.userName;
+    var userName = CacheHelper.getUserInfo!.data!.user.userName;
 
     //edit it to => image
     return Row(

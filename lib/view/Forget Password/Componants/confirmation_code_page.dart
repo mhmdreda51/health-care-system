@@ -3,7 +3,6 @@ import 'package:health_care_system/constants/app_colors.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 
 import '../../../core/router/router.dart';
-import '../../../core/validator/validator.dart';
 import '../../../widgets/main_button.dart';
 import '../../Personal info/Componants/user_form_field.dart';
 import '../../Reset Password/reset_password.dart';
@@ -36,7 +35,7 @@ class ConfirmationCodePage extends StatelessWidget {
               UserFormField(
                 height: 60,
                 controller: cubit.ConfirmationCodeController,
-                validator: (value) => Validator.validateNumber(value),
+                validator: (value) {},
                 hint: "Confirmation Code",
               ),
               SizedBox(height: 20),

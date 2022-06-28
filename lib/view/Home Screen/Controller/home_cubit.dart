@@ -3,20 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:health_care_system/core/router/router.dart';
 import 'package:health_care_system/view/Find%20Doctor/find_doctor.dart';
 import 'package:health_care_system/view/Home%20Screen/home_screen.dart';
 import 'package:health_care_system/view/find%20hospitals/find_hospitals.dart';
 
 import '../../../core/connectivity helper/connectivity_helper.dart';
-import '../../../core/locationHelper/location_helper.dart';
 import '../../Account Screen/account_screen.dart';
 import '../../Health Card Screen/health_card_screen.dart';
 import '../../find labs/find_laps.dart';
 import '../../find pharmacys/find_pharmacys.dart';
-import '../../pill reminder/pill_reminder.dart';
 
 part 'home_state.dart';
 
@@ -92,7 +88,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(CallAmpulanceSuccess());
       emit(ChangeServicesById());
     } else if (id == 6) {
-      MagicRouter.navigateTo(const PillReminder());
+      MagicRouter.navigateTo(const Scaffold());
       emit(ChangeServicesById());
     }
   }
@@ -101,7 +97,7 @@ class HomeCubit extends Cubit<HomeState> {
   int currentIndex = 0;
   List<Widget> bottomViews = [
     const HomeScreen(),
-    const HealthCardScreen(),
+    HealthCardScreen(),
     const AccountScreen(),
   ];
 
@@ -118,48 +114,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
 //===============================================================
-//===============================================================
-  Position? position;
-  String myLocation = "";
-
-  //===============================================================
-
-  void getMyAddressName() async {
-    emit(GetMyAddressNameLoading());
-
-    try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-        position!.latitude,
-        position!.longitude,
-      );
-      Placemark place1 = placemarks[0];
-      myLocation = "${place1.name} ${place1.subAdministrativeArea} ";
-      print(myLocation);
-
-      emit(GetMyAddressNameSuccess());
-    } catch (e) {
-      print(e.toString());
-      emit(GetMyAddressNameError());
-    }
-  }
-
-  //===============================================================
-
-  Future<Position?> getCurrentLocation() async {
-    emit(LocationLoading());
-    try {
-      position = await LocationHelper.getCurrentLocation().whenComplete(() {});
-
-      emit(LocationSuccess(position: position!));
-
-      return position!;
-    } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
-      emit(LocationError());
-    }
-    return null;
-  }
 
 //===============================================================
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_care_system/constants/app_colors.dart';
 
 typedef CloseDialog = void Function();
 
@@ -9,7 +10,7 @@ CloseDialog showLoadingScreen({
     content: Column(
       mainAxisSize: MainAxisSize.min,
       children: const [
-        CircularProgressIndicator(),
+        CircularProgressIndicator(color: AppColors.buttonGradient),
       ],
     ),
   );
@@ -26,6 +27,6 @@ void loadingDialog(BuildContext context) async {
   final closeDialog = showLoadingScreen(
     context: context,
   );
-  await Future.delayed(const Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 1));
   closeDialog();
 }

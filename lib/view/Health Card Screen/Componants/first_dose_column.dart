@@ -22,40 +22,47 @@ class FirstDoseColumn extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           SizedBox(height: 15),
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: AppText(
-                  text: "Date",
-                  size: 15,
-                  color: AppColors.introTextColor,
-                  fontWeight: FontWeight.bold,
-                ),
+              AppText(
+                text: "Date",
+                size: 15,
+                color: AppColors.introTextColor,
+                fontWeight: FontWeight.bold,
               ),
-              Expanded(
-                child: UserFormField(
-                  height: 26,
-                  controller: cubit.corona_dose1_date,
-                  hint: "",
-                  validator: (value) {},
-                ),
+              SizedBox(height: 10),
+              UserFormField(
+                height: 35,
+                controller: cubit.corona_dose1_date,
+                hint: "",
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter the text";
+                  } else {
+                    return null;
+                  }
+                },
               ),
-              SizedBox(width: 10),
-              Expanded(
-                child: AppText(
-                  text: "Location",
-                  size: 15,
-                  color: AppColors.introTextColor,
-                  fontWeight: FontWeight.bold,
-                ),
+              SizedBox(height: 10),
+              AppText(
+                text: "Location",
+                size: 15,
+                color: AppColors.introTextColor,
+                fontWeight: FontWeight.bold,
               ),
-              Expanded(
-                child: UserFormField(
-                  height: 26,
-                  controller: cubit.corona_dose1_location,
-                  hint: "",
-                  validator: (value) {},
-                ),
+              SizedBox(height: 10),
+              UserFormField(
+                height: 35,
+                controller: cubit.corona_dose1_location,
+                hint: "",
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter the text";
+                  } else {
+                    return null;
+                  }
+                },
               ),
             ],
           )

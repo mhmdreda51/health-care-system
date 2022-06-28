@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:health_care_system/view/Sign%20Up/Model/location_model.dart';
 
 import '../../view/Login/model/user_model.dart';
 
@@ -47,4 +48,39 @@ class CacheHelper {
       toBeginningOfSentenceCase(getUserInfo!.data.user.email).toString();
 
   static Future<void> signOut() async => await _appBox.erase();
+
+//===============================================================
+//===============================================================
+  static Future<void> _cacheLocationModel(LocationModel locationModel) async =>
+      await _appBox.write('locationModel', locationModel.toJson());
+
+  static Future<void> cacheLocationModel({
+    required String token,
+    required LocationModel locationModel,
+  }) async {
+    _cacheUserToken(token);
+    _cacheLocationModel(locationModel);
+  }
+
+  static LocationModel? get getLocationModel {
+    LocationModel? locationModel;
+    if (_appBox.hasData('locationModel')) {
+      locationModel = LocationModel.fromJson(_appBox.read('locationModel'));
+    }
+    return locationModel;
+  }
+
+//===============================================================
+  static Future<void> cacheLocationAddress({
+    required String locationAddress,
+  }) async {
+    await _cacheLocationAddress(locationAddress);
+  }
+
+  static Future<void> _cacheLocationAddress(String locationAddress) async =>
+      await _appBox.write('locationAddress', locationAddress);
+
+  static String? get getLocationAddress => _appBox.read('locationAddress');
+//===============================================================
+
 }

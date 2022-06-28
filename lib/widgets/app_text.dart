@@ -18,6 +18,8 @@ class AppText extends StatelessWidget {
     return Text(
       text!,
       maxLines: 3,
+      textAlign: TextAlign.start,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         color: color,
         fontSize: size,

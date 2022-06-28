@@ -48,9 +48,9 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     HomeCubit.get(context).checkConnectivity();
     _checkGps();
-    HomeCubit.get(context)
-        .getCurrentLocation()
-        .whenComplete(() => HomeCubit.get(context).getMyAddressName());
+    // HomeCubit.get(context)
+    //     .getCurrentLocation()
+    //     .whenComplete(() => HomeCubit.get(context).getMyAddressName());
 
     super.initState();
 

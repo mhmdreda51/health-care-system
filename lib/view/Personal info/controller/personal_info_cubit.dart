@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
@@ -183,26 +182,26 @@ class PersonalInfoCubit extends Cubit<PersonalInfoState> {
   }
 
 //===============================================================
-  String myLocation = "";
-
-  void getMyAddressName() async {
-    emit(GetMyAddressNameLoading());
-
-    try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-        userModel!.data.user.lat!,
-        userModel!.data.user.long!,
-      );
-      Placemark place1 = placemarks[0];
-      myLocation = "${place1.name} ${place1.subAdministrativeArea} ";
-      print(myLocation);
-
-      emit(GetMyAddressNameSuccess());
-    } catch (e) {
-      print(e.toString());
-      emit(GetMyAddressNameError());
-    }
-  }
+//   String myLocation = "";
+//
+//   void getMyAddressName() async {
+//     emit(GetMyAddressNameLoading());
+//
+//     try {
+//       List<Placemark> placemarks = await placemarkFromCoordinates(
+//         userModel!.data.user.lat!,
+//         userModel!.data.user.long!,
+//       );
+//       Placemark place1 = placemarks[0];
+//       myLocation = "${place1.name} ${place1.subAdministrativeArea} ";
+//       print(myLocation);
+//
+//       emit(GetMyAddressNameSuccess());
+//     } catch (e) {
+//       print(e.toString());
+//       emit(GetMyAddressNameError());
+//     }
+//   }
 //===============================================================
 
 }

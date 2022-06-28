@@ -5,8 +5,8 @@ import '../../../widgets/app_text.dart';
 import '../../Personal info/Componants/user_form_field.dart';
 import '../Controller/health_card_cubit.dart';
 
-class VaccinationNameRow extends StatelessWidget {
-  const VaccinationNameRow({Key? key, required this.cubit}) : super(key: key);
+class SerialNumberColumn extends StatelessWidget {
+  const SerialNumberColumn({Key? key, required this.cubit}) : super(key: key);
   final HealthCardCubit cubit;
 
   @override
@@ -17,7 +17,7 @@ class VaccinationNameRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppText(
-            text: "Name of Vaccination",
+            text: "Serial Number",
             size: 15,
             color: AppColors.introTextColor,
             fontWeight: FontWeight.bold,
@@ -25,7 +25,7 @@ class VaccinationNameRow extends StatelessWidget {
           SizedBox(height: 10),
           UserFormField(
             height: 35,
-            controller: cubit.corona_name,
+            controller: cubit.coronaSerialNumber,
             hint: "",
             validator: (value) {
               if (value!.isEmpty) {

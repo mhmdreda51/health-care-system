@@ -15,11 +15,11 @@ class HealthCardCubit extends Cubit<HealthCardState> {
 
   //===============================================================
   GlobalKey<FormState> coronaFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> bloodFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> recordFormKey = GlobalKey<FormState>();
 
   //===============================================================
   TextEditingController corona_name = TextEditingController();
+  TextEditingController coronaSerialNumber = TextEditingController();
+
   TextEditingController corona_num_dose = TextEditingController();
   TextEditingController corona_dose1_date = TextEditingController();
   TextEditingController corona_dose1_location = TextEditingController();
@@ -58,7 +58,7 @@ class HealthCardCubit extends Cubit<HealthCardState> {
   }
 
 //===============================================================
-  int isSelected = 1;
+  int isSelected = 0;
 
   int get getCurrentItem => isSelected;
 

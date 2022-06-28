@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/app_colors.dart';
-import '../../../core/router/router.dart';
 import '../../../widgets/app_text.dart';
 
 class DialogHeader extends StatelessWidget {
@@ -35,13 +34,6 @@ class DialogHeader extends StatelessWidget {
               ),
             ],
           ),
-          IconButton(
-            onPressed: () => MagicRouter.pop(),
-            icon: Icon(
-              Icons.close,
-              color: AppColors.introTextColor,
-            ),
-          )
         ],
       ),
     );

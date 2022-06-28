@@ -32,5 +32,43 @@ class RegisterLErrorState extends SignUpState {
 
   RegisterLErrorState({required this.error});
 }
+
 //===============================================================
 //===============================================================
+class PostLocationLoadingState extends SignUpState {}
+
+class PostLocationSuccessState extends SignUpState {
+  final LocationModel locationModel;
+
+  PostLocationSuccessState({required this.locationModel});
+}
+
+class PostLocationLErrorState extends SignUpState {
+  final String error;
+
+  PostLocationLErrorState({required this.error});
+}
+
+class GetMyAddressNameLoading extends SignUpState {}
+
+class GetMyAddressNameSuccess extends SignUpState {}
+
+class GetMyAddressNameError extends SignUpState {}
+
+//===============================================================
+//===============================================================
+
+class LocationLoading extends SignUpState {}
+
+class LocationSuccess extends SignUpState {
+  final Position position;
+
+  LocationSuccess({required this.position});
+}
+
+class LocationError extends SignUpState {}
+//===============================================================
+
+class LocationIsEnabled extends SignUpState {}
+
+class LocationIsDisable extends SignUpState {}

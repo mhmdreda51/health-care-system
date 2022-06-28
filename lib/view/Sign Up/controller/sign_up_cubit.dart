@@ -1,11 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../../../constants/end_point.dart';
 import '../../../core/cacheHelper/cache_helper.dart';
 import '../../../core/dioHelper/dio_helper.dart';
+import '../../../core/locationHelper/location_helper.dart';
 import '../../Login/model/user_model.dart';
+import '../Model/location_model.dart';
 
 part 'sign_up_state.dart';
 
@@ -86,12 +90,12 @@ class SignUpCubit extends Cubit<SignUpState> {
       },
     );
     try {
-      final data = response.data as Map;
+      // final data = response.data as Map;
 
-      userModel = UserModel.fromJson(data);
-      if (userModel!.data.token != null) {
+      userModel = UserModel.fromJson(response.data);
+      if (userModel!.data!.token != null) {
         CacheHelper.cacheUserInfo(
-            token: userModel!.data.token.toString(), userModel: userModel!);
+            token: userModel!.data!.token.toString(), userModel: userModel!);
       }
       emit(RegisterSuccessState(userModel: userModel!));
     } on DioError catch (e) {
@@ -99,6 +103,87 @@ class SignUpCubit extends Cubit<SignUpState> {
     } catch (e) {
       debugPrint(e.toString());
       emit(RegisterLErrorState(error: e.toString()));
+    }
+  }
+
+  //===============================================================
+  Position? position;
+  String myLocation = "";
+
+  //===============================================================
+
+  void getMyAddressName() async {
+    emit(GetMyAddressNameLoading());
+
+    try {
+      List<Placemark> placeMarks = await placemarkFromCoordinates(
+        position!.latitude,
+        position!.longitude,
+      );
+      Placemark place1 = placeMarks[0];
+      myLocation = "${place1.name} ${place1.subAdministrativeArea} ";
+      print(myLocation);
+      CacheHelper.cacheLocationAddress(locationAddress: myLocation);
+
+      emit(GetMyAddressNameSuccess());
+    } catch (e) {
+      print(e.toString());
+      emit(GetMyAddressNameError());
+    }
+  }
+
+  //===============================================================
+
+  Future<Position?> getCurrentLocation() async {
+    emit(LocationLoading());
+    try {
+      position = await LocationHelper.getCurrentLocation().whenComplete(() {});
+
+      emit(LocationSuccess(position: position!));
+
+      return position!;
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(LocationError());
+    }
+    return null;
+  }
+
+  //===============================================================
+  LocationModel? locationModel;
+
+  Future<void> postUserLocation({
+    required String email,
+    required String lat,
+    required String log,
+  }) async {
+    emit(PostLocationLoadingState());
+    final response = await DioHelper.postData(
+      url: postLocation,
+      data: {
+        'email': email,
+        'long': log,
+        'lat': lat,
+      },
+    );
+    try {
+      print(response.data);
+
+      locationModel = LocationModel.fromJson(response.data);
+      if (locationModel!.data.token != null) {
+        CacheHelper.cacheLocationModel(
+          token: locationModel!.data.token.toString(),
+          locationModel: locationModel!,
+        );
+      }
+      emit(PostLocationSuccessState(locationModel: locationModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(PostLocationLErrorState(error: e.toString()));
     }
   }
 }

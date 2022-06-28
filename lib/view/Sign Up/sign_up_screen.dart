@@ -9,7 +9,6 @@ import '../../componants/auth_background.dart';
 import '../../core/router/router.dart';
 import '../../widgets/main_button.dart';
 import '../Location Screen/select_location_screen.dart';
-import '../Navigation Screen/navigation_screen.dart';
 import 'componants/LoginRow.dart';
 import 'componants/sign_up_check_box_row.dart';
 import 'componants/sign_up_form.dart';
@@ -26,10 +25,7 @@ class SignUpScreen extends StatelessWidget {
           if (state is RegisterSuccessState) {
             if (state.userModel.status == 1) {
               Fluttertoast.showToast(msg: "register success");
-              MagicRouter.navigateAndPopAll(
-                  state.userModel.data.user.lat == null
-                      ? SelectLocationScreen()
-                      : NavigationScreen());
+              MagicRouter.navigateAndPopAll(SelectLocationScreen());
             } else if (state.userModel.status == 0 ||
                 state.userModel.status != null) {
               Fluttertoast.showToast(msg: state.userModel.message);
