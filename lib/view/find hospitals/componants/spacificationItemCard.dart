@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:health_care_system/view/find%20hospitals/controller/find_hospital_cubit.dart';
 
 import '../../../constants/app_colors.dart';
+import '../../../core/Category cubit/category_cubit.dart';
 
 class SpacificatonItemCard extends StatelessWidget {
   const SpacificatonItemCard(
@@ -17,9 +17,8 @@ class SpacificatonItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FindHospitalCubit, FindHospitalState>(
-        builder: (context, state) {
-      FindHospitalCubit cubit = FindHospitalCubit.get(context);
+    return BlocBuilder<CategoryCubit, CategoryState>(builder: (context, state) {
+      CategoryCubit cubit = CategoryCubit.get(context);
       return GestureDetector(
         onTap: onTap,
         child: Container(

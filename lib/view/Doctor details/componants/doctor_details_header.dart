@@ -4,21 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constants/app_colors.dart';
 import '../../../widgets/app_text.dart';
 import '../../../widgets/stars_bar.dart';
+import '../../Find Doctor/model/doctor_model.dart';
 
 class DoctorDetailsHeader extends StatelessWidget {
-  const DoctorDetailsHeader(
-      {Key? key,
-      required this.image,
-      required this.location,
-      required this.name,
-      required this.rateStars,
-      required this.category})
-      : super(key: key);
-  final String image;
-  final String location;
-  final String name;
-  final double rateStars;
-  final String category;
+  const DoctorDetailsHeader({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
+  final DoctorModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +28,7 @@ class DoctorDetailsHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image(
-              image: AssetImage(image),
+              image: AssetImage(item.image),
               height: 110.h,
               width: 100.w,
             ),
@@ -44,27 +37,27 @@ class DoctorDetailsHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppText(
-                  text: name,
+                  text: item.name,
                   size: 16.sp,
                   color: AppColors.introTextColor,
                   fontWeight: FontWeight.bold,
                 ),
                 SizedBox(height: 5.h),
                 AppText(
-                  text: category,
+                  text: item.category,
                   size: 14.sp,
                   color: Colors.grey,
                   fontWeight: FontWeight.normal,
                 ),
                 SizedBox(height: 5.h),
                 AppText(
-                  text: location,
+                  text: item.location,
                   size: 14.sp,
                   color: Colors.grey,
                   fontWeight: FontWeight.normal,
                 ),
                 SizedBox(height: 5.h),
-                StarsBar(stars: rateStars.toDouble()),
+                StarsBar(stars: item.rateStars.toDouble()),
               ],
             ),
           ],

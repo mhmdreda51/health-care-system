@@ -27,6 +27,7 @@ class DioHelper {
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
+      "Bearer": CacheHelper.getUserToken,
     };
     return await dio!.get(
       url,

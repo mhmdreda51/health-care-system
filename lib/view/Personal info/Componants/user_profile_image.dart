@@ -17,16 +17,16 @@ class UserProfileImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<PersonalInfoCubit, PersonalInfoState>(
       listener: (context, state) {
-        if (state is UploadUserImageSuccessState) {
-          if (state.imageUpdatedModel.status == 1) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text("Image updated Successfully."),
-                backgroundColor: Colors.green,
-              ),
-            );
-          }
-        }
+        // if (state is UploadUserImageSuccessState) {
+        //   if (state.imageUpdatedModel.status == 1) {
+        //     ScaffoldMessenger.of(context).showSnackBar(
+        //       SnackBar(
+        //         content: Text("Image updated Successfully."),
+        //         backgroundColor: Colors.green,
+        //       ),
+        //     );
+        //   }
+        // }
       },
       builder: (context, state) {
         return Stack(
@@ -59,7 +59,7 @@ class UserProfileImage extends StatelessWidget {
                 child: IconButton(
                     onPressed: () async {
                       final image = await cubit.pickImageFromGallery();
-                      await cubit.uploadUserImage(path: image);
+                      // await cubit.uploadUserImage(path: image);
                     },
                     icon: const FaIcon(
                       FontAwesomeIcons.camera,

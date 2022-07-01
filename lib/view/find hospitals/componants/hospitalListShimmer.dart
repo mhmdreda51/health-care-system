@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/constants/app_colors.dart';
-import 'package:health_care_system/view/find%20hospitals/controller/find_hospital_cubit.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../../core/Category cubit/category_cubit.dart';
 
 class HospitalListShimmer extends StatelessWidget {
   HospitalListShimmer({Key? key, required this.cubit}) : super(key: key);
-  FindHospitalCubit cubit;
+  CategoryCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class HospitalListShimmer extends StatelessWidget {
         shrinkWrap: true,
         addAutomaticKeepAlives: false,
         addRepaintBoundaries: false,
-        itemCount: cubit.newList.length,
+        itemCount: cubit.newHospitalList.length,
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         separatorBuilder: (context, index) {

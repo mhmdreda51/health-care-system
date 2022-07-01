@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_system/view/find%20hospitals/componants/hospitalListView.dart';
-import 'package:health_care_system/view/find%20hospitals/controller/find_hospital_cubit.dart';
+import 'package:health_care_system/widgets/CategoryListShimmer.dart';
 
-import '../../widgets/drop_down_Button.dart';
+import '../../core/Category cubit/category_cubit.dart';
 import '../../widgets/services_header.dart';
 import 'componants/hospitalCategoryTapBar.dart';
-import 'componants/hospitalListShimmer.dart';
 
 class FindHospitals extends StatelessWidget {
   const FindHospitals({Key? key}) : super(key: key);
@@ -14,13 +13,13 @@ class FindHospitals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => FindHospitalCubit(),
-      child: BlocConsumer<FindHospitalCubit, FindHospitalState>(
+      create: (context) => CategoryCubit(),
+      child: BlocConsumer<CategoryCubit, CategoryState>(
         listener: (context, state) {
           // TODO: implement listener
         },
         builder: (context, state) {
-          final cubit = FindHospitalCubit.get(context);
+          final cubit = CategoryCubit.get(context);
 
           return SafeArea(
             child: Scaffold(
@@ -32,24 +31,10 @@ class FindHospitals extends StatelessWidget {
                         text: 'Find your hospital',
                         height: 135,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 25,
-                          left: 20,
-                          right: 20,
-                        ),
-                        child: AppDropDownButton(
-                          value: cubit.dropdownInputValue,
-                          itemsList: cubit.specialitie,
-                          onChanged: (value) {
-                            cubit.dropdownInputOnChanged(value: value);
-                            // print(cubit.dropdownInputValue);
-                          },
-                        ),
-                      ),
                       HospitalCategoryTapBar(cubit: cubit),
-                      cubit.newList.isEmpty
-                          ? HospitalListShimmer(
+                      cubit.newHospitalList.isEmpty
+                          ? CategoryListShimmer(
+                              list: cubit.newHospitalList,
                               cubit: cubit,
                             )
                           : HospitalListView(cubit: cubit),

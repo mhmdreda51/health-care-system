@@ -1,53 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_system/constants/app_colors.dart';
+import 'package:health_care_system/view/Notification/Controller/notification_cubit.dart';
 import 'package:health_care_system/widgets/AccountItemAppBar.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 
 import 'Componants/notification_item_card.dart';
-import 'Model/NotificationModel.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AccountItemAppBar(title: "Notification"),
-      backgroundColor: Colors.grey[200],
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppText(
-                text: "Today",
-                size: 14,
-                color: AppColors.introTextColor,
-                fontWeight: FontWeight.bold,
-              ),
-              SizedBox(height: 10),
-              Container(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height,
-                child: ListView.separated(
-                  itemCount: notificationList.length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) {
-                    var item = notificationList[index];
-                    return NotificationItemCard(
-                      title: item.title,
-                      disc: item.disc,
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 10);
-                  },
+    return BlocProvider(
+      create: (context) => NotificationCubit(),
+      child: BlocConsumer<NotificationCubit, NotificationState>(
+        listener: (context, state) {
+          // TODO: implement listener
+        },
+        builder: (context, state) {
+          final cubit = NotificationCubit.get(context);
+
+          return Scaffold(
+            appBar: AccountItemAppBar(title: "Notification"),
+            backgroundColor: Colors.grey[200],
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppText(
+                      text: "Today",
+                      size: 14,
+                      color: AppColors.introTextColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height,
+                      child: ListView.separated(
+                        itemCount: 50,
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) {
+                          // var item = notificationList[index];
+                          return NotificationItemCard(
+                            title: "Test",
+                            disc: "test",
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return SizedBox(height: 10);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

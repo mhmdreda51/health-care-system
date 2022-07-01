@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/core/router/router.dart';
-import 'package:health_care_system/view/find%20hospitals/controller/find_hospital_cubit.dart';
 
+import '../../../core/Category cubit/category_cubit.dart';
 import '../../Hospital Details/hospital_detials.dart';
 import 'HospitalItemCard.dart';
 
 class HospitalListView extends StatelessWidget {
   HospitalListView({Key? key, required this.cubit}) : super(key: key);
-  FindHospitalCubit cubit;
+  CategoryCubit cubit;
 
   @override
   Widget build(BuildContext context) {
-    final listViewHeight = MediaQuery.of(context).size.height / 1.7;
+    final listViewHeight = MediaQuery.of(context).size.height / 1.5;
     final listViewWidth = MediaQuery.of(context).size.width;
 
     return Padding(
@@ -22,24 +22,13 @@ class HospitalListView extends StatelessWidget {
         height: listViewHeight,
         width: listViewWidth,
         child: ListView.separated(
-          itemCount: cubit.newList.length,
+          itemCount: cubit.newHospitalList.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
-            final item = cubit.newList[index];
+            final item = cubit.newHospitalList[index];
             return GestureDetector(
               onTap: () => MagicRouter.navigateTo(HospitalDetails(
-                name: item.name,
-                address: item.address,
-                category: item.category,
-                description: item.description,
-                gmail: item.gmail,
-                image: item.image,
-                location: item.location,
-                numberPhone: item.numberPhone,
-                rateStars: item.rateStars,
-                recommendation: item.recommendation,
-                socialName: item.socialName,
-                workingTime: item.workingTime,
+                item: item,
               )),
               child: HospitalItemCard(
                 image: item.image,

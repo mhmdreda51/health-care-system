@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:health_care_system/view/Find%20Doctor/controller/find_doctor_cubit.dart';
 
+import '../../core/Category cubit/category_cubit.dart';
+import '../../widgets/CategoryListShimmer.dart';
 import '../../widgets/drop_down_Button.dart';
 import '../../widgets/services_header.dart';
-import 'companants/category_tap_bar.dart';
-import 'companants/doctorListShimmer.dart';
 import 'companants/doctor_list_view.dart';
+import 'companants/doctor_tap_bar.dart';
 
 class FindDoctor extends StatelessWidget {
   const FindDoctor({Key? key}) : super(key: key);
@@ -14,11 +14,11 @@ class FindDoctor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => FindDoctorCubit(),
-      child: BlocConsumer<FindDoctorCubit, FindDoctorState>(
+      create: (context) => CategoryCubit(),
+      child: BlocConsumer<CategoryCubit, CategoryState>(
         listener: (context, state) {},
         builder: (context, state) {
-          final cubit = FindDoctorCubit.get(context);
+          final cubit = CategoryCubit.get(context);
           return SafeArea(
             child: Scaffold(
                 backgroundColor: Colors.grey[200],
@@ -41,12 +41,16 @@ class FindDoctor extends StatelessWidget {
                           },
                         ),
                       ),
-                      CategoryTapBar(cubit: cubit),
-                      cubit.newList.isEmpty
-                          ? DoctorListShimmer(
+                      DoctorTapBar(cubit: cubit),
+                      cubit.newDoctorList.isEmpty
+                          ? CategoryListShimmer(
                               cubit: cubit,
+                              list: cubit.newDoctorList,
                             )
-                          : DoctorListView(cubit: cubit),
+                          : DoctorListView(
+                              cubit: cubit,
+                              list: cubit.newDoctorList,
+                            ),
                     ],
                   ),
                 )),

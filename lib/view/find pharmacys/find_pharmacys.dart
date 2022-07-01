@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../widgets/drop_down_Button.dart';
+import '../../core/Category cubit/category_cubit.dart';
 import '../../widgets/services_header.dart';
 import 'Componants/ph_CategoryTapBar.dart';
 import 'Componants/pharmacyList.dart';
-import 'Controller/find_pharmacys_cubit.dart';
 
 class FindPharmacys extends StatelessWidget {
   const FindPharmacys({Key? key}) : super(key: key);
@@ -13,13 +12,13 @@ class FindPharmacys extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => FindPharmacysCubit(),
-      child: BlocConsumer<FindPharmacysCubit, FindPharmacysState>(
+      create: (context) => CategoryCubit(),
+      child: BlocConsumer<CategoryCubit, CategoryState>(
         listener: (context, state) {
           // TODO: implement listener
         },
         builder: (context, state) {
-          final cubit = FindPharmacysCubit.get(context);
+          final cubit = CategoryCubit.get(context);
 
           return SafeArea(
             child: Scaffold(
@@ -30,18 +29,6 @@ class FindPharmacys extends StatelessWidget {
                     const ServicesHeader(
                       text: 'Find your pharmacy',
                       height: 135,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 25, left: 20, right: 20, bottom: 0),
-                      child: AppDropDownButton(
-                        value: cubit.dropdownInputValue,
-                        itemsList: cubit.specialitie,
-                        onChanged: (value) {
-                          cubit.dropdownInputOnChanged(value: value);
-                          // print(cubit.dropdownInputValue);
-                        },
-                      ),
                     ),
                     PhCategoryTapBar(cubit: cubit),
                     PharmacyListView(

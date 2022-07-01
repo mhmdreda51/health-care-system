@@ -49,8 +49,8 @@ List<ServicesModel> servicesList = [
   ),
   ServicesModel(
     id: 6,
-    image: "assets/icons/card.png",
-    name: "Health Card",
-    color: AppColors.buttonGradient,
+    image: "assets/icons/Icons- pills.png",
+    name: "Pill Reminder",
+    color: AppColors.redGradientColor,
   ),
 ];

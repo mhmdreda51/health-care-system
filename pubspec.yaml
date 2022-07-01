@@ -47,6 +47,7 @@ dependencies:
   get_storage: ^2.0.3
   flutter_rating_bar: ^4.0.0
   auto_size_text_pk: ^3.0.0
+  flutter_local_notifications: ^9.6.1
 
   geolocator: ^7.6.2
   geocoding: ^2.0.4

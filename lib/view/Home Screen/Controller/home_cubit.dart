@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:health_care_system/core/router/router.dart';
+import 'package:health_care_system/view/Covid%2019/covid19_screen.dart';
 import 'package:health_care_system/view/Find%20Doctor/find_doctor.dart';
 import 'package:health_care_system/view/Home%20Screen/home_screen.dart';
 import 'package:health_care_system/view/find%20hospitals/find_hospitals.dart';
 
 import '../../../core/connectivity helper/connectivity_helper.dart';
 import '../../Account Screen/account_screen.dart';
+import '../../Chat Boot/chat_boot.dart';
 import '../../Health Card Screen/health_card_screen.dart';
+import '../../Pill Reminder/pill_reminder.dart';
 import '../../find labs/find_laps.dart';
 import '../../find pharmacys/find_pharmacys.dart';
 
@@ -60,13 +63,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(ChangeCarouselIndex());
   }
 
-  List carouselImage = [
-    'assets/images/carousel1.jpg',
-    'assets/images/carousel2.jpg',
-    'assets/images/carousel3.jpg',
-    'assets/images/carousel4.jpg',
-    'assets/images/carousel5.jpg',
-  ];
+
 
 //===============================================================
 
@@ -88,7 +85,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(CallAmpulanceSuccess());
       emit(ChangeServicesById());
     } else if (id == 6) {
-      MagicRouter.navigateTo(const Scaffold());
+      MagicRouter.navigateTo(const PillReminder());
       emit(ChangeServicesById());
     }
   }
@@ -97,6 +94,8 @@ class HomeCubit extends Cubit<HomeState> {
   int currentIndex = 0;
   List<Widget> bottomViews = [
     const HomeScreen(),
+    Covid19Screen(),
+    ChatBoot(),
     HealthCardScreen(),
     const AccountScreen(),
   ];

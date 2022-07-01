@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:health_care_system/view/Home%20Screen/home_screen.dart';
+import 'package:health_care_system/view/Login/login_screen.dart';
 import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../core/router/router.dart';
@@ -17,7 +18,14 @@ class ResetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ForgetPasswordCubit(),
-      child: BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
+      child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+        listener: (context, state) {
+          if (state is resetUserPasswordSuccessState) {
+            if (state.resetPasswordModel.status == 1) {
+              MagicRouter.navigateTo(LoginScreen());
+            }
+          }
+        },
         builder: (context, state) {
           final cubit = ForgetPasswordCubit.get(context);
 
@@ -49,23 +57,36 @@ class ResetPassword extends StatelessWidget {
                       icon: cubit.suffixConfirm,
                     ),
                     SizedBox(height: 40),
-                    MainButton(
-                      height: 43,
-                      width: double.infinity,
-                      text: "Save",
-                      borderRadius: 13,
-                      onPressed: () async {
-                        if (cubit.resetPasswordFormKey.currentState!.validate()) {
-                          if (cubit.passwordController.value.text !=
-                              cubit.confirmPasswordController.value.text) {
-                            Fluttertoast.showToast(
-                                msg: "Make sure the two passwords are the same");
-                          } else {
-                            MagicRouter.navigateAndPopAll(const HomeScreen());
-                          }
-                        }
-                      },
-                    )
+                    state is resetUserPasswordLoadingState
+                        ? const CupertinoActivityIndicator(
+                            radius: 16.0,
+                            animating: true,
+                          )
+                        : MainButton(
+                            height: 43,
+                            width: double.infinity,
+                            text: "Save",
+                            borderRadius: 13,
+                            onPressed: () async {
+                              if (cubit.resetPasswordFormKey.currentState!
+                                  .validate()) {
+                                if (cubit.passwordController.value.text !=
+                                    cubit
+                                        .confirmPasswordController.value.text) {
+                                  Fluttertoast.showToast(
+                                      msg:
+                                          "Make sure the two passwords are the same");
+                                } else {
+                                  cubit.resetUserPassword(
+                                    confirmNewPassword: cubit
+                                        .confirmPasswordController.value.text,
+                                    newPassword:
+                                        cubit.passwordController.value.text,
+                                  );
+                                }
+                              }
+                            },
+                          )
                   ],
                 ),
               ),

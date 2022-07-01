@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/core/router/router.dart';
-import 'package:health_care_system/view/Doctor%20details/doctor_details.dart';
 import 'package:health_care_system/view/Find%20Doctor/widgets/doctor_item_card.dart';
 
-import '../Controller/find_pharmacys_cubit.dart';
+import '../../../core/Category cubit/category_cubit.dart';
+import '../../Pharmacy Details/pharmacy_details.dart';
 
 // ignore: must_be_immutable
 class PharmacyListView extends StatelessWidget {
   PharmacyListView({Key? key, required this.cubit}) : super(key: key);
-  FindPharmacysCubit cubit;
+  CategoryCubit cubit;
 
   @override
   Widget build(BuildContext context) {
-    final listViewHeight = MediaQuery.of(context).size.height / 1.7;
+    final listViewHeight = MediaQuery.of(context).size.height / 1.5;
     final listViewWidth = MediaQuery.of(context).size.width;
 
     return Padding(
@@ -22,29 +22,13 @@ class PharmacyListView extends StatelessWidget {
         height: listViewHeight,
         width: listViewWidth,
         child: ListView.separated(
-          itemCount: cubit.newList.length,
+          itemCount: cubit.newPharmacyList.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
-            final item = cubit.newList[index];
+            final item = cubit.newPharmacyList[index];
             return InkWell(
-              onTap: () => MagicRouter.navigateTo(DoctorDetails(
-                category: item.category,
-                flags: item.flags,
-                rateStars: item.rateStars,
-                name: item.name,
-                location: item.location,
-                image: item.image,
-                education: item.education,
-                publications: item.publications,
-                description: item.description,
-                languages: item.languages,
-                address: item.address,
-                workingTime: item.workingTime,
-                priceFirsTime: item.priceFirsTime,
-                priceReturn: item.priceReturn,
-                numberPhone: item.numberPhone,
-                socialName: item.socialName,
-                gmail: item.gmail,
+              onTap: () => MagicRouter.navigateTo(PharmacyDetails(
+                item: item,
               )),
               child: DoctorItemCard(
                 image: item.image,

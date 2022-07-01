@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/view/find%20pharmacys/Componants/ph_itemCard.dart';
 
+import '../../../core/Category cubit/category_cubit.dart';
 import '../../Find Doctor/model/spacification.dart';
-import '../Controller/find_pharmacys_cubit.dart';
 
 class PhCategoryTapBar extends StatelessWidget {
   const PhCategoryTapBar({Key? key, required this.cubit}) : super(key: key);
-  final FindPharmacysCubit cubit;
+  final CategoryCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class PhCategoryTapBar extends StatelessWidget {
               selected: item.id,
               onTap: () {
                 cubit.itemSelection(item.id);
-                cubit.findByCategory(item.name);
+                cubit.findPharmacyByCategory(item.name);
               },
             );
           },

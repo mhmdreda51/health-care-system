@@ -8,32 +8,18 @@ class PersonalInfoInitial extends PersonalInfoState {}
 
 class UploadUserImageLoadingState extends PersonalInfoState {}
 
-class UploadUserImageSuccessState extends PersonalInfoState {
-  final ImageUpdatedModel imageUpdatedModel;
-
-  UploadUserImageSuccessState({required this.imageUpdatedModel});
-}
+class UploadUserImageSuccessState extends PersonalInfoState {}
 
 class UploadUserImageErrorState extends PersonalInfoState {}
 //===============================================================
-
-class UserPasswordUpdateLoadingState extends PersonalInfoState {}
-
-class UserPasswordUpdateSuccessState extends PersonalInfoState {
-  final UpdatePasswordModel updatePasswordModel;
-
-  UserPasswordUpdateSuccessState({required this.updatePasswordModel});
-}
-
-class UserPasswordUpdateErrorState extends PersonalInfoState {}
 
 //===============================================================
 class UserDetailsUpdateLoadingState extends PersonalInfoState {}
 
 class UserDetailsUpdateSuccessState extends PersonalInfoState {
-  final UserModel userModel;
+  final PersonalModel personalModel;
 
-  UserDetailsUpdateSuccessState({required this.userModel});
+  UserDetailsUpdateSuccessState({required this.personalModel});
 }
 
 class UserDetailsUpdateErrorState extends PersonalInfoState {}
@@ -69,11 +55,5 @@ class ChangePasswordVisibilityState extends PersonalInfoState {}
 class ChangePasswordConfirmVisibilityState extends PersonalInfoState {}
 
 //===============================================================
-class ChangeCountryState extends PersonalInfoState {}
 
 //===============================================================
-class GetMyAddressNameLoading extends PersonalInfoState {}
-
-class GetMyAddressNameSuccess extends PersonalInfoState {}
-
-class GetMyAddressNameError extends PersonalInfoState {}

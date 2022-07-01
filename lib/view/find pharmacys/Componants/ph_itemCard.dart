@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:health_care_system/view/find%20pharmacys/Controller/find_pharmacys_cubit.dart';
 
 import '../../../constants/app_colors.dart';
+import '../../../core/Category cubit/category_cubit.dart';
 
 class PhItemCard extends StatelessWidget {
   const PhItemCard({
@@ -17,9 +17,8 @@ class PhItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FindPharmacysCubit, FindPharmacysState>(
-        builder: (context, state) {
-      FindPharmacysCubit cubit = FindPharmacysCubit.get(context);
+    return BlocBuilder<CategoryCubit, CategoryState>(builder: (context, state) {
+      CategoryCubit cubit = CategoryCubit.get(context);
       return GestureDetector(
         onTap: onTap,
         child: Container(

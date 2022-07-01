@@ -38,12 +38,25 @@ class NavigationScreen extends StatelessWidget {
                 onTap: (index) => cubit.changeBottomViews(index),
                 items: const [
                   BottomNavigationBarItem(
-                      icon: Icon(FontAwesomeIcons.home), label: 'Home'),
+                    icon: Icon(FontAwesomeIcons.home),
+                    label: 'Home',
+                  ),
                   BottomNavigationBarItem(
-                      icon: Icon(FontAwesomeIcons.clipboardList),
-                      label: 'health card'),
+                    icon: Icon(Icons.analytics_outlined, size: 25),
+                    label: 'Covid 19 Live',
+                  ),
                   BottomNavigationBarItem(
-                      icon: Icon(FontAwesomeIcons.user), label: 'Account'),
+                    icon: Icon(Icons.chat_outlined, size: 25),
+                    label: 'ChatBoot',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(FontAwesomeIcons.clipboardList),
+                    label: 'health card',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(FontAwesomeIcons.user),
+                    label: 'Account',
+                  ),
                 ],
               ),
             ),

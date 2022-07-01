@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:health_care_system/widgets/main_button.dart';
+import 'package:health_care_system/view/Change%20Password/Controller/change_password_cubit.dart';
 
 import '../../componants/loading_widget.dart';
 import '../../core/router/router.dart';
 import '../../widgets/AccountItemAppBar.dart';
-import '../Personal info/controller/personal_info_cubit.dart';
+import '../../widgets/main_button.dart';
 import 'Componants/confirm_new_password_text_field.dart';
 import 'Componants/new_password_text_field.dart';
 import 'Componants/old_password_text_field.dart';
@@ -17,11 +17,11 @@ class ChangePasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PersonalInfoCubit(),
-      child: BlocConsumer<PersonalInfoCubit, PersonalInfoState>(
+      create: (context) => ChangePasswordCubit(),
+      child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
         listener: (context, state) {
           if (state is UserPasswordUpdateSuccessState) {
-            if (state.updatePasswordModel.status == 1) {
+            if (state.changePasswordModel.status == 1) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text("change_password.password_update_success"),
@@ -29,10 +29,10 @@ class ChangePasswordScreen extends StatelessWidget {
                 ),
               );
               MagicRouter.pop();
-            } else if (state.updatePasswordModel.status! == 0) {
+            } else if (state.changePasswordModel.status == 0) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(state.updatePasswordModel.message.toString()),
+                  content: Text(state.changePasswordModel.message.toString()),
                   backgroundColor: Colors.red,
                 ),
               );
@@ -42,7 +42,7 @@ class ChangePasswordScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          final cubit = PersonalInfoCubit.get(context);
+          final cubit = ChangePasswordCubit.get(context);
 
           return Scaffold(
             appBar: AccountItemAppBar(title: "Change Password"),
@@ -96,12 +96,11 @@ class ChangePasswordScreen extends StatelessWidget {
                               } else if (cubit.passwordFormKey.currentState!
                                   .validate()) {
                                 cubit.updateUserPassword(
-                                    oldPassword:
-                                        cubit.oldPasswordController.text,
-                                    newPassword:
-                                        cubit.newPasswordController.text,
-                                    confirmNewPassword:
-                                        cubit.confirmPasswordController.text);
+                                  oldPassword: cubit.oldPasswordController.text,
+                                  newPassword: cubit.newPasswordController.text,
+                                  confirmNewPassword:
+                                      cubit.confirmPasswordController.text,
+                                );
                               }
                             },
                           )

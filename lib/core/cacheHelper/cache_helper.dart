@@ -2,7 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:health_care_system/view/Sign%20Up/Model/location_model.dart';
 
+import '../../view/Forget Password/Model/forget_password_model.dart';
 import '../../view/Login/model/user_model.dart';
+import '../../view/Personal info/Model/personal_model.dart';
 
 class CacheHelper {
   static final GetStorage _appBox = GetStorage();
@@ -81,6 +83,55 @@ class CacheHelper {
       await _appBox.write('locationAddress', locationAddress);
 
   static String? get getLocationAddress => _appBox.read('locationAddress');
-//===============================================================
 
+//===============================================================
+  static Future<void> cachePersonalInfo({
+    required PersonalModel personalModel,
+  }) async {
+    await _cachePersonalModel(personalModel);
+  }
+
+  static Future<void> _cachePersonalModel(PersonalModel personalModel) async =>
+      await _appBox.write('personalModel', personalModel.toJson());
+
+  static PersonalModel? get getPersonalModel => _appBox.read('personalModel');
+
+  //===============================================================
+  static Future<void> cachePin({
+    required int pin,
+  }) async {
+    await _cachePin(pin);
+  }
+
+  static Future<void> _cachePin(int pin) async =>
+      await _appBox.write('pin', pin);
+
+  static int? get getPin => _appBox.read('pin');
+
+  //===============================================================
+
+  static Future<void> cacheForgetPasswordModel({
+    required ForgetPasswordModel forgetPasswordModel,
+  }) async {
+    await _cacheForgetPasswordModel(forgetPasswordModel);
+  }
+
+  static Future<void> _cacheForgetPasswordModel(
+          ForgetPasswordModel forgetPasswordModel) async =>
+      await _appBox.write('forgetPasswordModel', forgetPasswordModel.toJson());
+
+  static ForgetPasswordModel? get getForgetPasswordModel =>
+      _appBox.read('forgetPasswordModel');
+
+//===============================================================
+  static Future<void> cacheMailForReset({
+    required String mailForReset,
+  }) async {
+    await _cacheMailForReset(mailForReset);
+  }
+
+  static Future<void> _cacheMailForReset(String mailForReset) async =>
+      await _appBox.write('mailForReset', mailForReset);
+
+  static String? get getMailForReset => _appBox.read('mailForReset');
 }

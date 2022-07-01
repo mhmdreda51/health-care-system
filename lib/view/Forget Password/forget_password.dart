@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_system/core/router/router.dart';
 import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../widgets/AccountItemAppBar.dart';
@@ -14,7 +15,20 @@ class ForgetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ForgetPasswordCubit(),
-      child: BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
+      child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+        listener: (context, state) {
+          if (state is UserPasswordUpdateSuccessState) {
+            final cubit = ForgetPasswordCubit.get(context);
+
+            MagicRouter.navigateTo(
+              ConfirmationCodePage(
+                cubit: cubit,
+              ),
+            );
+          } else if (state is UserPasswordUpdateErrorState) {
+            print("error");
+          }
+        },
         builder: (context, state) {
           final cubit = ForgetPasswordCubit.get(context);
 
@@ -51,8 +65,9 @@ class ForgetPassword extends StatelessWidget {
                       borderRadius: 10,
                       onPressed: () async {
                         if (cubit.formKey.currentState!.validate()) {
-                          cubit.showDialog(
-                              ConfirmationCodePage(cubit: cubit), context);
+                          cubit.sendEmailToGetPin(
+                            email: cubit.emailController.text,
+                          );
                         }
                       },
                     )

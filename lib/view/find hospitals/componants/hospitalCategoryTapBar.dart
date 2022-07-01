@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/view/find%20hospitals/Model/spacification.dart';
 import 'package:health_care_system/view/find%20hospitals/componants/spacificationItemCard.dart';
-import 'package:health_care_system/view/find%20hospitals/controller/find_hospital_cubit.dart';
+
+import '../../../core/Category cubit/category_cubit.dart';
 
 class HospitalCategoryTapBar extends StatelessWidget {
   const HospitalCategoryTapBar({Key? key, required this.cubit})
       : super(key: key);
-  final FindHospitalCubit cubit;
+  final CategoryCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class HospitalCategoryTapBar extends StatelessWidget {
               selected: item.id,
               onTap: () {
                 cubit.itemSelection(item.id);
-                cubit.findByCategory(item.name);
+                cubit.findHospitalByCategory(item.name);
               },
             );
           },

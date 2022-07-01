@@ -1,7 +1,14 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_system/core/cacheHelper/cache_helper.dart';
 import 'package:meta/meta.dart';
+
+import '../../../constants/end_point.dart';
+import '../../../core/dioHelper/dio_helper.dart';
+import '../../Reset Password/Model/ResetPasswordModel.dart';
+import '../Model/forget_password_model.dart';
 
 part 'forget_password_state.dart';
 
@@ -55,7 +62,61 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     emit(ChangePasswordConfirmVisibilityState());
   }
 
-  // void dispose() {
-  //   ConfirmationCodeController.dispose();
-  // }
+  //===============================================================
+  ForgetPasswordModel? forgetPasswordModel;
+
+  Future<void> sendEmailToGetPin({
+    required String email,
+  }) async {
+    emit(UserPasswordUpdateLoadingState());
+    final response = await DioHelper.postData(url: forgetPassword, data: {
+      'email': email,
+    });
+    try {
+      forgetPasswordModel = ForgetPasswordModel.fromJson(response.data);
+      CacheHelper.cacheMailForReset(mailForReset: email);
+      emit(UserPasswordUpdateSuccessState(
+          forgetPasswordModel: forgetPasswordModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(UserPasswordUpdateErrorState());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(UserPasswordUpdateErrorState());
+    }
+  }
+
+  ResetPasswordModel? resetPasswordModel;
+
+  Future<void> resetUserPassword({
+    required String newPassword,
+    required String confirmNewPassword,
+  }) async {
+    emit(resetUserPasswordLoadingState());
+    final response = await DioHelper.postData(url: new_Password, data: {
+      "email": CacheHelper.getMailForReset,
+      "pin_code": CacheHelper.getPin,
+      'password': newPassword,
+      'password_confirmation': confirmNewPassword,
+    });
+    try {
+      print(response.statusCode);
+      print(CacheHelper.getPin);
+      print(CacheHelper.getMailForReset);
+      resetPasswordModel =
+          ResetPasswordModel.fromJson(response.data as Map<String, dynamic>);
+      emit(resetUserPasswordSuccessState(
+          resetPasswordModel: resetPasswordModel!));
+    } on DioError catch (e) {
+      emit(resetUserPasswordErrorState());
+
+      debugPrint(e.error.toString());
+    } catch (e, s) {
+      emit(resetUserPasswordErrorState());
+
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+    }
+  }
 }

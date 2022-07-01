@@ -19,7 +19,7 @@ class PersonalInfo extends StatelessWidget {
       child: BlocConsumer<PersonalInfoCubit, PersonalInfoState>(
         listener: (context, state) {
           if (state is UserDetailsUpdateSuccessState) {
-            if (state.userModel.status == 1) {
+            if (state.personalModel.status == 1) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text("Info updated Successfully."),
@@ -40,40 +40,35 @@ class PersonalInfo extends StatelessWidget {
           return Scaffold(
             appBar: AccountItemAppBar(title: "Personal info"),
             backgroundColor: Colors.grey[200],
-            body: RefreshIndicator(
-              onRefresh: () async {
-                await cubit.refreshUserData();
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(30),
-                child: SingleChildScrollView(
-                  child: Form(
-                    key: cubit.formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        UserProfileImage(cubit: cubit),
-                        UserDetailsForm(cubit: cubit),
-                        state is UserPasswordUpdateLoadingState
-                            ? const LoadingWidget()
-                            : MainButton(
-                                onPressed: () {
-                                  if (cubit.formKey.currentState!.validate()) {
-                                    cubit.updateUser(
-                                      username: cubit.userNameController.text,
-                                      phone: cubit.phoneController.text,
-                                      email: cubit.emailController.text,
-                                    );
-                                  }
-                                },
-                                height: 43,
-                                width: 164,
-                                text: "Save",
-                                borderRadius: 13,
-                              ),
-                        SizedBox(height: 20),
-                      ],
-                    ),
+            body: Padding(
+              padding: const EdgeInsets.all(30),
+              child: SingleChildScrollView(
+                child: Form(
+                  key: cubit.formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      UserProfileImage(cubit: cubit),
+                      UserDetailsForm(cubit: cubit),
+                      state is UserDetailsUpdateLoadingState
+                          ? const LoadingWidget()
+                          : MainButton(
+                              onPressed: () async {
+                                if (cubit.formKey.currentState!.validate()) {
+                                  await cubit.updateUser(
+                                    username: cubit.userNameController.text,
+                                    phone: cubit.phoneController.text,
+                                    email: cubit.emailController.text,
+                                  );
+                                }
+                              },
+                              height: 43,
+                              width: 164,
+                              text: "Save",
+                              borderRadius: 13,
+                            ),
+                      SizedBox(height: 20),
+                    ],
                   ),
                 ),
               ),

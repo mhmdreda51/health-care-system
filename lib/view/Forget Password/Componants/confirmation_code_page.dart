@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_system/constants/app_colors.dart';
+import 'package:health_care_system/view/Reset%20Password/reset_password.dart';
+import 'package:health_care_system/widgets/AccountItemAppBar.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 
+import '../../../core/cacheHelper/cache_helper.dart';
 import '../../../core/router/router.dart';
 import '../../../widgets/main_button.dart';
 import '../../Personal info/Componants/user_form_field.dart';
-import '../../Reset Password/reset_password.dart';
 import '../Controller/forget_password_cubit.dart';
 
 class ConfirmationCodePage extends StatelessWidget {
@@ -14,11 +16,10 @@ class ConfirmationCodePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 400,
-      width: double.infinity,
-      color: Colors.grey[200],
-      child: Padding(
+    return Scaffold(
+      appBar: AccountItemAppBar(title: ""),
+      backgroundColor: Colors.grey[200],
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: cubit.confirmationCodeFormKey,
@@ -65,9 +66,13 @@ class ConfirmationCodePage extends StatelessWidget {
                 width: double.infinity,
                 text: "Confirm",
                 borderRadius: 10,
-                onPressed: () {
+                onPressed: () async {
                   if (cubit.confirmationCodeFormKey.currentState!.validate()) {
-                    MagicRouter.navigateTo(const ResetPassword());
+                    await CacheHelper.cachePin(
+                            pin: int.parse(
+                                cubit.ConfirmationCodeController.text))
+                        .whenComplete(
+                            () => MagicRouter.navigateTo(ResetPassword()));
                   }
                 },
               )
