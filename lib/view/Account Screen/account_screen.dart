@@ -24,7 +24,7 @@ class AccountScreen extends StatelessWidget {
               backgroundColor: Colors.grey[200],
               body: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AccountHeader(cubit: cubit),
                     AccountContant(cubit: cubit),

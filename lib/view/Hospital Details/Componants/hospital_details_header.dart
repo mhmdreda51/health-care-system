@@ -45,7 +45,7 @@ class HospitalDetailsHeader extends StatelessWidget {
               children: [
                 AppText(
                   text: name,
-                  size: 16.sp,
+                  size: 14.sp,
                   color: AppColors.introTextColor,
                   fontWeight: FontWeight.bold,
                 ),

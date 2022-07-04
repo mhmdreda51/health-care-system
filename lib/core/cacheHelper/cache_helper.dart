@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:health_care_system/view/Sign%20Up/Model/location_model.dart';
 
 import '../../view/Forget Password/Model/forget_password_model.dart';
+import '../../view/Health Card Screen/Model/MedicalInfoModel.dart';
 import '../../view/Login/model/user_model.dart';
 import '../../view/Personal info/Model/personal_model.dart';
 
@@ -134,4 +135,33 @@ class CacheHelper {
       await _appBox.write('mailForReset', mailForReset);
 
   static String? get getMailForReset => _appBox.read('mailForReset');
+
+//===============================================================
+  static Future<void> cacheBloodType({
+    required String name,
+  }) async {
+    await _cacheBloodType(name);
+  }
+
+  static Future<void> _cacheBloodType(String name) async =>
+      await _appBox.write('name', name);
+
+  static String? get getBloodType => _appBox.read('name');
+
+//===============================================================
+  static Future<void> cacheMedicalInfoModel({
+    required MedicalInfoModel medicalInfoModel,
+  }) async {
+    await _cacheMedicalInfoModel(medicalInfoModel);
+  }
+
+  static Future<void> _cacheMedicalInfoModel(
+          MedicalInfoModel medicalInfoModel) async =>
+      await _appBox.write('medicalInfoModel', medicalInfoModel);
+
+  static MedicalInfoModel? get getMedicalInfoModel =>
+      _appBox.read('medicalInfoModel');
+//===============================================================
+//===============================================================
+
 }

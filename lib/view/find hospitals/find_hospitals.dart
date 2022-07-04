@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_system/view/find%20hospitals/componants/hospitalListView.dart';
@@ -13,7 +14,7 @@ class FindHospitals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CategoryCubit(),
+      create: (context) => CategoryCubit()..getCategories(),
       child: BlocConsumer<CategoryCubit, CategoryState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -31,13 +32,27 @@ class FindHospitals extends StatelessWidget {
                         text: 'Find your hospital',
                         height: 135,
                       ),
-                      HospitalCategoryTapBar(cubit: cubit),
-                      cubit.newHospitalList.isEmpty
-                          ? CategoryListShimmer(
-                              list: cubit.newHospitalList,
-                              cubit: cubit,
+                      state is GetCategoriesLoading
+                          ? Padding(
+                              padding: const EdgeInsets.only(top: 250),
+                              child: Center(
+                                child: const CupertinoActivityIndicator(
+                                  radius: 16.0,
+                                  animating: true,
+                                ),
+                              ),
                             )
-                          : HospitalListView(cubit: cubit),
+                          : Column(
+                              children: [
+                                HospitalCategoryTapBar(cubit: cubit),
+                                cubit.newHospitalList.isEmpty
+                                    ? CategoryListShimmer(
+                                        list: cubit.newHospitalList,
+                                        cubit: cubit,
+                                      )
+                                    : HospitalListView(cubit: cubit),
+                              ],
+                            ),
                     ],
                   ),
                 )),

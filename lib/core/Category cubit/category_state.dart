@@ -24,3 +24,19 @@ class FilterLapsListSuccess extends CategoryState {}
 class FilterPharmacyListLoading extends CategoryState {}
 
 class FilterPharmacyListSuccess extends CategoryState {}
+
+//===============================================================
+class GetCategoriesLoading extends CategoryState {}
+
+class GetCategoriesSuccess extends CategoryState {
+  CategoriesModel? categoriesModel;
+
+  GetCategoriesSuccess({required this.categoriesModel});
+}
+
+class GetCategoriesError extends CategoryState {}
+
+//===============================================================
+//===============================================================
+//===============================================================
+//===============================================================

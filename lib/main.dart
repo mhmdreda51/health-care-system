@@ -47,9 +47,7 @@ class MyApp extends StatelessWidget {
           navigatorKey: navigatorKey,
           onGenerateRoute: onGenerateRoute,
           theme: theme(context),
-        
           home: SplashScreen(),
-          
         ),
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_system/widgets/services_header.dart';
 
+import 'Componants/no_pill_widget.dart';
+
 class PillReminder extends StatelessWidget {
   const PillReminder({Key? key}) : super(key: key);
 
@@ -16,6 +18,7 @@ class PillReminder extends StatelessWidget {
               height: 135,
               text: "PillReminder",
             ),
+            NoPillWidget(),
           ],
         ),
       ),

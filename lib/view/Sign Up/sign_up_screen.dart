@@ -72,6 +72,7 @@ class SignUpScreen extends StatelessWidget {
                                                 .passwordConfirmController.text,
                                             userName:
                                                 cubit.userNameController.text,
+                                            phone: cubit.phoneController.text,
                                           );
                                         }
                                       },

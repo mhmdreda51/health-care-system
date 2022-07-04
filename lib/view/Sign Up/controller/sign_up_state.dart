@@ -17,6 +17,9 @@ class SignUpChangePasswordConfirmVisibilityState extends SignUpState {}
 class SignUpEmailSuffixOnChange extends SignUpState {}
 
 class SignUpUserNameSuffixOnChange extends SignUpState {}
+
+class SignUpPhoneSuffixOnChange extends SignUpState {}
+
 //===============================================================
 
 class RegisterLoadingState extends SignUpState {}
@@ -72,3 +75,6 @@ class LocationError extends SignUpState {}
 class LocationIsEnabled extends SignUpState {}
 
 class LocationIsDisable extends SignUpState {}
+//===============================================================
+
+//===============================================================

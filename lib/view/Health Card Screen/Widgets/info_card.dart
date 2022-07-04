@@ -21,12 +21,7 @@ class InfoCard extends StatelessWidget {
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(13),
-          border: Border(
-            right: BorderSide(width: .7, color: AppColors.introTextColor),
-            left: BorderSide(width: .7, color: AppColors.introTextColor),
-            top: BorderSide(width: .7, color: AppColors.introTextColor),
-            bottom: BorderSide(width: .7, color: AppColors.introTextColor),
-          ),
+          border: Border.all(width: .7, color: AppColors.introTextColor),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

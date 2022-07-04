@@ -32,17 +32,34 @@ class SecondDoseColumn extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               SizedBox(height: 10),
-              UserFormField(
-                height: 35,
-                controller: cubit.corona_dose2_date,
-                hint: "",
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter the text";
-                  } else {
-                    return null;
-                  }
-                },
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 35,
+                      width: double.infinity,
+                      color: Colors.white,
+                      padding: EdgeInsets.only(left: 10),
+                      alignment: Alignment.centerLeft,
+                      child: AppText(
+                        color: Colors.black54,
+                        size: 14,
+                        fontWeight: FontWeight.bold,
+                        text: cubit.isDose2Picked == false
+                            ? ""
+                            : cubit
+                                .formatDose2Date(cubit.dose2_Date)
+                                .toString(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 5),
+                  IconButton(
+                    onPressed: () => cubit.selectDose2Date(context),
+                    icon:
+                        Icon(Icons.date_range, color: AppColors.buttonGradient),
+                  ),
+                ],
               ),
               SizedBox(height: 10),
               AppText(
@@ -54,7 +71,7 @@ class SecondDoseColumn extends StatelessWidget {
               SizedBox(height: 10),
               UserFormField(
                 height: 35,
-                controller: cubit.corona_dose2_location,
+                controller: cubit.dose2Location,
                 hint: "",
                 validator: (value) {
                   if (value!.isEmpty) {

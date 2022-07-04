@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +15,7 @@ class FindDoctor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CategoryCubit(),
+      create: (context) => CategoryCubit()..getCategories(),
       child: BlocConsumer<CategoryCubit, CategoryState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -29,27 +30,43 @@ class FindDoctor extends StatelessWidget {
                         text: 'Find your doctor',
                         height: 135,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 25, left: 20, right: 20, bottom: 0),
-                        child: AppDropDownButton(
-                          value: cubit.dropdownInputValue,
-                          itemsList: cubit.specialitie,
-                          onChanged: (value) {
-                            cubit.dropdownInputOnChanged(value: value);
-                            // print(cubit.dropdownInputValue);
-                          },
-                        ),
-                      ),
-                      DoctorTapBar(cubit: cubit),
-                      cubit.newDoctorList.isEmpty
-                          ? CategoryListShimmer(
-                              cubit: cubit,
-                              list: cubit.newDoctorList,
+                      state is GetCategoriesLoading
+                          ? Padding(
+                              padding: const EdgeInsets.only(top: 250),
+                              child: Center(
+                                child: const CupertinoActivityIndicator(
+                                  radius: 16.0,
+                                  animating: true,
+                                ),
+                              ),
                             )
-                          : DoctorListView(
-                              cubit: cubit,
-                              list: cubit.newDoctorList,
+                          : Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 25, left: 20, right: 20, bottom: 0),
+                                  child: AppDropDownButton(
+                                    value: cubit.dropdownInputValue,
+                                    cubit: cubit,
+                                    onChanged: (value) {
+                                      cubit.dropdownInputOnChanged(
+                                        value: value,
+                                      );
+                                      // print(cubit.dropdownInputValue);
+                                    },
+                                  ),
+                                ),
+                                DoctorTapBar(cubit: cubit),
+                                cubit.newDoctorList.isEmpty
+                                    ? CategoryListShimmer(
+                                        cubit: cubit,
+                                        list: cubit.newDoctorList,
+                                      )
+                                    : DoctorListView(
+                                        cubit: cubit,
+                                        list: cubit.newDoctorList,
+                                      ),
+                              ],
                             ),
                     ],
                   ),

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:health_care_system/view/Health%20Card%20Screen/Model/blood_type_model.dart';
 
+import '../../../core/cacheHelper/cache_helper.dart';
 import '../Controller/health_card_cubit.dart';
-import '../Model/blood_model.dart';
 import 'blood_item_card.dart';
 
 class BloodGridView extends StatelessWidget {
-  const BloodGridView({Key? key, required this.cubit}) : super(key: key);
+  const BloodGridView({Key? key, required this.model, required this.cubit})
+      : super(key: key);
+  final BloodTypeModel model;
   final HealthCardCubit cubit;
 
   @override
@@ -17,7 +20,7 @@ class BloodGridView extends StatelessWidget {
         height: 150.h,
         width: double.infinity,
         child: GridView.builder(
-          itemCount: BloodList.length,
+          itemCount: model.data.length,
           scrollDirection: Axis.vertical,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -27,11 +30,11 @@ class BloodGridView extends StatelessWidget {
           ),
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            final item = BloodList[index];
+            final item = model.data[index];
             return BloodItemCard(
               onTap: () => {
                 cubit.itemSelection(item.id),
-                // CacheHelper.cacheBloodType(bloodType: item.name),
+                CacheHelper.cacheBloodType(name: item.name),
               },
               name: item.name,
               selected: item.id,

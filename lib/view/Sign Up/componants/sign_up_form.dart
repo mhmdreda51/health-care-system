@@ -64,6 +64,25 @@ class SignUpForm extends StatelessWidget {
         SizedBox(height: 25.h),
         AuthTextFromField(
           validator: (value) {
+            if (value == null || value.trim().isEmpty) {
+              return 'This field is required';
+            }
+            if (value.trim().length < 11) {
+              return 'Phone must be at least 11 Number in length';
+            }
+            return null;
+          },
+          onChanged: (value) => cubit.phoneSuffixOnChange(value: value),
+          controller: cubit.phoneController,
+          obscureText: false,
+          hintText: "Phone Number",
+          icon: cubit.phoneSuffix ? Icons.check_circle : Icons.cancel,
+          onPressed: () {},
+          iconColor: cubit.phoneSuffix ? Colors.green : Colors.red,
+        ),
+        SizedBox(height: 25.h),
+        AuthTextFromField(
+          validator: (value) {
             if (value!.isEmpty) {
               return 'password must not be empty';
             } else if (value.length < 6) {

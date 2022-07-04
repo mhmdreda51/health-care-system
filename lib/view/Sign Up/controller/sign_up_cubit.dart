@@ -1,14 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../../constants/end_point.dart';
+import '../../../core/Firebase/firebase_messaging_helper.dart';
 import '../../../core/cacheHelper/cache_helper.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 import '../../../core/locationHelper/location_helper.dart';
 import '../../Login/model/user_model.dart';
+import '../Model/RegisterModel.dart';
 import '../Model/location_model.dart';
 
 part 'sign_up_state.dart';
@@ -24,7 +27,10 @@ class SignUpCubit extends Cubit<SignUpState> {
   IconData passwordConfirmSuffix = Icons.visibility_outlined;
   bool emailSuffix = true;
   bool userNameSuffix = true;
+  bool phoneSuffix = true;
+
   UserModel? userModel;
+  RegisterModel? registerModel;
 
   void emailSuffixOnChange({required String value}) {
     value.contains("@") || value.isEmpty
@@ -37,7 +43,14 @@ class SignUpCubit extends Cubit<SignUpState> {
     value.length >= 6 || value.isEmpty
         ? userNameSuffix = true
         : userNameSuffix = false;
-    emit(SignUpUserNameSuffixOnChange());
+    emit((SignUpUserNameSuffixOnChange()));
+  }
+
+  void phoneSuffixOnChange({required String value}) {
+    value.length >= 11 || value.isEmpty
+        ? phoneSuffix = true
+        : phoneSuffix = false;
+    emit(SignUpPhoneSuffixOnChange());
   }
 
   void changePasswordVisibility() {
@@ -66,6 +79,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   //===============================================================
 
   TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordConfirmController = TextEditingController();
@@ -77,28 +91,30 @@ class SignUpCubit extends Cubit<SignUpState> {
     required String email,
     required String password,
     required String passwordConfirm,
+    required String phone,
   }) async {
     emit(RegisterLoadingState());
-    // final token = await FirebaseMessagingHelper.getToken();
+    final token = await FirebaseMessagingHelper.getToken();
     final response = await DioHelper.postData(
       url: register,
       data: {
         'user_name': userName,
-        'email': email.toLowerCase(),
+        'email': email.toLowerCase().trim(),
         'password': password,
         'password_confirmation': passwordConfirm,
+        "phone": phone,
       },
     );
     try {
-      // final data = response.data as Map;
-
       userModel = UserModel.fromJson(response.data);
-      if (userModel!.data!.token != null) {
+      if (userModel!.data.token != null) {
         CacheHelper.cacheUserInfo(
-            token: userModel!.data!.token.toString(), userModel: userModel!);
+            token: userModel!.data.token.toString(), userModel: userModel!);
       }
       emit(RegisterSuccessState(userModel: userModel!));
     } on DioError catch (e) {
+      Fluttertoast.showToast(msg: response.statusMessage.toString());
+
       emit(RegisterLErrorState(error: e.toString()));
     } catch (e) {
       debugPrint(e.toString());

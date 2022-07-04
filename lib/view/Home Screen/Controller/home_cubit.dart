@@ -13,7 +13,6 @@ import '../../../core/connectivity helper/connectivity_helper.dart';
 import '../../Account Screen/account_screen.dart';
 import '../../Chat Boot/chat_boot.dart';
 import '../../Health Card Screen/health_card_screen.dart';
-import '../../Pill Reminder/pill_reminder.dart';
 import '../../find labs/find_laps.dart';
 import '../../find pharmacys/find_pharmacys.dart';
 
@@ -63,8 +62,6 @@ class HomeCubit extends Cubit<HomeState> {
     emit(ChangeCarouselIndex());
   }
 
-
-
 //===============================================================
 
   void navigateServicesById(int id) {
@@ -85,7 +82,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(CallAmpulanceSuccess());
       emit(ChangeServicesById());
     } else if (id == 6) {
-      MagicRouter.navigateTo(const PillReminder());
+      MagicRouter.navigateTo(const Covid19Screen());
       emit(ChangeServicesById());
     }
   }
@@ -94,7 +91,6 @@ class HomeCubit extends Cubit<HomeState> {
   int currentIndex = 0;
   List<Widget> bottomViews = [
     const HomeScreen(),
-    Covid19Screen(),
     ChatBoot(),
     HealthCardScreen(),
     const AccountScreen(),

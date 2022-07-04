@@ -1,11 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:health_care_system/core/cacheHelper/cache_helper.dart';
 
+import '../../constants/app_colors.dart';
 import '../../core/router/router.dart';
-import '../../widgets/AccountItemAppBar.dart';
-import '../Medical Info/medical_info.dart';
+import 'Componants/blood_part_with_info.dart';
+import 'Componants/blood_type.dart';
+import 'Componants/corona_part_with_info.dart';
+import 'Componants/corona_vaccine.dart';
 import 'Componants/health_card_header.dart';
-import 'Componants/vaccination_part.dart';
 import 'Controller/health_card_cubit.dart';
 import 'Widgets/info_card.dart';
 
@@ -15,53 +19,72 @@ class HealthCardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HealthCardCubit(),
+      create: (context) => HealthCardCubit()..getMedicalInfo(),
       child: BlocConsumer<HealthCardCubit, HealthCardState>(
         listener: (context, state) {},
         builder: (context, state) {
           final cubit = HealthCardCubit.get(context);
 
           return Scaffold(
-            appBar: AccountItemAppBar(title: "Health card"),
+            appBar: appBar(),
             backgroundColor: Colors.grey[200],
-            body: Padding(
-              padding: const EdgeInsets.all(16),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    HealthCardHeader(),
-                    SizedBox(height: 20),
-                    VaccinationPart(),
-                    SizedBox(height: 20),
-                    InfoCard(
-                      text: "Add your information about Corona vaccine",
-                      icon: Icons.coronavirus_outlined,
-                      onTap: () => MagicRouter.navigateTo(MedicalInfo()),
+            body: state is GetMedicalInfoLoading
+                ? Center(
+                    child: const CupertinoActivityIndicator(
+                      radius: 16.0,
+                      animating: true,
                     ),
-                    SizedBox(height: 20),
-                    InfoCard(
-                      text: "Add your information about blood type",
-                      icon: Icons.bloodtype_outlined,
-                      onTap: () => MagicRouter.navigateTo(MedicalInfo()),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          HealthCardHeader(cubit: cubit),
+                          SizedBox(height: 20),
+                          CacheHelper.getMedicalInfoModel!.data!.name == ""
+                              ? InfoCard(
+                                  text:
+                                      "Add your information about Corona vaccine",
+                                  icon: Icons.coronavirus_outlined,
+                                  onTap: () =>
+                                      MagicRouter.navigateTo(CoronaVaccine()),
+                                )
+                              : CoronaPartWithInfo(cubit: cubit),
+                          SizedBox(height: 20),
+                          CacheHelper.getMedicalInfoModel!.data!.name == ""
+                              ? InfoCard(
+                                  text: "Add your information about blood type",
+                                  icon: Icons.bloodtype_outlined,
+                                  onTap: () =>
+                                      MagicRouter.navigateTo(BloodType()),
+                                )
+                              : BloodPartWithInfo(cubit: cubit),
+                          SizedBox(height: 70),
+                        ],
+                      ),
                     ),
-                    SizedBox(height: 20),
-                    // Text(CacheHelper.getDose2_location.toString()),
-                    // Text(CacheHelper.getBloodType.toString()),
-                    // Text(CacheHelper.getDose1_Date.toString()),
-                    // Text(CacheHelper.getNameOfVaccination.toString()),
-                    // Text(CacheHelper.getNumOfDose.toString()),
-                    // Text(CacheHelper.getSerialNumber.toString()),
-                    // Text(CacheHelper.getDose1_location.toString()),
-                    // Text(CacheHelper.getDose2_Date.toString()),
-                    // Text(CacheHelper.getDose1_Date.toString()),
-                  ],
-                ),
-              ),
-            ),
+                  ),
           );
         },
       ),
     );
   }
+}
+
+AppBar appBar() {
+  return AppBar(
+    backgroundColor: Colors.white,
+    leading: SizedBox(),
+    title: Text(
+      'Health Card',
+      style: TextStyle(
+        color: AppColors.introTextColor,
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    centerTitle: true,
+  );
 }

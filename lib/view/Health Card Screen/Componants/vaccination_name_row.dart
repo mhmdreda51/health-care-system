@@ -25,7 +25,7 @@ class VaccinationNameRow extends StatelessWidget {
           SizedBox(height: 10),
           UserFormField(
             height: 35,
-            controller: cubit.corona_name,
+            controller: cubit.coronaName,
             hint: "",
             validator: (value) {
               if (value!.isEmpty) {

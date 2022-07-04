@@ -28,7 +28,7 @@ class BloodItemCard extends StatelessWidget {
               : AppColors.ubSelectedItem,
           borderRadius: BorderRadius.circular(13),
         ),
-        padding: EdgeInsets.only(top: 15, left: 58),
+        padding: EdgeInsets.only(top: 15, left: 70),
         child: AppText(
           text: name,
           color: Colors.white,

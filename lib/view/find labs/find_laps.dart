@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +14,7 @@ class FindLaps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CategoryCubit(),
+      create: (context) => CategoryCubit()..getCategories(),
       child: BlocConsumer<CategoryCubit, CategoryState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -29,14 +30,28 @@ class FindLaps extends StatelessWidget {
                     text: 'Find your Laps',
                     height: 135,
                   ),
-                  LapsCategoryTapBar(
-                    cubit: cubit,
-                  ),
-                  cubit.newLapsList.isEmpty
-                      ? LapsListShimmer(
-                          cubit: cubit,
+                  state is GetCategoriesLoading
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 250),
+                          child: Center(
+                            child: const CupertinoActivityIndicator(
+                              radius: 16.0,
+                              animating: true,
+                            ),
+                          ),
                         )
-                      : LapsListView(cubit: cubit),
+                      : Column(
+                          children: [
+                            LapsCategoryTapBar(
+                              cubit: cubit,
+                            ),
+                            cubit.newLapsList.isEmpty
+                                ? LapsListShimmer(
+                                    cubit: cubit,
+                                  )
+                                : LapsListView(cubit: cubit),
+                          ],
+                        ),
                 ],
               ),
             ),

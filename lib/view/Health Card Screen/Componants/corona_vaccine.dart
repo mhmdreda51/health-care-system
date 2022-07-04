@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:health_care_system/view/Health%20Card%20Screen/Componants/second_dose_column.dart';
 import 'package:health_care_system/view/Health%20Card%20Screen/Componants/vaccination_name_row.dart';
 import 'package:health_care_system/widgets/main_button.dart';
 
+import '../../../core/router/router.dart';
 import '../../../widgets/AccountItemAppBar.dart';
 import '../Controller/health_card_cubit.dart';
 import '../Widgets/dialog_header.dart';
@@ -22,7 +25,19 @@ class CoronaVaccine extends StatelessWidget {
       create: (context) => HealthCardCubit(),
       child: BlocConsumer<HealthCardCubit, HealthCardState>(
         listener: (context, state) {
-          // TODO: implement listener
+          final cubit = HealthCardCubit.get(context);
+
+          if (state is SendCoronaVaccineSuccess) {
+            Fluttertoast.showToast(
+              msg: "Complete Medical information successfully",
+            );
+
+            MagicRouter.pop();
+          } else if (state is SendCoronaVaccineError) {
+            Fluttertoast.showToast(
+              msg: state.error,
+            );
+          }
         },
         builder: (context, state) {
           final cubit = HealthCardCubit.get(context);
@@ -55,25 +70,38 @@ class CoronaVaccine extends StatelessWidget {
                       SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.only(top: 20, bottom: 20),
-                        child: MainButton(
-                          height: 40,
-                          width: 150,
-                          text: "Done",
-                          borderRadius: 12,
-                          onPressed: () {
-                            // if (cubit.coronaFormKey.currentState!.validate()) {
-                            //   CacheHelper.cacheMedicalInfo(
-                            //     dose1_Date: cubit.corona_dose1_date.text,
-                            //     dose1_location: cubit.corona_dose1_location.text,
-                            //     dose2_Date: cubit.corona_dose2_date.text,
-                            //     dose2_location: cubit.corona_dose2_location.text,
-                            //     nameOfVaccination: cubit.corona_name.text,
-                            //     serialNumber: cubit.coronaSerialNumber.text,
-                            //   ).whenComplete(
-                            //       () => MagicRouter.navigateTo(HealthCardScreen()));
-                            // }
-                          },
-                        ),
+                        child: state is SendCoronaVaccineLoading
+                            ? const CupertinoActivityIndicator(
+                                radius: 16.0,
+                                animating: true,
+                              )
+                            : MainButton(
+                                height: 40,
+                                width: 150,
+                                text: "Done",
+                                borderRadius: 12,
+                                onPressed: () {
+                                  if (cubit.coronaFormKey.currentState!
+                                      .validate()) {
+                                    cubit
+                                        .sendCoronaVaccine(
+                                          date_first:
+                                              cubit.dose1_Date.toString(),
+                                          date_sec: cubit.dose2_Date.toString(),
+                                          location_first:
+                                              cubit.dose1Location.text,
+                                          location_sec:
+                                              cubit.dose2Location.text,
+                                          name: cubit.coronaName.text,
+                                          serial_number:
+                                              cubit.SerialNumber.text,
+                                        )
+                                        .whenComplete(() => {
+                                              cubit.getMedicalInfo(),
+                                            });
+                                  }
+                                },
+                              ),
                       )
                     ],
                   ),

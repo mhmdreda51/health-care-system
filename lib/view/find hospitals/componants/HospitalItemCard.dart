@@ -42,11 +42,13 @@ class HospitalItemCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppText(
-                text: name,
-                size: 14.sp,
-                color: AppColors.introTextColor,
-                fontWeight: FontWeight.bold,
+              Expanded(
+                child: AppText(
+                  text: name,
+                  size: 14.sp,
+                  color: AppColors.introTextColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(height: 5.h),
               AppText(

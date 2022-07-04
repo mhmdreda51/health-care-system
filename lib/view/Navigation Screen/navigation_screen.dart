@@ -42,10 +42,6 @@ class NavigationScreen extends StatelessWidget {
                     label: 'Home',
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.analytics_outlined, size: 25),
-                    label: 'Covid 19 Live',
-                  ),
-                  BottomNavigationBarItem(
                     icon: Icon(Icons.chat_outlined, size: 25),
                     label: 'ChatBoot',
                   ),

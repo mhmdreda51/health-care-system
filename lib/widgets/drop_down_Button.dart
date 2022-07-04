@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/constants/app_colors.dart';
+import 'package:health_care_system/core/Category%20cubit/category_cubit.dart';
 
 class AppDropDownButton extends StatelessWidget {
   const AppDropDownButton(
       {Key? key,
-      required this.itemsList,
       required this.onChanged,
-      required this.value})
+      required this.value,
+      required this.cubit})
       : super(key: key);
-  final List<dynamic> itemsList;
   final Function(String?)? onChanged;
   final String? value;
+  final CategoryCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +23,18 @@ class AppDropDownButton extends StatelessWidget {
           color: Colors.white,
           border: Border.all(color: Colors.white)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
+        child: DropdownButton<dynamic>(
           isExpanded: true,
-          items: itemsList
+          items: cubit.categoriesModel!.data.category
               .map(
-                (e) => DropdownMenuItem<String>(
-                  child: Text(e.toString(),
+                (e) => DropdownMenuItem<dynamic>(
+                  child: Text(e.name.toString(),
                       style: const TextStyle(color: AppColors.introTextColor)),
-                  value: e,
+                  value: e.name,
                 ),
               )
               .toList(),
-          onChanged: onChanged,
+          onChanged: (value) => onChanged!(value),
           value: value,
           elevation: 2,
           isDense: false,

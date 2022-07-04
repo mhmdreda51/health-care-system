@@ -25,7 +25,7 @@ class SerialNumberColumn extends StatelessWidget {
           SizedBox(height: 10),
           UserFormField(
             height: 35,
-            controller: cubit.coronaSerialNumber,
+            controller: cubit.SerialNumber,
             hint: "",
             validator: (value) {
               if (value!.isEmpty) {

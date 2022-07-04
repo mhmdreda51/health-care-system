@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health_care_system/view/Home%20Screen/Controller/home_cubit.dart';
 import 'package:health_care_system/view/Home%20Screen/companants/services_grid_view.dart';
 import 'package:health_care_system/view/Home%20Screen/companants/top_doctor_list_view.dart';
-import 'package:health_care_system/view/Home%20Screen/companants/top_hospital_list_view.dart';
 import 'package:health_care_system/view/Home%20Screen/companants/top_row.dart';
-import 'package:health_care_system/view/find%20hospitals/Model/hospital_model.dart';
 
 import '../../../constants/app_colors.dart';
 import '../../../core/router/router.dart';
@@ -61,14 +59,6 @@ class HomeContant extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             TopDoctorListView(),
-            TopRow(
-              header: "Top Hospital",
-              onTap: () => MagicRouter.navigateTo(
-                AllTop(title: "Hospital", list: hospitals),
-              ),
-            ),
-            SizedBox(height: 10.h),
-            TopHospitalListView(),
           ],
         ),
       ),

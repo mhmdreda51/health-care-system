@@ -15,22 +15,26 @@ class DialogHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 90),
+      padding: const EdgeInsets.only(left: 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              Icon(
-                icon,
-                color: AppColors.introTextColor,
-              ),
-              SizedBox(width: 5),
-              AppText(
-                color: AppColors.introTextColor,
-                text: title,
-                fontWeight: FontWeight.bold,
-                size: 14,
+              Row(
+                children: [
+                  Icon(
+                    icon,
+                    color: AppColors.introTextColor,
+                  ),
+                  SizedBox(width: 5),
+                  AppText(
+                    color: AppColors.introTextColor,
+                    text: title,
+                    fontWeight: FontWeight.bold,
+                    size: 14,
+                  ),
+                ],
               ),
             ],
           ),

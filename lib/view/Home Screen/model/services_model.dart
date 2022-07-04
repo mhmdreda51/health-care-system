@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:health_care_system/constants/app_colors.dart';
-
 class ServicesModel {
   final int id;
   final String image;
@@ -49,8 +47,8 @@ List<ServicesModel> servicesList = [
   ),
   ServicesModel(
     id: 6,
-    image: "assets/icons/Icons- pills.png",
-    name: "Pill Reminder",
-    color: AppColors.redGradientColor,
+    image: "assets/images/mask.png",
+    name: "Covid 19 Live",
+    color: const Color(0xFFFB80B9),
   ),
 ];

@@ -4,6 +4,7 @@ class UserModel {
     required this.message,
     required this.data,
   });
+
   late final int status;
   late final String message;
   late final Data data;
@@ -28,6 +29,7 @@ class Data {
     required this.token,
     required this.user,
   });
+
   late final String token;
   late final User user;
 
@@ -56,7 +58,9 @@ class User {
     this.pinCode,
     required this.pinCodeDateExpired,
     required this.phone,
+    required this.bloodTypeId,
   });
+
   late final int id;
   late final String userName;
   late final String email;
@@ -67,18 +71,20 @@ class User {
   late final Null pinCode;
   late final String pinCodeDateExpired;
   late final String phone;
+  late final int? bloodTypeId;
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userName = json['user_name'];
-    email = json['email'];
-    long = json['long'];
-    lat = json['lat'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    id = json['id'] ?? "";
+    userName = json['user_name'] ?? "";
+    email = json['email'] ?? "";
+    long = json['long'] ?? "";
+    lat = json['lat'] ?? "";
+    createdAt = json['created_at'] ?? "";
+    updatedAt = json['updated_at'] ?? "";
     pinCode = null;
-    pinCodeDateExpired = json['pin_code_date_expired'];
-    phone = json['phone'];
+    pinCodeDateExpired = json['pin_code_date_expired'] ?? "";
+    phone = json['phone'] ?? "";
+    bloodTypeId = json['blood_type_id'] ?? 1;
   }
 
   Map<String, dynamic> toJson() {
@@ -93,6 +99,7 @@ class User {
     _data['pin_code'] = pinCode;
     _data['pin_code_date_expired'] = pinCodeDateExpired;
     _data['phone'] = phone;
+    _data['blood_type_id'] = bloodTypeId;
     return _data;
   }
 }

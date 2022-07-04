@@ -27,7 +27,7 @@ class DoctorListView extends StatelessWidget {
           itemCount: list!.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
-            final item = cubit.newDoctorList[index];
+            final item = list![index];
             return InkWell(
               onTap: () => MagicRouter.navigateTo(DoctorDetails(
                 item: item,
