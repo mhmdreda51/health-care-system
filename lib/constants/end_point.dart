@@ -14,3 +14,6 @@ const String listBloodType = '/list-blood-type';
 const String medicalInfo = '/getCorona';
 String before_home =
     '/before-home?long=${CacheHelper.getLocationModel!.data.user.long}&lat=${CacheHelper.getLocationModel!.data.user.lat}';
+const String getRecType = '/listType';
+const String postRec = '/createCard';
+const String getRecords = '/getCard';

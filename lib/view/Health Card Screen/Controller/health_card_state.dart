@@ -72,4 +72,39 @@ class GetMedicalInfoSuccess extends HealthCardState {
 }
 
 class GetMedicalInfoError extends HealthCardState {}
+
+//===============================================================
+class TypeOfRecordSelectedItem extends HealthCardState {}
+//===============================================================
+
+class pickTimeLoading extends HealthCardState {}
+
+class pickTimeSuccess extends HealthCardState {}
+//===============================================================
+
+class pickRecordDateLoading extends HealthCardState {}
+
+class pickRecordDateSuccess extends HealthCardState {}
+
+//===============================================================
+class GetRecordTypeLoading extends HealthCardState {}
+
+class GetRecordTypeSuccess extends HealthCardState {
+  RecordType? recordType;
+
+  GetRecordTypeSuccess({required this.recordType});
+}
+
+class GetRecordTypeError extends HealthCardState {}
+
+//===============================================================
+class CreateRecordLoading extends HealthCardState {}
+
+class CreateRecordSuccess extends HealthCardState {
+  CreateRecordModel? createRecordModel;
+
+  CreateRecordSuccess({required this.createRecordModel});
+}
+
+class CreateRecordError extends HealthCardState {}
 //===============================================================

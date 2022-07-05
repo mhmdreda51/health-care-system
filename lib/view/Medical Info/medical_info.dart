@@ -5,6 +5,7 @@ import 'package:health_care_system/view/Health%20Card%20Screen/Componants/corona
 import '../../core/router/router.dart';
 import '../../widgets/AccountItemAppBar.dart';
 import '../Account Screen/Widgets/AccountMenuWidget.dart';
+import '../Health Card Screen/Componants/MedicalRecords.dart';
 
 class MedicalInfo extends StatelessWidget {
   const MedicalInfo({Key? key}) : super(key: key);
@@ -31,6 +32,13 @@ class MedicalInfo extends StatelessWidget {
               text: "Blood Type",
               icon: Icons.bloodtype_outlined,
               onTap: () => MagicRouter.navigateTo(BloodType()),
+            ),
+            SizedBox(height: 10),
+            AccountMenuWidget(
+              color: Colors.white,
+              text: "Medical Records",
+              icon: Icons.bloodtype_outlined,
+              onTap: () => MagicRouter.navigateTo(MedicalRecords()),
             ),
             SizedBox(height: 10),
           ],

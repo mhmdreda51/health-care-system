@@ -4,7 +4,22 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:health_care_system/constants/app_colors.dart';
 import 'package:health_care_system/view/Home%20Screen/Controller/home_cubit.dart';
 
-class NavigationScreen extends StatelessWidget {
+class NavigationScreen extends StatefulWidget {
+  final int currentIndex;
+
+  const NavigationScreen({Key? key, this.currentIndex = 0}) : super(key: key);
+
+  @override
+  State<NavigationScreen> createState() => _NavigationScreenState();
+}
+
+class _NavigationScreenState extends State<NavigationScreen> {
+  @override
+  void initState() {
+    super.initState();
+    HomeCubit.get(context).currentIndex = widget.currentIndex;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(

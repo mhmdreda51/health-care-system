@@ -32,9 +32,9 @@ class PersonalInfo extends StatelessWidget {
         builder: (context, state) {
           final cubit = PersonalInfoCubit.get(context);
           cubit.userNameController.text =
-              CacheHelper.getUserInfo!.data!.user!.userName.toString();
+              CacheHelper.getUserInfo!.data.user.userName.toString();
           cubit.emailController.text =
-              CacheHelper.getUserInfo!.data!.user!.email.toString();
+              CacheHelper.getUserInfo!.data.user.email.toString();
           // cubit.phoneController.text =
           //     CacheHelper.getUserInfo!.data.user.phone.toString();
           return Scaffold(

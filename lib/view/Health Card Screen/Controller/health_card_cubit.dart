@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_care_system/core/cacheHelper/cache_helper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
@@ -12,6 +13,8 @@ import '../../../core/dioHelper/dio_helper.dart';
 import '../Model/MedicalInfoModel.dart';
 import '../Model/SendBloodTypeModel.dart';
 import '../Model/blood_type_model.dart';
+import '../Model/create_record.dart';
+import '../Model/tybe_records.dart';
 
 part 'health_card_state.dart';
 
@@ -24,6 +27,7 @@ class HealthCardCubit extends Cubit<HealthCardState> {
 
   //===============================================================
   GlobalKey<FormState> coronaFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> recordFormKey = GlobalKey<FormState>();
 
   //===============================================================
   TextEditingController coronaName = TextEditingController();
@@ -33,6 +37,7 @@ class HealthCardCubit extends Cubit<HealthCardState> {
   TextEditingController dose1Location = TextEditingController();
   TextEditingController dose2Date = TextEditingController();
   TextEditingController dose2Location = TextEditingController();
+  TextEditingController recordTitle = TextEditingController();
 
   //===============================================================
 
@@ -228,7 +233,134 @@ class HealthCardCubit extends Cubit<HealthCardState> {
       debugPrint(s.toString());
       emit(GetBloodTypeError());
     }
+    //===============================================================
   }
+
+  int isRecordSelected = 1;
+
+  int get getRecordCurrentItem => isSelected;
+
+  void RecordItemSelection(int value) {
+    isRecordSelected = value;
+
+    emit(TypeOfRecordSelectedItem());
+  }
+
+//===============================================================
+  String formatRecordDate(DateTime date) =>
+      new DateFormat('yyyy-MM-dd').format(RecordDate);
+
+  DateTime RecordDate = DateTime.now();
+  bool isRecordDatePicked = false;
+
+  Future<void> selectRecordDate(BuildContext context) async {
+    emit(pickRecordDateLoading());
+    final DateTime? pickedRecordDate = await showDatePicker(
+        context: context,
+        initialDate: dose1_Date,
+        firstDate: DateTime(2015),
+        lastDate: DateTime(2050));
+    if (pickedRecordDate != null && pickedRecordDate != dose1_Date) {
+      RecordDate = pickedRecordDate;
+      isRecordDatePicked = true;
+      emit(pickRecordDateSuccess());
+    }
+  }
+
+//===============================================================
+  bool isTimePicked = false;
+
+  TimeOfDay selectedTime = TimeOfDay.now();
+
+  Future<void> selectRecordTime(BuildContext context) async {
+    emit(pickTimeLoading());
+    final TimeOfDay? pickTime = await showTimePicker(
+      initialTime: selectedTime,
+      initialEntryMode: TimePickerEntryMode.dial,
+      context: context,
+    );
+    if (pickTime != null && pickTime != selectedTime) {
+      selectedTime = pickTime;
+      isTimePicked = true;
+      emit(pickTimeSuccess());
+    }
+  }
+
+//===============================================================
+  XFile? image;
+
+  Future<String> pickImageFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+    final imageFile = await picker.pickImage(source: ImageSource.gallery);
+    image = imageFile;
+    return image!.path;
+  }
+
+//===============================================================
+  RecordType? recordType;
+
+  Future<void> getRecordType() async {
+    emit(GetRecordTypeLoading());
+    final response = await DioHelper.getData(
+      url: getRecType,
+    );
+    try {
+      print(response.data);
+      recordType = RecordType.fromJson(response.data);
+      emit(GetRecordTypeSuccess(recordType: recordType!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetRecordTypeError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetRecordTypeError());
+    }
+  }
+
+//===============================================================
+  CreateRecordModel? createRecordModel;
+
+  Future<void> postRecord({
+    required String title,
+    required String cardDate,
+    required String typeId,
+    required String cardTime,
+    required XFile image,
+  }) async {
+    emit(CreateRecordLoading());
+    // String imageFileName = image.path.split('/').last;
+
+    final response = await DioHelper.postData(
+      url: postRec,
+      data: {
+        'title': title,
+        'card_date': cardDate,
+        'card_time': cardTime,
+        'attachments':
+            await MultipartFile.fromFile(image.path, filename: image.name),
+        'type_id': typeId,
+      },
+    );
+    // final data = response.data as Map<String, dynamic>;
+    print(response.statusMessage);
+    print(response.statusCode);
+
+    createRecordModel = CreateRecordModel.fromJson(response.data);
+    try {
+      emit(CreateRecordSuccess(createRecordModel: createRecordModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(CreateRecordError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(CreateRecordError());
+    }
+  }
+//===============================================================
+//===============================================================
+
 //===============================================================
 
 }

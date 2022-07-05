@@ -17,7 +17,7 @@ class HealthCardHeader extends StatelessWidget {
     var assertImage = "assets/images/topdoctor.png";
     var userEmail = CacheHelper.getUserInfo!.data.user.email;
     var userName = CacheHelper.getUserInfo!.data.user.userName;
-    // var serialNumber = cubit.medicalInfoModel!.data!.serialNumber;
+    var serialNumber = cubit.medicalInfoModel!.data!.serialNumber;
     return Container(
       width: double.infinity,
       height: 180,
@@ -61,11 +61,13 @@ class HealthCardHeader extends StatelessWidget {
               ],
             ),
           ),
-          QrImage(
-            data:
-                "This citizen is vaccinated against the Corona virus with a serial number ${""}",
-            size: 150,
-          ),
+          CacheHelper.getMedicalInfoModel == null
+              ? Container()
+              : QrImage(
+                  data:
+                      "This citizen is vaccinated against the Corona virus with a serial number ${serialNumber}",
+                  size: 150,
+                ),
         ],
       ),
     );

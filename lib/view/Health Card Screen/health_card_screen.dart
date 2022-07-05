@@ -5,11 +5,13 @@ import 'package:health_care_system/core/cacheHelper/cache_helper.dart';
 
 import '../../constants/app_colors.dart';
 import '../../core/router/router.dart';
+import 'Componants/MedicalRecords.dart';
 import 'Componants/blood_part_with_info.dart';
 import 'Componants/blood_type.dart';
 import 'Componants/corona_part_with_info.dart';
 import 'Componants/corona_vaccine.dart';
 import 'Componants/health_card_header.dart';
+import 'Componants/records_list_view.dart';
 import 'Controller/health_card_cubit.dart';
 import 'Widgets/info_card.dart';
 
@@ -43,7 +45,7 @@ class HealthCardScreen extends StatelessWidget {
                         children: [
                           HealthCardHeader(cubit: cubit),
                           SizedBox(height: 20),
-                          CacheHelper.getMedicalInfoModel!.data!.name == ""
+                          CacheHelper.getMedicalInfoModel == null
                               ? InfoCard(
                                   text:
                                       "Add your information about Corona vaccine",
@@ -53,7 +55,7 @@ class HealthCardScreen extends StatelessWidget {
                                 )
                               : CoronaPartWithInfo(cubit: cubit),
                           SizedBox(height: 20),
-                          CacheHelper.getMedicalInfoModel!.data!.name == ""
+                          CacheHelper.getMedicalInfoModel == null
                               ? InfoCard(
                                   text: "Add your information about blood type",
                                   icon: Icons.bloodtype_outlined,
@@ -61,7 +63,16 @@ class HealthCardScreen extends StatelessWidget {
                                       MagicRouter.navigateTo(BloodType()),
                                 )
                               : BloodPartWithInfo(cubit: cubit),
-                          SizedBox(height: 70),
+                          SizedBox(height: 20),
+                          CacheHelper.getMedicalInfoModel == null
+                              ? InfoCard(
+                                  text: "Add your medical records",
+                                  icon: Icons.bloodtype_outlined,
+                                  onTap: () =>
+                                      MagicRouter.navigateTo(MedicalRecords()),
+                                )
+                              : RecordsListView(),
+                          SizedBox(height: 80),
                         ],
                       ),
                     ),

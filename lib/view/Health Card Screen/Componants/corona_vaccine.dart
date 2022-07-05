@@ -8,6 +8,7 @@ import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../../core/router/router.dart';
 import '../../../widgets/AccountItemAppBar.dart';
+import '../../Navigation Screen/navigation_screen.dart';
 import '../Controller/health_card_cubit.dart';
 import '../Widgets/dialog_header.dart';
 import 'SerialNumberColumn.dart';
@@ -32,7 +33,11 @@ class CoronaVaccine extends StatelessWidget {
               msg: "Complete Medical information successfully",
             );
 
-            MagicRouter.pop();
+            MagicRouter.navigateTo(
+              NavigationScreen(
+                currentIndex: 2,
+              ),
+            );
           } else if (state is SendCoronaVaccineError) {
             Fluttertoast.showToast(
               msg: state.error,
