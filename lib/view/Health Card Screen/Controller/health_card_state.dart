@@ -107,4 +107,25 @@ class CreateRecordSuccess extends HealthCardState {
 }
 
 class CreateRecordError extends HealthCardState {}
+
+//===============================================================
+class GetMedicalRecordsLoading extends HealthCardState {}
+
+class GetMedicalRecordsSuccess extends HealthCardState {
+  GetMedicalRecModel? getMedicalRecModel;
+
+  GetMedicalRecordsSuccess({required this.getMedicalRecModel});
+}
+
+class GetMedicalRecordsError extends HealthCardState {}
+
+//===============================================================
+class pickImageFromGalleryLoading extends HealthCardState {}
+
+class pickImageFromGallerySuccess extends HealthCardState {}
+
+class pickImageFromGalleryError extends HealthCardState {
+  String? error;
+  pickImageFromGalleryError({required this.error});
+}
 //===============================================================

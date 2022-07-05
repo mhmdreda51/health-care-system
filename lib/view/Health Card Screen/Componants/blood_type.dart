@@ -8,6 +8,7 @@ import 'package:health_care_system/widgets/app_text.dart';
 import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../../widgets/AccountItemAppBar.dart';
+import '../../Navigation Screen/navigation_screen.dart';
 import '../Controller/health_card_cubit.dart';
 import 'blood_grid_view.dart';
 
@@ -24,7 +25,11 @@ class BloodType extends StatelessWidget {
         listener: (context, state) {
           if (state is SendBloodTypeSuccess) {
             Fluttertoast.showToast(msg: "Send Blood Type successfully");
-            MagicRouter.pop();
+            MagicRouter.navigateTo(
+              NavigationScreen(
+                currentIndex: 2,
+              ),
+            );
           }
         },
         builder: (context, state) {

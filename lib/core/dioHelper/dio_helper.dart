@@ -52,7 +52,7 @@ class DioHelper {
   }
 
 //===============================================================
-  static Future<Response> postData({
+  static Future<Response<dynamic>> postData({
     required String url,
     dynamic data,
     Map<String, dynamic>? query,

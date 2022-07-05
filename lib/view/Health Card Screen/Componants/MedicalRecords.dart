@@ -76,10 +76,13 @@ class MedicalRecords extends StatelessWidget {
                                     height: 75.0,
                                     width: 75.0,
                                     decoration: BoxDecoration(
-                                      shape: BoxShape.rectangle,
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(13),
-                                    ),
+                                        shape: BoxShape.rectangle,
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.circular(13),
+                                        image: cubit.image != null
+                                            ? DecorationImage(
+                                                image: FileImage(cubit.image))
+                                            : null),
                                   ),
                                 ),
                                 Positioned(
@@ -92,9 +95,7 @@ class MedicalRecords extends StatelessWidget {
                                       shape: BoxShape.circle,
                                     ),
                                     child: IconButton(
-                                        onPressed: () async {
-                                          await cubit.pickImageFromGallery();
-                                        },
+                                        onPressed: cubit.pickImageFromGallery,
                                         icon: const FaIcon(
                                           FontAwesomeIcons.camera,
                                           color: AppColors.deepBlue,
@@ -150,7 +151,7 @@ class MedicalRecords extends StatelessWidget {
                               onTap: () => cubit.selectRecordTime(context),
                               text: cubit.isTimePicked == false
                                   ? ""
-                                  : "${cubit.selectedTime.hour}:${cubit.selectedTime.minute}",
+                                  : "${cubit.timeToPost}",
                             ),
                             SizedBox(height: 20),
                             state is CreateRecordLoading
@@ -174,15 +175,13 @@ class MedicalRecords extends StatelessWidget {
                                       onPressed: () async {
                                         if (cubit.recordFormKey.currentState!
                                             .validate()) {
+                                          print(cubit.image!.path);
                                           cubit.postRecord(
                                             title: cubit.recordTitle.text,
                                             cardDate:
                                                 cubit.RecordDate.toString(),
-                                            typeId: cubit.isRecordSelected
-                                                .toString(),
-                                            cardTime:
-                                                cubit.selectedTime.toString(),
-                                            image: cubit.image!,
+                                            typeId: cubit.isRecordSelected,
+                                            cardTime: cubit.timeToPost!,
                                           );
                                         }
                                       },

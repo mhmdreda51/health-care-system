@@ -100,7 +100,8 @@ class _ChatBootState extends State<ChatBoot> {
         child: InAppWebView(
           key: webViewKey,
           // contextMenu: contextMenu,
-          initialUrlRequest: URLRequest(url: Uri.parse("www.google.com")),
+          initialUrlRequest:
+              URLRequest(url: Uri.parse("https://github.com/flutter")),
           // initialFile: "assets/index.html",
           initialUserScripts: UnmodifiableListView<UserScript>([]),
           initialOptions: options,

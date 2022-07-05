@@ -7,7 +7,6 @@ import '../../componants/loading_widget.dart';
 import '../../core/cacheHelper/cache_helper.dart';
 import '../../widgets/AccountItemAppBar.dart';
 import 'Componants/user_Info_form.dart';
-import 'Componants/user_profile_image.dart';
 
 class PersonalInfo extends StatelessWidget {
   const PersonalInfo({Key? key}) : super(key: key);
@@ -35,24 +34,28 @@ class PersonalInfo extends StatelessWidget {
               CacheHelper.getUserInfo!.data.user.userName.toString();
           cubit.emailController.text =
               CacheHelper.getUserInfo!.data.user.email.toString();
-          // cubit.phoneController.text =
-          //     CacheHelper.getUserInfo!.data.user.phone.toString();
+          cubit.phoneController.text =
+              CacheHelper.getUserInfo!.data.user.phone.toString();
           return Scaffold(
             appBar: AccountItemAppBar(title: "Personal info"),
             backgroundColor: Colors.grey[200],
             body: Padding(
-              padding: const EdgeInsets.all(30),
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
               child: SingleChildScrollView(
                 child: Form(
                   key: cubit.formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      UserProfileImage(cubit: cubit),
+                      // UserProfileImage(cubit: cubit),
                       UserDetailsForm(cubit: cubit),
                       state is UserDetailsUpdateLoadingState
                           ? const LoadingWidget()
                           : MainButton(
+                              height: 43,
+                              width: 164,
+                              text: "Save",
+                              borderRadius: 13,
                               onPressed: () async {
                                 if (cubit.formKey.currentState!.validate()) {
                                   await cubit.updateUser(
@@ -62,12 +65,7 @@ class PersonalInfo extends StatelessWidget {
                                   );
                                 }
                               },
-                              height: 43,
-                              width: 164,
-                              text: "Save",
-                              borderRadius: 13,
                             ),
-                      SizedBox(height: 20),
                     ],
                   ),
                 ),

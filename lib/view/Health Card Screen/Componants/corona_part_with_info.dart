@@ -14,7 +14,7 @@ class CoronaPartWithInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 210,
+      height: 220,
       padding: EdgeInsets.only(right: 20, left: 10, top: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(13),
@@ -103,6 +103,7 @@ class CoronaPartWithInfo extends StatelessWidget {
                   color: AppColors.introTextColor,
                   fontWeight: FontWeight.bold,
                 ),
+                SizedBox(height: 10),
                 Row(
                   children: [
                     Expanded(

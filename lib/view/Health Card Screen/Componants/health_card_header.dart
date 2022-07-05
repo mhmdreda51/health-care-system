@@ -13,11 +13,10 @@ class HealthCardHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //edit it to => image
-    var userImage = CacheHelper.getUserInfo!.data.user.userName;
+    // var userImage = CacheHelper.getUserInfo!.data.user.userName;
     var assertImage = "assets/images/topdoctor.png";
     var userEmail = CacheHelper.getUserInfo!.data.user.email;
     var userName = CacheHelper.getUserInfo!.data.user.userName;
-    var serialNumber = cubit.medicalInfoModel!.data!.serialNumber;
     return Container(
       width: double.infinity,
       height: 180,
@@ -47,27 +46,25 @@ class HealthCardHeader extends StatelessWidget {
                 SizedBox(height: 10),
                 AppText(
                   color: AppColors.introTextColor,
-                  text: userName ?? "",
+                  text: userName,
                   fontWeight: FontWeight.bold,
                   size: 16,
                 ),
                 SizedBox(height: 5),
                 AppText(
                   color: Colors.grey,
-                  text: userEmail ?? "",
+                  text: userEmail,
                   fontWeight: FontWeight.normal,
                   size: 12,
                 ),
               ],
             ),
           ),
-          CacheHelper.getMedicalInfoModel == null
-              ? Container()
-              : QrImage(
-                  data:
-                      "This citizen is vaccinated against the Corona virus with a serial number ${serialNumber}",
-                  size: 150,
-                ),
+          QrImage(
+            data:
+                "This citizen is vaccinated against the Corona virus with a serial number 1234568932",
+            size: 150,
+          ),
         ],
       ),
     );

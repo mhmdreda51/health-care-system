@@ -4,6 +4,7 @@ import 'package:health_care_system/view/Sign%20Up/Model/location_model.dart';
 
 import '../../view/Forget Password/Model/forget_password_model.dart';
 import '../../view/Health Card Screen/Model/MedicalInfoModel.dart';
+import '../../view/Health Card Screen/Model/get_medical_records.dart';
 import '../../view/Login/model/user_model.dart';
 import '../../view/Personal info/Model/personal_model.dart';
 
@@ -161,7 +162,20 @@ class CacheHelper {
 
   static MedicalInfoModel? get getMedicalInfoModel =>
       _appBox.read('medicalInfoModel');
+
 //===============================================================
+  static Future<void> cacheMedicalRec({
+    required GetMedicalRecModel getMedicalRecModel,
+  }) async {
+    await _cacheMedicalRec(getMedicalRecModel);
+  }
+
+  static Future<void> _cacheMedicalRec(
+          GetMedicalRecModel getMedicalRecModel) async =>
+      await _appBox.write('getMedicalRecModel', getMedicalRecModel);
+
+  static GetMedicalRecModel? get getMedicalRec =>
+      _appBox.read('getMedicalRecModel');
 //===============================================================
 
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +16,7 @@ import '../Model/MedicalInfoModel.dart';
 import '../Model/SendBloodTypeModel.dart';
 import '../Model/blood_type_model.dart';
 import '../Model/create_record.dart';
+import '../Model/get_medical_records.dart';
 import '../Model/tybe_records.dart';
 
 part 'health_card_state.dart';
@@ -123,7 +126,6 @@ class HealthCardCubit extends Cubit<HealthCardState> {
     try {
       print(data);
       sendBloodTypeModel = SendBloodTypeModel.fromJson(data);
-
       emit(SendBloodTypeSuccess(sendBloodTypeModel: sendBloodTypeModel!));
     } on DioError catch (e) {
       debugPrint(e.error.toString());
@@ -257,10 +259,10 @@ class HealthCardCubit extends Cubit<HealthCardState> {
     emit(pickRecordDateLoading());
     final DateTime? pickedRecordDate = await showDatePicker(
         context: context,
-        initialDate: dose1_Date,
+        initialDate: RecordDate,
         firstDate: DateTime(2015),
         lastDate: DateTime(2050));
-    if (pickedRecordDate != null && pickedRecordDate != dose1_Date) {
+    if (pickedRecordDate != null && pickedRecordDate != RecordDate) {
       RecordDate = pickedRecordDate;
       isRecordDatePicked = true;
       emit(pickRecordDateSuccess());
@@ -270,31 +272,23 @@ class HealthCardCubit extends Cubit<HealthCardState> {
 //===============================================================
   bool isTimePicked = false;
 
-  TimeOfDay selectedTime = TimeOfDay.now();
+  String? timeToPost;
 
   Future<void> selectRecordTime(BuildContext context) async {
     emit(pickTimeLoading());
     final TimeOfDay? pickTime = await showTimePicker(
-      initialTime: selectedTime,
+      initialTime: TimeOfDay.now(),
       initialEntryMode: TimePickerEntryMode.dial,
       context: context,
     );
-    if (pickTime != null && pickTime != selectedTime) {
-      selectedTime = pickTime;
+    if (pickTime != null) {
+      timeToPost = "07:03:49";
       isTimePicked = true;
       emit(pickTimeSuccess());
     }
   }
 
 //===============================================================
-  XFile? image;
-
-  Future<String> pickImageFromGallery() async {
-    final ImagePicker picker = ImagePicker();
-    final imageFile = await picker.pickImage(source: ImageSource.gallery);
-    image = imageFile;
-    return image!.path;
-  }
 
 //===============================================================
   RecordType? recordType;
@@ -319,29 +313,42 @@ class HealthCardCubit extends Cubit<HealthCardState> {
   }
 
 //===============================================================
+  dynamic image;
+
+  void pickImageFromGallery() async {
+    final pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage == null) return;
+    image = File(pickedImage.path);
+    emit(pickImageFromGallerySuccess());
+  }
+
+//===============================================================
+
   CreateRecordModel? createRecordModel;
 
   Future<void> postRecord({
     required String title,
     required String cardDate,
-    required String typeId,
+    required int typeId,
     required String cardTime,
-    required XFile image,
   }) async {
     emit(CreateRecordLoading());
-    // String imageFileName = image.path.split('/').last;
 
     final response = await DioHelper.postData(
       url: postRec,
-      data: {
+      data: FormData.fromMap({
         'title': title,
         'card_date': cardDate,
-        'card_time': cardTime,
-        'attachments':
-            await MultipartFile.fromFile(image.path, filename: image.name),
+        'card_time': "07:03:49",
         'type_id': typeId,
-      },
+        "attachments": image != null
+            ? MultipartFile.fromFileSync(image!.path,
+                filename: image!.path.split("/").last)
+            : null
+      }),
     );
+
     // final data = response.data as Map<String, dynamic>;
     print(response.statusMessage);
     print(response.statusCode);
@@ -358,7 +365,29 @@ class HealthCardCubit extends Cubit<HealthCardState> {
       emit(CreateRecordError());
     }
   }
+
 //===============================================================
+  GetMedicalRecModel? getMedicalRecModel;
+
+  Future<void> getMedicalRecords() async {
+    emit(GetMedicalRecordsLoading());
+    final response = await DioHelper.getData(
+      url: getRecords,
+    );
+    try {
+      print(response.data);
+      getMedicalRecModel = GetMedicalRecModel.fromJson(response.data);
+      CacheHelper.cacheMedicalRec(getMedicalRecModel: getMedicalRecModel!);
+      emit(GetMedicalRecordsSuccess(getMedicalRecModel: getMedicalRecModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetMedicalRecordsError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetMedicalRecordsError());
+    }
+  }
 //===============================================================
 
 //===============================================================

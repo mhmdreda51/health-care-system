@@ -21,7 +21,9 @@ class HealthCardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HealthCardCubit()..getMedicalInfo(),
+      create: (context) => HealthCardCubit()
+        ..getMedicalInfo()
+        ..getMedicalRecords(),
       child: BlocConsumer<HealthCardCubit, HealthCardState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -30,7 +32,8 @@ class HealthCardScreen extends StatelessWidget {
           return Scaffold(
             appBar: appBar(),
             backgroundColor: Colors.grey[200],
-            body: state is GetMedicalInfoLoading
+            body: state is GetMedicalInfoLoading ||
+                    state is GetMedicalRecordsLoading
                 ? Center(
                     child: const CupertinoActivityIndicator(
                       radius: 16.0,
@@ -55,7 +58,7 @@ class HealthCardScreen extends StatelessWidget {
                                 )
                               : CoronaPartWithInfo(cubit: cubit),
                           SizedBox(height: 20),
-                          CacheHelper.getMedicalInfoModel == null
+                          CacheHelper.getBloodType == null
                               ? InfoCard(
                                   text: "Add your information about blood type",
                                   icon: Icons.bloodtype_outlined,
@@ -64,14 +67,14 @@ class HealthCardScreen extends StatelessWidget {
                                 )
                               : BloodPartWithInfo(cubit: cubit),
                           SizedBox(height: 20),
-                          CacheHelper.getMedicalInfoModel == null
+                          CacheHelper.getMedicalRec!.data.length == 0
                               ? InfoCard(
                                   text: "Add your medical records",
                                   icon: Icons.bloodtype_outlined,
                                   onTap: () =>
                                       MagicRouter.navigateTo(MedicalRecords()),
                                 )
-                              : RecordsListView(),
+                              : RecordsListView(cubit: cubit),
                           SizedBox(height: 80),
                         ],
                       ),

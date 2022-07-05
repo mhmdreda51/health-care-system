@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:health_care_system/core/cacheHelper/cache_helper.dart';
+import 'package:health_care_system/view/Health%20Card%20Screen/Controller/health_card_cubit.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 import 'package:health_care_system/widgets/main_button.dart';
 
 import '../../../constants/app_colors.dart';
 import '../../../core/router/router.dart';
 import '../Widgets/record_card.dart';
+import '../Widgets/record_details.dart';
 import 'MedicalRecords.dart';
 
 class RecordsListView extends StatelessWidget {
-  const RecordsListView({Key? key}) : super(key: key);
+  const RecordsListView({Key? key, required this.cubit}) : super(key: key);
+  final HealthCardCubit cubit;
 
   @override
   Widget build(BuildContext context) {
+    final base = "http://mohamedelbadry.me";
     return Container(
       width: double.infinity,
       height: 500,
@@ -33,9 +38,23 @@ class RecordsListView extends StatelessWidget {
           SizedBox(height: 15),
           Expanded(
             child: ListView.separated(
-              itemCount: 6,
+              itemCount: CacheHelper.getMedicalRec!.data.length,
               itemBuilder: (context, index) {
-                return RecordCard();
+                var item = CacheHelper.getMedicalRec!.data[index];
+                return GestureDetector(
+                  onTap: () => MagicRouter.navigateTo(RecordDetails(
+                    title: item.title,
+                    image: item.attachmentRelation[0].path,
+                    date: item.cardDate,
+                    time: item.cardTime,
+                  )),
+                  child: RecordCard(
+                    title: item.title,
+                    image: item.attachmentRelation[0].path,
+                    date: item.cardDate,
+                    time: item.cardTime,
+                  ),
+                );
               },
               separatorBuilder: (context, index) {
                 return SizedBox(height: 10);

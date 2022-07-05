@@ -35,7 +35,7 @@ class SettingsScreen extends StatelessWidget {
                   icon: Icons.lock,
                   text: "Change your password",
                 ),
-                SizedBox(height: 10),
+                // SizedBox(height: 10),
                 AccountMenuWidget(
                   onTap: () => MagicRouter.navigateTo(SelectLocationScreen()),
                   color: Colors.transparent,
