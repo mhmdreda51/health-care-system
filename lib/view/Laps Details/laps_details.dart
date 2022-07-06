@@ -38,7 +38,7 @@ class LapsDetails extends StatelessWidget {
               ),
               SizedBox(height: 18),
               AppText(
-                text: "Hospital info",
+                text: "Lap info",
                 size: 20,
                 color: AppColors.introTextColor,
                 fontWeight: FontWeight.bold,

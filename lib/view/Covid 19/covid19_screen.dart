@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/app_colors.dart';
-import '../../core/router/router.dart';
 import 'Componants/country_item.dart';
 import 'Componants/country_title_bar.dart';
 import 'Model/covid19_model.dart';
@@ -234,15 +233,6 @@ class _Covid19ScreenState extends State<Covid19Screen> {
     return AppBar(
       backgroundColor: Colors.white,
       leading: SizedBox(),
-      actions: [
-        IconButton(
-            icon: const Icon(
-              Icons.arrow_forward_ios_sharp,
-              color: AppColors.introTextColor,
-              size: 20,
-            ),
-            onPressed: () => MagicRouter.pop())
-      ],
       title: Text(
         'Covid 19 Live',
         style: TextStyle(
