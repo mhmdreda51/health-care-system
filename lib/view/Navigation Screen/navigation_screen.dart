@@ -57,8 +57,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
                     label: 'Home',
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.chat_outlined, size: 25),
-                    label: 'ChatBoot',
+                    icon: Icon(Icons.coronavirus_outlined, size: 25),
+                    label: 'Covid 19 Live',
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(FontAwesomeIcons.clipboardList),

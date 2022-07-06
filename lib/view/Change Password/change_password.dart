@@ -21,24 +21,18 @@ class ChangePasswordScreen extends StatelessWidget {
       child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
         listener: (context, state) {
           if (state is UserPasswordUpdateSuccessState) {
-            if (state.changePasswordModel.status == 1) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("change_password.password_update_success"),
-                  backgroundColor: Colors.green,
-                ),
-              );
+            if (state.changePasswordModel.status == 0) {
+              Fluttertoast.showToast(msg: "change password success");
               MagicRouter.pop();
-            } else if (state.changePasswordModel.status == 0) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.changePasswordModel.message.toString()),
-                  backgroundColor: Colors.red,
-                ),
+            } else if (state.changePasswordModel.status == 1) {
+              Fluttertoast.showToast(
+                msg: state.changePasswordModel.message.toString(),
               );
             } else {
-              Fluttertoast.showToast(msg: "change_password.some_error");
+              Fluttertoast.showToast(msg: "change password error");
             }
+          } else if (state is UserPasswordUpdateErrorState) {
+            Fluttertoast.showToast(msg: state.error);
           }
         },
         builder: (context, state) {

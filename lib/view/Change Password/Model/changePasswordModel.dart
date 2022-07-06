@@ -4,21 +4,22 @@ class ChangePasswordModel {
     required this.message,
     required this.data,
   });
+
   late final int status;
   late final String message;
-  late final Data data;
+  late final Data? data;
 
   ChangePasswordModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'] ?? "";
-    data = Data.fromJson(json['data']);
+    data = Data.fromJson(json['data'] ?? "");
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['status'] = status;
     _data['message'] = message;
-    _data['data'] = data.toJson();
+    _data['data'] = data!.toJson();
     return _data;
   }
 }
@@ -36,6 +37,7 @@ class Data {
     required this.pinCodeDateExpired,
     required this.phone,
   });
+
   late final int id;
   late final String userName;
   late final String email;
@@ -48,16 +50,16 @@ class Data {
   late final String phone;
 
   Data.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userName = json['user_name'];
-    email = json['email'];
-    long = json['long'];
-    lat = json['lat'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    id = json['id'] ?? 1;
+    userName = json['user_name'] ?? "";
+    email = json['email'] ?? "";
+    long = json['long'] ?? "";
+    lat = json['lat'] ?? "";
+    createdAt = json['created_at'] ?? "";
+    updatedAt = json['updated_at'] ?? "";
     pinCode = null;
-    pinCodeDateExpired = json['pin_code_date_expired'];
-    phone = json['phone'];
+    pinCodeDateExpired = json['pin_code_date_expired'] ?? "";
+    phone = json['phone'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

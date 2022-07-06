@@ -1,6 +1,8 @@
 import '../core/cacheHelper/cache_helper.dart';
 
 const base = "http://mohamedelbadry.me/api/v1";
+const chatBoot = "http://mohamedelbadry.me/";
+
 const login = '/login';
 const register = '/register';
 const postLocation = "/location";

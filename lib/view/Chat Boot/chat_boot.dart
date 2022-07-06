@@ -7,7 +7,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../constants/app_colors.dart';
+import '../../widgets/AccountItemAppBar.dart';
 
 class ChatBoot extends StatefulWidget {
   ChatBoot({Key? key}) : super(key: key);
@@ -91,17 +91,19 @@ class _ChatBootState extends State<ChatBoot> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
+      appBar: AccountItemAppBar(title: "Chat Boot"),
       backgroundColor: Colors.grey[200],
       body: Container(
         width: double.infinity,
         // height: 600,
-        // the most important part of this example
+        // padding: EdgeInsets.only(bottom: 70),
         child: InAppWebView(
           key: webViewKey,
           // contextMenu: contextMenu,
-          initialUrlRequest:
-              URLRequest(url: Uri.parse("https://github.com/flutter")),
+          initialUrlRequest: URLRequest(
+              url: Uri.parse(
+            "http://mohamedelbadry.me/",
+          )),
           // initialFile: "assets/index.html",
           initialUserScripts: UnmodifiableListView<UserScript>([]),
           initialOptions: options,
@@ -177,20 +179,4 @@ class _ChatBootState extends State<ChatBoot> {
       ),
     );
   }
-}
-
-AppBar appBar() {
-  return AppBar(
-    backgroundColor: Colors.white,
-    leading: SizedBox(),
-    title: Text(
-      'ChatBoot',
-      style: TextStyle(
-        color: AppColors.introTextColor,
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    centerTitle: true,
-  );
 }

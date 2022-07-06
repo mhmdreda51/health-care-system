@@ -72,21 +72,29 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   }) async {
     emit(UserPasswordUpdateLoadingState());
     final response = await DioHelper.postData(url: change_password, data: {
-      'old_password': oldPassword,
-      'password': newPassword,
-      'password_confirmation': confirmNewPassword,
+      'oldpassword': oldPassword,
+      'newpassword': newPassword,
+      'newpassword_confirmation': confirmNewPassword,
     });
     try {
-      changePasswordModel = ChangePasswordModel.fromJson(response.data);
+      print(response.data);
+      print(response.statusMessage);
+      print(response.statusCode);
+      print(response.toString());
+
+      final data = response.data as Map<String, dynamic>;
+
+      changePasswordModel = ChangePasswordModel.fromJson(data);
       emit(UserPasswordUpdateSuccessState(
-          changePasswordModel: changePasswordModel!));
+        changePasswordModel: changePasswordModel!,
+      ));
     } on DioError catch (e) {
       debugPrint(e.error.toString());
-      emit(UserPasswordUpdateErrorState());
+      emit(UserPasswordUpdateErrorState(error: e.toString()));
     } catch (e, s) {
       debugPrint(e.toString());
       debugPrint(s.toString());
-      emit(UserPasswordUpdateErrorState());
+      emit(UserPasswordUpdateErrorState(error: e.toString()));
     }
   }
 }

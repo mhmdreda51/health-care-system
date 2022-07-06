@@ -19,4 +19,8 @@ class UserPasswordUpdateSuccessState extends ChangePasswordState {
   UserPasswordUpdateSuccessState({required this.changePasswordModel});
 }
 
-class UserPasswordUpdateErrorState extends ChangePasswordState {}
+class UserPasswordUpdateErrorState extends ChangePasswordState {
+  final String error;
+
+  UserPasswordUpdateErrorState({required this.error});
+}

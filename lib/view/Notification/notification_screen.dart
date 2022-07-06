@@ -6,6 +6,7 @@ import 'package:health_care_system/widgets/AccountItemAppBar.dart';
 import 'package:health_care_system/widgets/app_text.dart';
 
 import 'Componants/notification_item_card.dart';
+import 'Model/NotificationModel.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
@@ -41,13 +42,13 @@ class NotificationScreen extends StatelessWidget {
                       width: double.infinity,
                       height: MediaQuery.of(context).size.height,
                       child: ListView.separated(
-                        itemCount: 50,
+                        itemCount: notificationList.length,
                         scrollDirection: Axis.vertical,
                         itemBuilder: (context, index) {
-                          // var item = notificationList[index];
+                          var item = notificationList[index];
                           return NotificationItemCard(
-                            title: "Test",
-                            disc: "test",
+                            title: item.title,
+                            disc: item.disc,
                           );
                         },
                         separatorBuilder: (context, index) {

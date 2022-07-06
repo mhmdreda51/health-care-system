@@ -82,7 +82,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(CallAmpulanceSuccess());
       emit(ChangeServicesById());
     } else if (id == 6) {
-      MagicRouter.navigateTo(const Covid19Screen());
+      MagicRouter.navigateTo(ChatBoot());
       emit(ChangeServicesById());
     }
   }
@@ -91,7 +91,7 @@ class HomeCubit extends Cubit<HomeState> {
   int currentIndex = 0;
   List<Widget> bottomViews = [
     const HomeScreen(),
-    ChatBoot(),
+    Covid19Screen(),
     HealthCardScreen(),
     const AccountScreen(),
   ];

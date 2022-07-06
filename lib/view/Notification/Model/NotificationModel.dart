@@ -10,53 +10,16 @@ class NotificationModel {
 
 List<NotificationModel> notificationList = [
   NotificationModel(
-    title: "Medical Info",
+    title: "Covid 19",
     disc:
-        "Pill Reminder is an easy-to-use and reliable app that helps you remember to take your medications at the right time",
+        "Clean your hands before putting on the mask, and before and after taking it off",
   ),
   NotificationModel(
-    title: "Pill Reminder",
-    disc:
-        "Pill Reminder is an easy-to-use and reliable app that helps you remember to take your medications at the right time",
+    title: "Covid 19",
+    disc: "Make sure it covers your nose, mouth and chin.",
   ),
   NotificationModel(
-    title: "Pill Reminder",
-    disc:
-        "Pill Reminder is an easy-to-use and reliable app that helps you remember to take your medications at the right time",
-  ),
-  NotificationModel(
-    title: "Pill Reminder",
-    disc:
-        "Pill Reminder is an easy-to-use and reliable app that helps you remember to take your medications at the right time",
-  ),
-  NotificationModel(
-    title: "Pill Reminder",
-    disc:
-        "Pill Reminder is an easy-to-use and reliable app that helps you remember to take your medications at the right time",
-  ),
-  NotificationModel(
-    title: "Pill Reminder",
-    disc:
-        "Pill Reminder is an easy-to-use and reliable app that helps you remember to take your medications at the right time",
-  ),
-  NotificationModel(
-    title: "Pill Reminder",
-    disc:
-        "Pill Reminder is an easy-to-use and reliable app that helps you remember to take your medications at the right time",
-  ),
-  NotificationModel(
-    title: "Pill Reminder",
-    disc:
-        "Pill Reminder is an easy-to-use and reliable app that helps you remember to take your medications at the right time",
-  ),
-  NotificationModel(
-    title: "Pill Reminder",
-    disc:
-        "Pill Reminder is an easy-to-use and reliable app that helps you remember to take your medications at the right time",
-  ),
-  NotificationModel(
-    title: "Pill Reminder",
-    disc:
-        "Pill Reminder is an easy-to-use and reliable app that helps you remember to take your medications at the right time",
+    title: "Covid 19",
+    disc: "Do not use masks with valves.",
   ),
 ];

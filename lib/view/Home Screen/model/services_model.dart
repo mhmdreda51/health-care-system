@@ -47,8 +47,8 @@ List<ServicesModel> servicesList = [
   ),
   ServicesModel(
     id: 6,
-    image: "assets/images/mask.png",
-    name: "Covid 19 Live",
+    image: "assets/images/chatbot.png",
+    name: "Chat Boot",
     color: const Color(0xFFFB80B9),
   ),
 ];
